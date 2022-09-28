@@ -1,0 +1,38 @@
+.sidebar {
+  width: 0;
+  height: calc(100vh - 60px);
+  background-color: #1F1F1F;
+  padding: 0 15px 0 0;
+
+  &_opened {
+    width: 15%;
+  }
+}
+
+.navbar {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 25px 0;
+  box-sizing: border-box;
+
+  &__link {
+    font-size: 18px;
+    line-height: 20px;
+    text-decoration: none;
+    color: black;
+    // text-transform: uppercase;
+    text-align: center;
+    padding: 10px;
+    color: white;
+    font-style: normal;
+    font-weight: 600;
+  }
+}
+
+.active {
+  background-color: #FB9722;
+  color: black;
+  border-radius: 0 10px 10px 0;
+  box-shadow: inset 0 0 2px 1px black;
+}
