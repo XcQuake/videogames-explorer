@@ -1,0 +1,88 @@
+@keyframes left-logo-move {
+  0% {
+    transform: translateX(0);
+  }
+  15% {
+    transform: translateX(20px);
+  }
+  50% {
+    transform: translateX(20px) skewX(-5deg);
+  }
+  60% {
+    transform: translateX(20px) skewX(10deg);
+  }
+  70% {
+    transform: translateX(20px) skewX(-5deg);
+  }
+  80% {
+    transform: translateX(20px) skewX(5deg);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes right-logo-move {
+  0% {
+    transform: translateX(0);
+  }
+  15% {
+    transform: translateX(-20px);
+  }
+  50% {
+    transform: translateX(-20px) skewX(-5deg);
+  }
+  60% {
+    transform: translateX(-20px) skewX(10deg);
+  }
+  70% {
+    transform: translateX(-20px) skewX(-5deg);
+  }
+  80% {
+    transform: translateX(-20px) skewX(5deg);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes center {
+  0% {
+    transform: translate(20px);
+  }
+}
+
+.logo {
+  width: 180px;
+  height: 150px;
+  display: flex;
+  justify-content: space-between;
+  transform: rotate(5deg);
+
+  &__left {
+    width: 90px;
+    height: 100%;
+    background-image: url(../../images/logo-left.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: left;
+  }
+
+  &__right {
+    width: 90px;
+    height: 100%;
+    background-image: url(../../images/logo-right.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: right;
+  }
+
+  &:hover {
+    .logo__left {
+      animation: left-logo-move 1.5s linear;
+    }
+    .logo__right {
+      animation: right-logo-move 1.5s linear;
+    }
+  }
+}
