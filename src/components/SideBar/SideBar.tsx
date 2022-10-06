@@ -29,7 +29,7 @@ class SideBar extends React.Component<Props, States> {
         <div className={ `sidebar ${this.state.isOpen ? 'sidebar_opened' : 'sidebar_closed'}` }>
           <div className='sidebar__header'>
             <button className='sidebar__button' onClick={() => this.handleOpenMenu()}/>
-            {/* <p className='sidebar__title'>Kino-Movies</p> */}
+            <p className='sidebar__title'>Kino-Movies</p>
           </div>
           <div className='sidebar__logo-wrapper'>
             <Logo />
