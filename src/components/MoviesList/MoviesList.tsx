@@ -1,24 +1,30 @@
 import React, { useEffect, useState } from 'react';
-import { fetchMovies } from '../../requests/kinopoiskApi';
-import { Movie } from '../../types/kinopoiskApiTypes';
 
 import './MoviesList.scss';
 import MoviesListElement from './MoviesListElement';
+import { fetchMovies } from '../../requests/kinopoiskApi';
+import { Movie } from '../../types/kinopoiskApiTypes';
 
-const MoviesList: React.FC = () => {
-  const [movies, setMovies] = useState<Movie[]>();
+interface Props {
+  type: string;
+}
+
+const MoviesList: React.FC<Props> = ({ type }) => {
+  const [movies, setMovies] = useState<Movie[]>([]);
 
   useEffect(() => {
-    fetchMovies('films')
-      .then((films) => setMovies(films))
-    console.log(movies);
-  }, [])
+    fetchMovies(type)
+      .then((movies) => setMovies(movies))
+  }, [type]);
 
   return (
     <div>
       <ul className='movies-list'>
-        {movies && movies.map((movie) => (
-          <MoviesListElement movie={movie} />
+        {movies.map((movie) => (
+          <MoviesListElement
+            key={movie.kinopoiskId}
+            movie={movie}
+          />
         ))}
       </ul>
     </div>

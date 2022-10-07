@@ -1,4 +1,6 @@
 import React from 'react';
+import { Switch, Route, Router } from 'react-router-dom';
+import { URLS } from '../../utils/contants';
 
 import Header from '../Header/Header';
 import MoviesList from '../MoviesList/MoviesList';
@@ -12,7 +14,14 @@ function App() {
       <SideBar />
       <div className="main">
         <Header />
-        <MoviesList />
+        <Switch>
+          <Route path={URLS.films}>
+            <MoviesList type='FILM' />
+          </Route>
+          <Route path={URLS.tvShows}>
+            <MoviesList type='TV_SHOW' />
+          </Route>
+        </Switch>
       </div>
     </>
   );
