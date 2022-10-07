@@ -17,14 +17,13 @@
   height: calc(100vh);
   background-color: black;
   padding: 0;
+  position: sticky;
+  top: 0;
   display: grid;
   grid-template-rows: 50px 0.7fr 1fr;
   grid-template-columns: 1fr;
   flex-direction: column;
   justify-content: space-between;
-  position: absolute;
-  top: 0;
-  left: 0;
   transition: 0.4s ease;
   overflow: hidden;
   box-shadow: 1px 0 3px #000;
@@ -145,7 +144,6 @@
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    background-color: black;
     z-index: 10;
 
     &_movies {
