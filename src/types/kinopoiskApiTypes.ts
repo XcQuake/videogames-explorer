@@ -1,4 +1,4 @@
-export interface Film {
+export interface Movie {
   countries: {
     country: string;
   }[];
@@ -21,5 +21,5 @@ export interface Film {
 export interface KinopoiskResponse {
   total: number;
   totalPages: number;
-  items: Film[];
+  items: Movie[];
 };
