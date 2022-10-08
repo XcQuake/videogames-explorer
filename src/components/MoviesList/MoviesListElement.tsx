@@ -16,7 +16,9 @@ const MoviesListElement: React.FC<Props> = ({ movie }) => {
         alt='movie'
       />
       <div className='movie__description'>
-        <p className='movie__name'>{movie.nameRu}</p>
+        <p className='movie__name'>
+          {movie.nameRu || movie.nameEn || movie.nameOriginal}
+        </p>
       </div>
     </div>
   )
