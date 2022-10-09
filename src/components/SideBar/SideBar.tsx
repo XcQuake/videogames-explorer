@@ -40,7 +40,7 @@ class SideBar extends React.Component<Props, States> {
               <div className='navbar__icon navbar__icon_movies' />
               <div className='navbar__link-text'>Фильмы</div>
             </NavLink>
-            <NavLink className='navbar__link' to={URLS.tvShows}>
+            <NavLink className='navbar__link' to={URLS.tvSeries}>
               <div className='navbar__icon navbar__icon_tv-shows' />
               <span className='navbar__link-text'>Сериалы</span>
             </NavLink>

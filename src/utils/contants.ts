@@ -5,7 +5,7 @@ export const KINOPOISK_API = {
 
 export const URLS = {
   films: '/films',
-  tvShows: '/tv-shows',
+  tvSeries: '/tv-series',
   digitalRelases: '/digital-releases',
   acters: '/acters',
 }

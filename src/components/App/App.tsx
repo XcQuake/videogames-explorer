@@ -18,8 +18,8 @@ function App() {
           <Route path={URLS.films}>
             <MoviesList type='FILM' />
           </Route>
-          <Route path={URLS.tvShows}>
-            <MoviesList type='TV_SHOW' />
+          <Route path={URLS.tvSeries}>
+            <MoviesList type='TV_SERIES' />
           </Route>
         </Switch>
       </div>
