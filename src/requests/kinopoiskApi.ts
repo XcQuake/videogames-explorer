@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 import { KINOPOISK_API } from '../utils/contants';
 import { KinopoiskResponse, Movie } from '../types/kinopoiskApiTypes';
 
@@ -11,24 +13,15 @@ const HEADERS = {
   'Content-Type': 'application/json', 
 };
 
-export const fetchMovies = (type: string): Promise<Movie[]> => {
-  return fetch(
-    `${KINOPOISK_API.url}/v2.2/films?type=${type}`, {
-      method: 'GET',
-      headers: HEADERS,
-    },
-  )
-  .then((res) => processResult(res))
-  .then((data) => data.items);
-};
+interface ServerResponse {
+  data: KinopoiskResponse;
+}
 
-// export const fetchTvShows = (): Promise<Movie[]> => {
-//   return fetch(
-//     `${KINOPOISK_API.url}/v2.2/films?type=TV_SHOW`, {
-//       method: 'GET',
-//       headers: HEADERS,
-//     },
-//   )
-//   .then((res) => processResult(res))
-//   .then((data) => data.items);
-// };
+export const fetchMovies = (type: string, page: number): Promise<KinopoiskResponse> => {
+  return axios.get<KinopoiskResponse>(
+    `${KINOPOISK_API.url}/v2.2/films?order=NUM_VOTE&type=${type}&page=${page}`,{
+      // transformResponse: (res: ServerResponse) => res.data,
+      headers: HEADERS,
+  })
+  .then((res) => res.data);
+};
