@@ -10,11 +10,11 @@ interface Props {
 const GameCard: React.FC<Props> = ({ game }) => {
   return (
     <div className='game-card'>
-      <img
+      {/* <img
         className='game-card__poster'
         src={game.background_image}
         alt='Game Poster'
-      />
+      /> */}
       <div className='game-card__description'>
         <p className='game-card__name'>
           {game.name}

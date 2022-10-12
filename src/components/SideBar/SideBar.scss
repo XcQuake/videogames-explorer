@@ -15,7 +15,7 @@
 .sidebar {
   width: 50px;
   height: calc(100vh);
-  background-color: black;
+  background-color: #2B2C3A;
   padding: 0;
   position: sticky;
   top: 0;
@@ -38,10 +38,10 @@
     width: 50px;
     height: 100%;
     border: none;
-    background-color: black;
+    background-color: #2B2C3A;
     background-image: url(../../images/burger-icon.svg);
     background-repeat: no-repeat;
-    background-size: 50%;
+    background-size: contain;
     background-position: center;
     align-self: flex-start;
     cursor: pointer;
@@ -92,10 +92,10 @@
 
   &__logo-wrapper {
     width: 100%;
-    padding: 10%;
     box-sizing: border-box;
     display: flex;
     justify-content: center;
+    align-items: center;
     transition: 0.5s ease;
   }
 }
@@ -146,17 +146,17 @@
     background-position: center;
     z-index: 10;
 
-    &_movies {
-      background-image: url(../../images/movies-icon.svg);
+    &_pc {
+      background-image: url(../../images/icon-windows.svg);
     }
-    &_tv-shows {
-      background-image: url(../../images/tv-shows-icon.svg);
+    &_playstation {
+      background-image: url(../../images/icon-playstation.svg);
     }
-    &_digital-releases {
-      background-image: url(../../images/digital-releases-icon.svg);
+    &_xbox {
+      background-image: url(../../images/icon-xbox.svg);
     }
-    &_acters {
-      background-image: url(../../images/acters-icon.svg);
+    &_releases {
+      background-image: url(../../images/icon-calendar.svg);
     }
   }
 }

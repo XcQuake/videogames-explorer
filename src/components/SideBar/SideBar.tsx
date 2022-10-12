@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { URLS } from '../../utils/contants';
 import Logo from '../Logo/Logo';
 
@@ -36,21 +36,21 @@ class SideBar extends React.Component<Props, States> {
             <Logo />
           </div>
           <nav className='navbar'>
-            <NavLink className='navbar__link' to={URLS.films}>
-              <div className='navbar__icon navbar__icon_movies' />
-              <div className='navbar__link-text'>Фильмы</div>
+            <NavLink className='navbar__link' to={URLS.pc}>
+              <div className='navbar__icon navbar__icon_pc' />
+              <span className='navbar__link-text'>PC</span>
             </NavLink>
-            <NavLink className='navbar__link' to={URLS.tvSeries}>
-              <div className='navbar__icon navbar__icon_tv-shows' />
-              <span className='navbar__link-text'>Сериалы</span>
+            <NavLink className='navbar__link' to={URLS.playstation}>
+              <div className='navbar__icon navbar__icon_playstation' />
+              <span className='navbar__link-text'>PlayStation</span>
             </NavLink>
-            <NavLink className='navbar__link' to={URLS.digitalRelases}>
-              <div className='navbar__icon navbar__icon_digital-releases' />
-              <span className='navbar__link-text'>Цифровые релизы</span>
+            <NavLink className='navbar__link' to={URLS.xbox}>
+              <div className='navbar__icon navbar__icon_xbox' />
+              <span className='navbar__link-text'>Xbox</span>
             </NavLink>
-            <NavLink className='navbar__link' to={URLS.acters}>
-              <div className='navbar__icon navbar__icon_acters' />
-              <span className='navbar__link-text'>Персоны</span>
+            <NavLink className='navbar__link' to={URLS.releases}>
+              <div className='navbar__icon navbar__icon_releases' />
+              <span className='navbar__link-text'>Последние релизы</span>
             </NavLink>
           </nav>
         </div>
