@@ -3,7 +3,7 @@ import { Switch, Route, Router } from 'react-router-dom';
 import { URLS } from '../../utils/contants';
 
 import Header from '../Header/Header';
-import MoviesList from '../MoviesList/MoviesList';
+import MoviesList from '../GamesList/GamesList';
 import SideBar from '../SideBar/SideBar';
 
 import './App.scss';
