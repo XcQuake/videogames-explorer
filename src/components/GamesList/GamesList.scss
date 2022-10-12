@@ -1,13 +1,13 @@
 .games {
   height: 100%;
   width: 100%;
-  padding: 25px;
+  padding: 40px 55px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 50px;
-  background-color: #0D0D0D;
+  background-color: #2e303d;
   box-sizing: border-box;
 
   &__list {

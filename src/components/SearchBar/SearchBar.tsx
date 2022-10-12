@@ -8,7 +8,7 @@ const SearchBar: React.FC = () => {
       <button className='search-bar__options' />
       <input
         className='search-bar__input'
-        placeholder='Фильмы, сериалы'
+        placeholder='Название игры'
       />
     </div>
   )

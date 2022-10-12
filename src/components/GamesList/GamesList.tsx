@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import './GamesList.scss';
 import { Movie } from '../../types/kinopoiskApiTypes';
 import Preloader from '../Preloader/Preloader';
-import { fetchGames } from '../../requests/igdbApi';
+import { fetchGames } from '../../requests/rawgApi';
 import { GameResponse } from '../../types/igdbReponseTypes';
 import GameCard from '../GameCard/GameCard';
 
@@ -13,7 +13,6 @@ interface Props {
 
 const MoviesList: React.FC<Props> = ({ type }) => {
   const [games, setGames] = useState<GameResponse[]>([]);
-  const [movies, setMovies] = useState<Movie[]>([]);
   const [pages, setPages] = useState<number>(20);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [isLoading, setIsLoading] = useState(false);
