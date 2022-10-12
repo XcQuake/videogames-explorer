@@ -15,10 +15,10 @@ function App() {
       <div className="main">
         <Header />
         <Switch>
-          <Route path={URLS.films}>
+          <Route path={URLS.pc}>
             <MoviesList type='FILM' />
           </Route>
-          <Route path={URLS.tvSeries}>
+          <Route path={URLS.playstation}>
             <MoviesList type='TV_SERIES' />
           </Route>
         </Switch>
