@@ -1,6 +1,10 @@
 import axios from 'axios';
 
-import { GameResponse } from '../types/igdbReponseTypes';
+import { GameResponse } from '../types/rawgApiTypes';
+import { RAWG_API } from '../utils/contants';
+
+
+const { baseLink, key, platforms } = RAWG_API;
 
 interface RawgApiResponse {
   count: number;
@@ -10,7 +14,13 @@ interface RawgApiResponse {
   user_platforms: boolean;
 }
 
-export const fetchGames = (link: string): Promise<RawgApiResponse> => {
-  return axios.get(link)
+export const fetchGames = (page: number): Promise<RawgApiResponse> => {
+  return axios.get(baseLink, {
+    params: {
+      key: key,
+      platforms: platforms.pc,
+      page,
+    },
+  })
     .then((res) => res.data);
 };

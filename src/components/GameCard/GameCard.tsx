@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { GameResponse } from '../../types/igdbReponseTypes';
+import { GameResponse } from '../../types/rawgApiTypes';
 import './GameCard.scss';
 
 interface Props {
@@ -21,7 +21,7 @@ const GameCard: React.FC<Props> = ({ game }) => {
       <div className='game-card__image'>
         <img
           className='game-card__poster'
-          // src={game.short_screenshots[0].image}
+          src={game.short_screenshots[0].image}
           loading='lazy'
           alt='Game Poster'
         />

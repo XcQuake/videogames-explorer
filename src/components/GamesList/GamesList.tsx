@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
 import './GamesList.scss';
-import Preloader from '../Preloader/Preloader';
+import { GameResponse } from '../../types/rawgApiTypes';
 import { fetchGames } from '../../requests/rawgApi';
-import { GameResponse } from '../../types/igdbReponseTypes';
+import Preloader from '../Preloader/Preloader';
 import GameCard from '../GameCard/GameCard';
-import { useInfiniteScroll } from '../../hooks/useInfiniteScroll';
 
 interface Props {
   type: string;
@@ -13,17 +12,17 @@ interface Props {
 
 const MoviesList: React.FC<Props> = ({ type }) => {
   const [games, setGames] = useState<GameResponse[]>([]);
-  const [nextPage, setNextPage] = useState<string>('https://api.rawg.io/api/games?key=66079383234d4dcb920bcfc26e2fb8ae&page=2&platforms=4');
-  const [isFetching, setIsFetching] = useState(false);
+  const [nextPage, setNextPage] = useState<number>(1);
+  const [isFetching, setIsFetching] = useState<boolean>(false);
 
-  function fetchData(link: string) {
+  function fetchData(page: number){
     setTimeout(() => {
-      fetchGames(link)
+      fetchGames(page)
         .then((res) => {
-          setNextPage(res.next);
+          res.next && setNextPage(nextPage + 1);
           setGames(games.concat(res.results));
           setIsFetching(false);
-        })
+        });
     }, 500)
   };
 
@@ -38,7 +37,7 @@ const MoviesList: React.FC<Props> = ({ type }) => {
   };
 
   useEffect(() => {
-    fetchData('https://api.rawg.io/api/games?key=66079383234d4dcb920bcfc26e2fb8ae&platforms=4');
+    fetchData(1);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);

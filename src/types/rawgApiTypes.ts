@@ -1,3 +1,11 @@
+export interface Platforms {
+  platform: {
+    id: number;
+    name: string;
+    slug: string;
+  }
+}
+
 export interface GameResponse {
   added: number;
   added_by_status: {
@@ -69,10 +77,11 @@ export interface GameResponse {
   user_game: null;
 }
 
-export interface Platforms {
-  platform: {
-    id: number;
-    name: string;
-    slug: string;
-  }
+export interface RawgApiResponse {
+  count: number;
+  next: string;
+  previous: string | null;
+  results: GameResponse[];
+  user_platforms: boolean;
 }
+
