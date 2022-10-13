@@ -8,8 +8,6 @@ interface Props {
 }
 
 const GameCard: React.FC<Props> = ({ game }) => {
-  console.log(game);
-
   const renderPlatforms: JSX.Element = (
     <div className='game-card__platforms'>
       {game.parent_platforms.map((platform) => {
@@ -19,11 +17,11 @@ const GameCard: React.FC<Props> = ({ game }) => {
   )
 
   return (
-    <div className='game-card'>
+    <li className='game-card'>
       <div className='game-card__image'>
         <img
           className='game-card__poster'
-          src={game.short_screenshots[0].image}
+          // src={game.short_screenshots[0].image}
           loading='lazy'
           alt='Game Poster'
         />
@@ -34,7 +32,7 @@ const GameCard: React.FC<Props> = ({ game }) => {
         </p>
         {renderPlatforms}
       </div>
-    </div>
+    </li>
   )
 };
 

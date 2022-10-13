@@ -5,6 +5,7 @@ import Preloader from '../Preloader/Preloader';
 import { fetchGames } from '../../requests/rawgApi';
 import { GameResponse } from '../../types/igdbReponseTypes';
 import GameCard from '../GameCard/GameCard';
+import { useInfiniteScroll } from '../../hooks/useInfiniteScroll';
 
 interface Props {
   type: string;
@@ -12,65 +13,47 @@ interface Props {
 
 const MoviesList: React.FC<Props> = ({ type }) => {
   const [games, setGames] = useState<GameResponse[]>([]);
-  const [pages, setPages] = useState<number>(20);
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const [isLoading, setIsLoading] = useState(false);
+  const [nextPage, setNextPage] = useState<string>('https://api.rawg.io/api/games?key=66079383234d4dcb920bcfc26e2fb8ae&page=2&platforms=4');
+  const [isFetching, setIsFetching] = useState(false);
 
-  function fetchData() {
-    // const timer = setTimeout(() => { setIsLoading(true) }, 1500);
-    // fetchMovies(type, currentPage)
-    //  .then((response) => {
-    //     setMovies(response.items);
-    //     setPages(response.totalPages);
-    //     setIsLoading(false);
-    //     // clearTimeout(timer);
-    //   })
-    fetchGames()
-      .then((res) => {
-        setGames(res.results);
-        console.log(res.results);
-      })
+  function fetchData(link: string) {
+    setTimeout(() => {
+      fetchGames(link)
+        .then((res) => {
+          setNextPage(res.next);
+          setGames(games.concat(res.results));
+          setIsFetching(false);
+        })
+    }, 500)
   };
 
-  const renderPages = () => {
-    const paginationItems = [];
-    for (let i=1; i<=pages; i++) {
-      paginationItems.push(
-        <div
-          className='pagination__item'
-          key={'page'+i}
-          onClick={() => setCurrentPage(i)}
-        >{i}</div>
-      )
-    }
-    return paginationItems;
-  }
+  useEffect(() => {
+    if (!isFetching) return;
+    fetchData(nextPage);
+  }, [isFetching]);
+
+  function handleScroll() {
+    if (window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight) return;
+    setIsFetching(true);
+  };
 
   useEffect(() => {
-    fetchData();
-  }, [type, currentPage]);
+    fetchData('https://api.rawg.io/api/games?key=66079383234d4dcb920bcfc26e2fb8ae&platforms=4');
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <div className='games'>
-      {isLoading && <Preloader />}
-      { !isLoading && 
-        <ul className='games__list'>
-          {games.map((game) => (
-            <GameCard
-              key={game.id}
-              game={game}
-            />
-          ))}
-        </ul>
-      }
-      <div className='pagination'>
-        <div className='pagination__button pagination__button_previous' />
-        { !isLoading && <div className='pagination__items'>
-            { renderPages() }
-          </div> 
-        }
-        <div className='pagination__button pagination__button_next' />
-      </div>
+      <ul className='games__list'>
+        {games.map((game) => (
+          <GameCard
+            key={game.id}
+            game={game}
+          />
+        ))}
+        { isFetching && <li className='games__preloader'><Preloader /></li> }
+      </ul>
     </div>
   )
 };

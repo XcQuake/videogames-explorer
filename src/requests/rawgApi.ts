@@ -10,7 +10,7 @@ interface RawgApiResponse {
   user_platforms: boolean;
 }
 
-export const fetchGames = (): Promise<RawgApiResponse> => {
-  return axios.get(`https://api.rawg.io/api/games?key=66079383234d4dcb920bcfc26e2fb8ae&platforms=4`)
-    .then((res) => {console.log(res); return res.data});
+export const fetchGames = (link: string): Promise<RawgApiResponse> => {
+  return axios.get(link)
+    .then((res) => res.data);
 };

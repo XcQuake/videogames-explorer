@@ -10,6 +10,12 @@
   background-color: #2e303d;
   box-sizing: border-box;
 
+  &__preloader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   &__list {
     width: 100%;
     height: 100%;
@@ -21,6 +27,7 @@
     grid-template-rows: repeat(auto-fill, 1fr);
     column-gap: 15px;
     row-gap: 25px;
+    list-style-type: none;
   }
 }
 
