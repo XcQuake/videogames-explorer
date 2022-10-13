@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
 import './GamesList.scss';
-import { Movie } from '../../types/kinopoiskApiTypes';
 import Preloader from '../Preloader/Preloader';
 import { fetchGames } from '../../requests/rawgApi';
 import { GameResponse } from '../../types/igdbReponseTypes';

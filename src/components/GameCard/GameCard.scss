@@ -1,26 +1,76 @@
+@keyframes loading {
+  0%{
+    left: -45%;
+  }
+  100%{
+    left: 100%;
+  }
+}
+
 .game-card {
   display: flex;
   flex-direction: column;
-  row-gap: 10px;
+  row-gap: 15px;
   width: 100%;
   height: 100%;
   border-radius: 10px;
   color: white;
+  background-color: #3c3d4d;
+  box-sizing: border-box;
+
+  &__image {
+    position: relative;
+    background-image: url(../../images/joystick-icon.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+  }
 
   &__poster {
     width: 100%;
-    height: 300px;
+    height: 180px;
     object-fit: cover;
-    border-radius: 10px;
+    border-radius: 10px 10px 0 0;
   }
 
   &__description {
-    // padding: 0 10px;
+    padding: 0 15px 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
   }
 
   &__name {
     margin: 0;
     font-size: 16px;
     font-weight: 18px;
+    white-space: nowrap;
+  }
+
+  &__platforms {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+  }
+}
+
+.platform {
+  width: 25px;
+  height: 25px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  &_pc {
+    background-image: url(../../images/icon-windows.svg);
+  }
+
+  &_playstation {
+    background-image: url(../../images/icon-playstation.svg);
+  }
+
+  &_xbox {
+    background-image: url(../../images/icon-xbox.svg);
   }
 }

@@ -17,9 +17,9 @@
     padding: 0;
     box-sizing: border-box;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    grid-template-rows: 350px;
-    column-gap: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+    grid-template-rows: repeat(auto-fill, 1fr);
+    column-gap: 15px;
     row-gap: 25px;
   }
 }
