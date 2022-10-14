@@ -10,19 +10,27 @@
 .game-card {
   display: flex;
   flex-direction: column;
-  row-gap: 15px;
+  // row-gap: 15px;
   width: 100%;
   height: 100%;
   border-radius: 10px;
   color: white;
-  background-color: #3c3d4d;
   box-sizing: border-box;
+  transition: transform 0.15s ease-in;
+  cursor: pointer;
+  grid-row-end: span 27;
+
+  &:hover {
+    transform: scale(1.02);
+  }
 
   &__image {
+    height: 180px;
+    border-radius: 10px 10px 0 0;
     position: relative;
-    background-image: url(../../images/joystick-icon.svg);
+    background-image: url(../../images/placeholder-image.jpg);
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
     background-position: center;
   }
 
@@ -34,19 +42,19 @@
   }
 
   &__description {
-    padding: 0 15px 10px;
+    padding: 15px 15px 10px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     gap: 5px;
+    background-color: #3c3d4d;
+    border-radius: 0 0 10px 10px;
   }
 
   &__name {
     margin: 0;
     font-size: 16px;
     font-weight: 18px;
-    white-space: nowrap;
-    overflow: hidden;
   }
 
   &__platforms {
