@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
+import { format, parseISO } from 'date-fns';
 
 import { GameResponse } from '../../types/rawgApiTypes';
 import './GameCard.scss';
@@ -16,7 +17,7 @@ const GameCard: React.FC<Props> = ({ game }) => {
   const setSpans = () => {
     if (!gameDescRef.current?.clientHeight) return;
     const cardDescHeight = gameDescRef.current.clientHeight;
-    const spans = Math.ceil(cardDescHeight / 10) + 20;
+    const spans = Math.ceil(cardDescHeight / 10) + 25;
     setSpansCount(spans);
   };
 
@@ -26,9 +27,10 @@ const GameCard: React.FC<Props> = ({ game }) => {
 
   const renderPlatforms: JSX.Element = (
     <div className='game-card__platforms'>
-      {game.parent_platforms.map((platform) => {
+      {game.parent_platforms.slice(0, 4).map((platform) => {
         return <div className={`platform platform_${platform.platform.slug}`} key={platform.platform.id} />
       })}
+      {game.parent_platforms.length > 4 && <div className='platform platform_more' />}
     </div>
   );
 
@@ -51,7 +53,12 @@ const GameCard: React.FC<Props> = ({ game }) => {
           <p className='game-card__name'>
             {game.name}
           </p>
-          {renderPlatforms}
+          <div className='game-card__field'>
+            {renderPlatforms}
+            <div className='game-card__release'>
+              {format(parseISO(`${game.released}T14:00:00`), 'dd.MM.yyyy')}
+            </div>
+          </div>
         </div>
       </div>
     </li>
