@@ -1,6 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
 
-import placeholderImage from '../../images/placeholder-image.jpg';
 import { GameResponse } from '../../types/rawgApiTypes';
 import './GameCard.scss';
 

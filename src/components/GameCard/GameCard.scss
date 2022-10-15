@@ -14,12 +14,13 @@
   border-radius: 10px;
   color: white;
   box-sizing: border-box;
-  transition: transform 0.15s ease-in, opacity 1.5s ease;
+  transition: transform 0.15s ease-in, box-shadow 0.15s ease-in;
   cursor: pointer;
   background-color: #3c3d4d;
 
   &:hover {
     transform: scale(1.02);
+    box-shadow: 0 0 10px 1px black;
   }
 
   &__poster {
