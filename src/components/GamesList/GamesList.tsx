@@ -51,8 +51,8 @@ const MoviesList: React.FC<Props> = ({ type }) => {
             game={game}
           />
         ))}
-        { isFetching && <li className='games__preloader'><Preloader /></li> }
       </ul>
+      { isFetching && <li className='games__preloader'><Preloader /></li> }
     </div>
   )
 };

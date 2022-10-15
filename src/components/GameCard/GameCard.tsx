@@ -1,7 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { LazyLoadImage } from "react-lazy-load-image-component";
 
-import placeholder from '../../images/placeholder-image.jpg';
+import placeholderImage from '../../images/placeholder-image.jpg';
 import { GameResponse } from '../../types/rawgApiTypes';
 import './GameCard.scss';
 
@@ -10,44 +9,51 @@ interface Props {
 }
 
 const GameCard: React.FC<Props> = ({ game }) => {
-  const gameCardRef = useRef<HTMLDivElement>(null);
+  const gameCardRef = useRef<HTMLLIElement>(null);
+  const gameDescRef = useRef<HTMLDivElement>(null);
   const [spansCount, setSpansCount] = useState(27);
+  const posterLink = `https://media.rawg.io/media/crop/600/400/${game.background_image.slice(27)}`
+
+  const setSpans = () => {
+    if (!gameDescRef.current?.clientHeight) return;
+    const cardDescHeight = gameDescRef.current.clientHeight;
+    const spans = Math.ceil(cardDescHeight / 10) + 20;
+    setSpansCount(spans);
+  };
+
+  useEffect(() => {
+    if (gameDescRef.current) setSpans();
+  }, [gameDescRef.current]);
+
   const renderPlatforms: JSX.Element = (
     <div className='game-card__platforms'>
       {game.parent_platforms.map((platform) => {
         return <div className={`platform platform_${platform.platform.slug}`} key={platform.platform.id} />
       })}
     </div>
-  )
-
-  const setSpans = () => {
-    if (!gameCardRef.current?.clientHeight) return;
-    console.log(gameCardRef.current.clientHeight);
-    const cardDescHeight = gameCardRef.current.clientHeight;
-    const spans = Math.ceil(cardDescHeight / 10) + 20;
-    setSpansCount(spans);
-  }
-
-  useEffect(() => {
-    if (gameCardRef.current) setSpans();
-  }, [gameCardRef.current])
+  );
 
   return (
-    <li className='game-card' style={{gridRowEnd: `span ${spansCount}`}}>
-      <div className='game-card__image'>
-        <LazyLoadImage
-          className='game-card__poster'
-          src={game.short_screenshots[0].image}
-          width={200}
-          height={180}
-          alt='Game Poster'
-        />
-      </div>
-      <div className='game-card__description' ref={gameCardRef}>
-        <p className='game-card__name'>
-          {game.name}
-        </p>
-        {renderPlatforms}
+    <li
+      className='games__list-element'
+      style={{gridRowEnd: `span ${spansCount}`}}
+      ref={gameCardRef}
+    >
+      <div className='game-card'>
+        <div className='game-card__poster'>
+          <img
+            className='game-card__poster-image'
+            src={posterLink}
+            alt='Poster'
+            loading='lazy'
+          />
+        </div>
+        <div className='game-card__description' ref={gameDescRef}>
+          <p className='game-card__name'>
+            {game.name}
+          </p>
+          {renderPlatforms}
+        </div>
       </div>
     </li>
   )
