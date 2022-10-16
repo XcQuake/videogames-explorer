@@ -12,13 +12,15 @@ const GameCard: React.FC<Props> = ({ game }) => {
   const gameCardRef = useRef<HTMLLIElement>(null);
   const gameDescRef = useRef<HTMLDivElement>(null);
   const [spansCount, setSpansCount] = useState(27);
+  const [isMouseEnter, setIsMouseEnter] = useState(false);
+  const [isShown, setIsShown] = useState(false);
+
   const posterLink = `https://media.rawg.io/media/crop/600/400/${game.background_image.slice(27)}`
 
   const setSpans = () => {
     if (!gameDescRef.current?.clientHeight) return;
     const cardDescHeight = gameDescRef.current.clientHeight;
-    const spans = Math.ceil(cardDescHeight / 10) + 25;
-    setSpansCount(spans);
+    setSpansCount(Math.ceil(cardDescHeight / 10) + 25);
   };
 
   useEffect(() => {
@@ -27,12 +29,28 @@ const GameCard: React.FC<Props> = ({ game }) => {
 
   const renderPlatforms: JSX.Element = (
     <div className='game-card__platforms'>
-      {game.parent_platforms.slice(0, 4).map((platform) => {
+      {game.parent_platforms.map((platform) => {
         return <div className={`platform platform_${platform.platform.slug}`} key={platform.platform.id} />
       })}
-      {game.parent_platforms.length > 4 && <div className='platform platform_more' />}
     </div>
   );
+
+  useEffect(() => {
+    if (isMouseEnter) {
+      const timer = setTimeout(() => setIsShown(true), 150);
+      return () => clearTimeout(timer);
+    } else {
+      setIsShown(false);
+    }
+  }, [isMouseEnter]);
+
+  const renderDetails: JSX.Element = (
+    <div className={`game-card__details`}>
+      <ul className={`game-card__genres`}>
+        {game.genres.map((genre) => <li className='game-card__genres-item'>{genre.name}</li>)}
+      </ul>
+    </div>
+  )
 
   return (
     <li
@@ -40,12 +58,16 @@ const GameCard: React.FC<Props> = ({ game }) => {
       style={{gridRowEnd: `span ${spansCount}`}}
       ref={gameCardRef}
     >
-      <div className='game-card'>
+      <div
+        className='game-card'
+        onMouseEnter={() => setIsMouseEnter(true)}
+        onMouseLeave={() => setIsMouseEnter(false)}
+      >
         <div className='game-card__poster'>
           <img
             className='game-card__poster-image'
             src={posterLink}
-            alt='Poster'
+            alt='Game poster'
             loading='lazy'
           />
         </div>
@@ -53,12 +75,13 @@ const GameCard: React.FC<Props> = ({ game }) => {
           <p className='game-card__name'>
             {game.name}
           </p>
-          <div className='game-card__field'>
+          <div className='game-card__about'>
             {renderPlatforms}
             <div className='game-card__release'>
               {format(parseISO(`${game.released}T14:00:00`), 'dd.MM.yyyy')}
             </div>
           </div>
+          { isShown && renderDetails }
         </div>
       </div>
     </li>
