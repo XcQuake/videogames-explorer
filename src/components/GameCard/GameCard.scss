@@ -26,7 +26,7 @@
     transform: scale(1.03);
     box-shadow: 0 0 10px 1px black;
     border: 1px solid black;
-    height: 120%;
+    // height: 115%;
     z-index: 1000;
   }
 
@@ -67,6 +67,10 @@
   &__details {
     margin-top: 5px;
     flex-basis: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 5px;
   }
 
   &__name {
@@ -77,7 +81,7 @@
   }
 
   &__platforms {
-    max-width: 115px;
+    max-width: 150px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -89,8 +93,8 @@
     flex-direction: row;
     padding: 0;
     gap: 5px;
-    font-size: 14px;
-    line-height: 16px;
+    font-size: 13px;
+    line-height: 15px;
     font-weight: 400;
     opacity: 0.7;
     list-style: none;
@@ -118,6 +122,29 @@
     font-weight: 400;
     line-height: 25px;
     opacity: 0.7;
+  }
+
+  &__age-rating {
+    font-size: 14px;
+    line-height: 16px;
+    opacity: 0.7;
+  }
+
+  &__metacritic {
+    display: flex;
+    align-items: center;
+    opacity: 0.7;
+    font-size: 14px;
+    line-height: 16px;
+
+    &-icon {
+      width: 17px;
+      height: 17px;
+      display: block;
+      background-image: url(../../images/icon-metacritic.svg);
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
   }
 }
 
