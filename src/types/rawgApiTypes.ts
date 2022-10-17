@@ -33,7 +33,7 @@ export interface GameResponse {
     slug: string;
   }[];
   id: number;
-  metacritic: string | null;
+  metacritic: number | null;
   name: string;
   parent_platforms: Platforms[];
   platforms: Platforms[];
