@@ -7,17 +7,18 @@ import Preloader from '../Preloader/Preloader';
 import GameCard from '../GameCard/GameCard';
 
 interface Props {
-  type: string;
+  platformId: number | null;
 }
 
-const MoviesList: React.FC<Props> = ({ type }) => {
+const GamesList: React.FC<Props> = ({ platformId }) => {
   const [games, setGames] = useState<GameResponse[]>([]);
-  const [nextPage, setNextPage] = useState<number>(1);
+  const [nextPage, setNextPage] = useState<number>(0);
   const [isFetching, setIsFetching] = useState<boolean>(false);
+  const [platform, setPlatform] = useState<number | null>(platformId);
 
   function fetchData(page: number){
     setTimeout(() => {
-      fetchGames(page)
+      fetchGames(page, platform)
         .then((res) => {
           res.next && setNextPage(nextPage + 1);
           setGames(games.concat(res.results));
@@ -31,8 +32,14 @@ const MoviesList: React.FC<Props> = ({ type }) => {
     fetchData(nextPage);
   }, [isFetching]);
 
+  useEffect(() => {
+    setPlatform(platformId);
+    fetchData(1);
+  }, [platformId])
+
   function handleScroll() {
     if (window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight) return;
+    if (!nextPage) return;
     setIsFetching(true);
   };
 
@@ -57,4 +64,4 @@ const MoviesList: React.FC<Props> = ({ type }) => {
   )
 };
 
-export default MoviesList;
+export default GamesList;

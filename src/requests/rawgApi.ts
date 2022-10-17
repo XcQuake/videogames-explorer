@@ -14,13 +14,14 @@ interface RawgApiResponse {
   user_platforms: boolean;
 }
 
-export const fetchGames = (page: number): Promise<RawgApiResponse> => {
+export const fetchGames = (page: number, platformId: number | null): Promise<RawgApiResponse> => {
   return axios.get(baseLink, {
     params: {
       key: key,
-      platforms: platforms.pc,
+      parent_platforms: platformId,
+      dates: '2022-10-01,2022-10-15',
       page,
     },
   })
-    .then((res) => res.data);
+    .then((res) => {console.log(res); return res.data});
 };

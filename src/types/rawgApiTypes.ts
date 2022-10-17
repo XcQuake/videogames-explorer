@@ -47,7 +47,7 @@ export interface GameResponse {
     title: string;
   }[];
   ratings_count: number;
-  released?: string;
+  released: string | null;
   reviews_text_count: number;
   saturated_color: string;
   score: number | null;

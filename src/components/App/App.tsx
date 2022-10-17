@@ -2,11 +2,14 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { URLS } from '../../utils/contants';
 
+import { RAWG_API } from '../../utils/contants';
 import Header from '../Header/Header';
-import MoviesList from '../GamesList/GamesList';
+import GamesList from '../GamesList/GamesList';
 import SideBar from '../SideBar/SideBar';
 
 import './App.scss';
+
+const { platforms } = RAWG_API;
 
 function App() {
   return (
@@ -16,10 +19,13 @@ function App() {
         <Header />
         <Switch>
           <Route path={URLS.pc}>
-            <MoviesList type='FILM' />
+            <GamesList platformId={platforms.pc} />
           </Route>
           <Route path={URLS.playstation}>
-            <MoviesList type='TV_SERIES' />
+            <GamesList platformId={platforms.playstation} />
+          </Route>
+          <Route path={URLS.xbox}>
+            <GamesList platformId={platforms.xbox} />
           </Route>
         </Switch>
       </div>
