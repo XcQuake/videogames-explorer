@@ -15,7 +15,7 @@ const GameCard: React.FC<Props> = ({ game }) => {
   const [isMouseEnter, setIsMouseEnter] = useState(false);
   const [isShown, setIsShown] = useState(false);
 
-  const posterLink = `https://media.rawg.io/media/crop/600/400/${game.background_image.slice(27)}`
+  const posterLink = game.background_image && `https://media.rawg.io/media/crop/600/400/${game.background_image.slice(27)}`
 
   const setSpans = () => {
     if (!gameDescRef.current?.clientHeight) return;
@@ -25,12 +25,12 @@ const GameCard: React.FC<Props> = ({ game }) => {
 
   useEffect(() => {
     if (gameDescRef.current) setSpans();
-  }, [gameDescRef.current]);
+  }, []);
 
   const renderPlatforms: JSX.Element = (
     <div className='game-card__platforms'>
       {game.parent_platforms.map((platform) => {
-        return <div className={`platform platform_${platform.platform.slug}`} key={platform.platform.id} />
+        return <span className={`platform platform_${platform.platform.slug}`} key={platform.platform.id} />
       })}
     </div>
   );
@@ -83,16 +83,18 @@ const GameCard: React.FC<Props> = ({ game }) => {
           />
         </div>
         <div className='game-card__description' ref={gameDescRef}>
-          <p className='game-card__name'>
-            {game.name}
-          </p>
-          <div className='game-card__about'>
-            {renderPlatforms}
-            <div className='game-card__release'>
-              {format(parseISO(`${game.released}T14:00:00`), 'dd.MM.yyyy')}
+          <div className='game-card__preview'>
+            <p className='game-card__name'>
+              {game.name}
+            </p>
+            <div className='game-card__about'>
+              {renderPlatforms}
+              {game.released && <div className='game-card__release'>
+                {format(parseISO(`${game.released}T14:00:00`), 'dd.MM.yyyy')}
+              </div>}
             </div>
           </div>
-          { isShown && renderDetails }
+          {isShown && renderDetails}
         </div>
       </div>
     </li>
