@@ -4,7 +4,7 @@ import { GameResponse } from '../types/rawgApiTypes';
 import { RAWG_API } from '../utils/contants';
 
 
-const { baseLink, key, platforms } = RAWG_API;
+const { baseLink, key } = RAWG_API;
 
 interface RawgApiResponse {
   count: number;
@@ -23,5 +23,5 @@ export const fetchGames = (page: number, platformId: number | null): Promise<Raw
       page,
     },
   })
-    .then((res) => {console.log(res); return res.data});
+    .then((res) => res.data);
 };

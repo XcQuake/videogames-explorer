@@ -20,7 +20,7 @@ const GamesList: React.FC<Props> = ({ platformId }) => {
     setTimeout(() => {
       fetchGames(page, platform)
         .then((res) => {
-          res.next && setNextPage(nextPage + 1);
+          res.next && setNextPage(!nextPage ? 2 : nextPage + 1);
           setGames(games.concat(res.results));
           setIsFetching(false);
         });
@@ -28,6 +28,7 @@ const GamesList: React.FC<Props> = ({ platformId }) => {
   };
 
   useEffect(() => {
+    if (!nextPage) return setIsFetching(false);
     if (!isFetching) return;
     fetchData(nextPage);
   }, [isFetching]);
@@ -39,7 +40,6 @@ const GamesList: React.FC<Props> = ({ platformId }) => {
 
   function handleScroll() {
     if (window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight) return;
-    if (!nextPage) return;
     setIsFetching(true);
   };
 
@@ -59,7 +59,7 @@ const GamesList: React.FC<Props> = ({ platformId }) => {
           />
         ))}
       </ul>
-      { isFetching && <div className='games__preloader'><Preloader /></div> }
+      { isFetching && <Preloader /> }
     </div>
   )
 };

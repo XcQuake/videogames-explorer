@@ -47,7 +47,7 @@ const GameCard: React.FC<Props> = ({ game }) => {
   const renderDetails: JSX.Element = (
     <div className='game-card__details'>
       <ul className='game-card__genres' style={{ fontSize: game.genres.length >= 4 ? '13px' : '14px' }}>
-        {game.genres.map((genre) => <li className='game-card__genres-item'>{genre.name}</li>)}
+        {game.genres.map((genre) => <li className='game-card__genres-item' key={genre.id} >{genre.name}</li>)}
       </ul>
       { game.esrb_rating && 
         <div className='game-card__age-rating'>
