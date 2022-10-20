@@ -37,7 +37,7 @@ const GameCard: React.FC<Props> = ({ game }) => {
 
   useEffect(() => {
     if (isMouseEnter) {
-      const timer = setTimeout(() => setIsShown(true), 180);
+      const timer = setTimeout(() => setIsShown(true), 150);
       return () => clearTimeout(timer);
     } else {
       setIsShown(false);

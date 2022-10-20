@@ -1,40 +1,43 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import './GamesList.scss';
-import { GameResponse } from '../../types/rawgApiTypes';
-import { fetchGames } from '../../requests/rawgApi';
 import Preloader from '../Preloader/Preloader';
 import GameCard from '../GameCard/GameCard';
+import { RootState } from '../../state';
+import { useActions } from '../../hooks/useActions';
+import { gamesListSlice } from '../../state/reducers/gamesListSlice';
 
 interface Props {
   platformId: number | null;
 }
 
 const GamesList: React.FC<Props> = ({ platformId }) => {
-  const [games, setGames] = useState<GameResponse[]>([]);
-  const [nextPage, setNextPage] = useState<number>(0);
+  const { games, nextPage } = useSelector((state: RootState) => state.gamesList);
+  const { fetchGamesList } = useActions();
+  const { clearGamesList } = gamesListSlice.actions;
   const [isFetching, setIsFetching] = useState<boolean>(false);
-  const [platform, setPlatform] = useState<number | null>(platformId);
 
-  function fetchData(page: number){
-    setTimeout(() => {
-      fetchGames(page, platform)
-        .then((res) => {
-          res.next && setNextPage(!nextPage ? 2 : nextPage + 1);
-          setGames(games.concat(res.results));
-          setIsFetching(false);
-        });
-    }, 500)
+  const dispatch = useDispatch();
+
+  async function fetchData(page: number){
+    await fetchGamesList({page, platformId})
+    setIsFetching(false);
   };
 
   useEffect(() => {
     if (!nextPage) return setIsFetching(false);
     if (!isFetching) return;
-    fetchData(nextPage);
+
+    const timer = setTimeout(() => {
+      fetchData(nextPage);
+    }, 500)
+
+    return () => clearTimeout(timer);
   }, [isFetching]);
 
   useEffect(() => {
-    setPlatform(platformId);
+    dispatch(clearGamesList());
     fetchData(1);
   }, [platformId])
 
@@ -44,7 +47,6 @@ const GamesList: React.FC<Props> = ({ platformId }) => {
   };
 
   useEffect(() => {
-    fetchData(1);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
