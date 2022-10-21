@@ -110,7 +110,7 @@
       align-items: center;
       gap: 5px;
 
-      &:not(:first-child):before {
+      &:not(:last-child):after {
         display: inline-block;
         background-color: #6B69F9;
         content: '';
