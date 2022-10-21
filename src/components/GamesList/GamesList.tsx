@@ -11,25 +11,25 @@ interface Props {
 }
 
 const GamesList: React.FC<Props> = ({ platformId }) => {
-  const { games, nextPage } = useAppSelector((state) => state.gamesList);
-  const [isFetching, setIsFetching] = useState<boolean>(false);
+  const { games, nextPage, isGamesListLoading } = useAppSelector((state) => state.gamesList);
+  const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const dispatch = useAppDispatch();
 
   async function fetchData(page: number){
     await dispatch(fetchGamesList({page, platformId}))
-    setIsFetching(false);
+    setIsScrolled(false);
   };
 
   useEffect(() => {
-    if (!nextPage) return setIsFetching(false);
-    if (!isFetching) return;
+    if (!nextPage) return setIsScrolled(false);
+    if (!isScrolled) return;
 
     const timer = setTimeout(() => {
       fetchData(nextPage);
     }, 500)
 
     return () => clearTimeout(timer);
-  }, [isFetching]);
+  }, [isScrolled]);
 
   useEffect(() => {
     dispatch(clearGamesList());
@@ -38,7 +38,7 @@ const GamesList: React.FC<Props> = ({ platformId }) => {
 
   function handleScroll() {
     if (window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight) return;
-    setIsFetching(true);
+    setIsScrolled(true);
   };
 
   useEffect(() => {
@@ -56,7 +56,7 @@ const GamesList: React.FC<Props> = ({ platformId }) => {
           />
         ))}
       </ul>
-      { isFetching && <Preloader /> }
+      { (isScrolled || isGamesListLoading) && <Preloader /> }
     </div>
   )
 };

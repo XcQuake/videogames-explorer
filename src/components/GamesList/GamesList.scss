@@ -6,7 +6,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 50px;
+  gap: 25px;
   background-color: #2e303d;
   box-sizing: border-box;
 
@@ -18,7 +18,6 @@
 
   &__list {
     width: 100%;
-    height: 100%;
     margin: 0;
     padding: 0;
     box-sizing: border-box;

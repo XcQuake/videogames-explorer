@@ -11,11 +11,13 @@ enum ActionType {
 interface GamesListState {
   games: GameResponse[],
   nextPage: number,
+  isGamesListLoading: boolean,
 }
 
 const initialState: GamesListState = {
   games: [],
   nextPage: 1,
+  isGamesListLoading: false,
 }
 
 export const gamesListSlice = createSlice({
@@ -25,9 +27,13 @@ export const gamesListSlice = createSlice({
     clearGamesList: (state) => { state.games = [] },
   },
   extraReducers(builder) {
+    builder.addCase(fetchGamesList.pending, (state) => {
+      state.isGamesListLoading = true;
+    })
     builder.addCase(fetchGamesList.fulfilled, (state, action) => {
       state.games = state.games.concat(action.payload.results);
       state.nextPage = action.payload.next ? state.nextPage + 1 : 0;
+      state.isGamesListLoading = false;
     })
   },
 })
