@@ -8,6 +8,7 @@ import GamesList from '../GamesList/GamesList';
 import SideBar from '../SideBar/SideBar';
 
 import './App.scss';
+import Calendar from '../Calendar/Calendar';
 
 const { platforms } = RAWG_API;
 
@@ -22,6 +23,7 @@ function App() {
             <GamesList platformId={platforms.pc} />
           </Route>
           <Route path={URLS.playstation}>
+            <Calendar />
             <GamesList platformId={platforms.playstation} />
           </Route>
           <Route path={URLS.xbox}>

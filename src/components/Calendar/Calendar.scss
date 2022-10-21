@@ -1,0 +1,80 @@
+.calendar {
+  width: 250px;
+  background-color: aliceblue;
+  padding: 15px;
+  box-sizing: border-box;
+
+  &__button {
+    border: none;
+    background-color: inherit;
+    cursor: pointer;
+    padding: 5px;
+    box-sizing: border-box;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  &__list {
+    width: 100%;
+    display: grid;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+
+    &_month {
+      grid-template-columns: repeat(7, 1fr);
+      grid-auto-rows: 20px;
+      row-gap: 10px;
+    }
+
+    &_year {
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: 20px;
+      row-gap: 10px;
+    }
+  }
+
+  &__week {
+    width: 100%;
+    height: 25px;
+    background-color: antiquewhite;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    // gap: 5px;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  &__day {
+    padding: 0;
+    margin: 0;
+    font-size: 18px;
+    line-height: 20px;
+    font-weight: 500;
+    text-align: center;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.7;
+      box-shadow: 0 0 2px black;
+    }
+  }
+
+  &__month {
+    text-align: center;
+    font-size: 18px;
+    line-height: 20px;
+    font-weight: 500;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.7;
+      box-shadow: 0 0 2px black;
+    }
+  }
+}
