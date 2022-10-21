@@ -1,27 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 
 import './GamesList.scss';
 import Preloader from '../Preloader/Preloader';
 import GameCard from '../GameCard/GameCard';
-import { RootState } from '../../state';
-import { useActions } from '../../hooks/useActions';
-import { gamesListSlice } from '../../state/reducers/gamesListSlice';
+import { fetchGamesList, clearGamesList } from '../../state/slices/gamesListSlice';
+import { useAppSelector, useAppDispatch } from '../../hooks/redux-hoos';
 
 interface Props {
   platformId: number | null;
 }
 
 const GamesList: React.FC<Props> = ({ platformId }) => {
-  const { games, nextPage } = useSelector((state: RootState) => state.gamesList);
-  const { fetchGamesList } = useActions();
-  const { clearGamesList } = gamesListSlice.actions;
+  const { games, nextPage } = useAppSelector((state) => state.gamesList);
   const [isFetching, setIsFetching] = useState<boolean>(false);
-
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   async function fetchData(page: number){
-    await fetchGamesList({page, platformId})
+    await dispatch(fetchGamesList({page, platformId}))
     setIsFetching(false);
   };
 
