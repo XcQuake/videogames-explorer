@@ -4,6 +4,7 @@
   background-color: aliceblue;
   padding: 10px;
   box-sizing: border-box;
+  border-radius: 5px;
 
   &__view {
     display: flex;
@@ -12,15 +13,35 @@
     align-items: flex-start;
   }
 
+  &__navigation {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
   &__button {
     border: none;
     background-color: inherit;
     cursor: pointer;
-    padding: 5px;
     box-sizing: border-box;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
 
     &:hover {
       opacity: 0.8;
+    }
+
+    &_previous {
+      width: 13px;
+      height: 15px;
+      background-image: url(../../images/icon-left-arrow.svg);
+    }
+
+    &_next {
+      width: 13px;
+      height: 15px;
+      background-image: url(../../images/icon-right-arrow.svg);
     }
   }
 
@@ -40,6 +61,7 @@
     &_year {
       grid-template-columns: repeat(4, 1fr);
       grid-template-rows: repeat(3, 1fr);
+      row-gap: 10px;
     }
   }
 
@@ -73,10 +95,11 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    transition: 0.1s ease;
 
     &:hover {
-      opacity: 0.7;
-      box-shadow: 0 0 2px black;
+      box-shadow: 0 0 2px 1px black;
+      background-color: #6b69f946;
     }
   }
 
@@ -92,8 +115,8 @@
     cursor: pointer;
 
     &:hover {
-      opacity: 0.7;
-      box-shadow: 0 0 2px black;
+      box-shadow: 0 0 2px 1px black;
+      background-color: #6b69f946;
     }
   }
 }

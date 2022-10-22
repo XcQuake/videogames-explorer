@@ -38,9 +38,13 @@ const Calendar: React.FC = () => {
 
     return (
       <div className='calendar__view'>
-        <button className='calendar__button' onClick={() => setCurrentView('year')}>
-          {month[0].toUpperCase() + month.slice(1)}
-        </button>
+        <div className='calendar__navigation'>
+          <button className='calendar__button calendar__button_previous' onClick={() => setSelectedMonth(selectedMonth - 1)}/>
+          <button className='calendar__button' onClick={() => setCurrentView('year')}>
+            {month[0].toUpperCase() + month.slice(1)}
+          </button>
+          <button className='calendar__button calendar__button_next' onClick={() => setSelectedMonth(selectedMonth + 1)}/>
+        </div>
         <ul className='calendar__list calendar__list_month'>
           <li className='calendar__weekday'>п</li>
           <li className='calendar__weekday'>в</li>
