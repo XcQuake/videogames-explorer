@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-import RawgApi from '../../requests/rawgApi';
-import { GameResponse } from '../../types/rawgApiTypes';
+import RawgApi from '../requests/rawgApi';
+import { GameResponse } from '../types/rawgApiTypes';
 
 enum ActionType {
   FETCH_GAMESLIST = 'fetch_gameslist',

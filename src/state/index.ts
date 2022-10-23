@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { gamesListSlice } from './slices/gamesListSlice';
+import { calendarSlice } from './calendarState';
+import { gamesListSlice } from './gamesListState';
 
 export const store = configureStore({
   reducer: {
     gamesList: gamesListSlice.reducer,
+    calendar: calendarSlice.reducer,
   },
 });
 
