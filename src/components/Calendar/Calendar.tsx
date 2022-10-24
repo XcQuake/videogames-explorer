@@ -15,7 +15,7 @@ import CalendarNavbar from './CalendarNavbar/CalendarNavbar';
 
 const Calendar: React.FC = () => {
   const { year, month, range, view } = useAppSelector((state) => state.calendar);
-
+  
   // const renderYearView = () => {
   //   return (
   //     <div className='calendar__view'>

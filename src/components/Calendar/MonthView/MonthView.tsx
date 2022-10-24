@@ -17,18 +17,18 @@ const MonthView: React.FC = () => {
   const pickedDates = {
     early: new Date(range[0]),
     late: new Date(range[1]),
-  }
+  };
 
-  console.log(range);
+  console.log(new Date(`${year}-${month}`));
 
   useEffect(() => {
-    dispatch(setRange(['9,1,2022', '9,23,2022']))
+    dispatch(setRange(['2022-10-1', '2022-10-23']))
   }, []);
 
   const renderDays = () => {
     const days = [];
     for (let i = 1; i<=monthLength; i++) {
-      const stringDate = `${month},${i},${year}`;
+      const stringDate = `${year}-${month}-${i}`;
       const fullDate = new Date(stringDate);
 
       const isPickedDay =

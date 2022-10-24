@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { format } from 'date-fns';
 import { ru } from 'date-fns/locale';
 
@@ -9,12 +9,9 @@ const CalendarNavbar: React.FC = () => {
   const { year, month } = useAppSelector((state) => state.calendar);
 
   const dispatch = useAppDispatch();
-  const m = (new Date()).getMonth();
-  console.log(month);
-  // console.log(format(new Date(`${year}, ${month + 1}`), 'LLLL, yyyy', {locale: ru}));
 
   const className = 'calendar-navbar';
-  const monthName = format(new Date(year, month), 'LLLL, yyyy', {locale: ru});
+  const monthName = format(new Date(`${year}-${month}`), 'LLLL, yyyy', {locale: ru});
 
   return (
     <div className={className}>

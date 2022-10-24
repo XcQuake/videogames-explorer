@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { compareAsc } from 'date-fns';
 
 interface CalendarState {
@@ -12,7 +12,7 @@ const date = new Date();
 
 const initialState: CalendarState = {
   year: date.getFullYear(),
-  month: date.getMonth(),
+  month: date.getMonth() + 1,
   range: [],
   view: 'month',
 }
