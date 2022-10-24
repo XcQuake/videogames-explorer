@@ -7,11 +7,12 @@ import { setRangeValue, setRange } from '../../state/calendarState';
 const MonthView: React.FC = () => {
   const { year, month, range } = useAppSelector((state) => state.calendar);
   const [isDragged, setIsDragged] = useState(false);
+  const [hoverDate, setHoverDate] = useState<Date | null>(null);
 
   const dispatch = useAppDispatch();
 
   const monthLength: number = getDaysInMonth(new Date(month - 1));
-  const monthStart: string = format(new Date(year, month - 1), 'i');
+  const monthStart: string = format(new Date(year, month - 1), 'i'); // День недели с которого начианется месяц
 
   const pickedDates = {
     early: new Date(range[0]),
@@ -25,16 +26,23 @@ const MonthView: React.FC = () => {
   const renderDays = () => {
     const days = [];
     for (let i = 1; i<=monthLength; i++) {
-      const stringDate = `${year}-${month}-${i}`;
-      const fullDate = new Date(stringDate);
+      const stringDate = `${year}-${month}-${i}`; // Дата в виде string
+      const fullDate = new Date(stringDate); // Дата в виде Date
 
+      // Выбрана ли эта дата
       const isPickedDay =
         (range[0] === stringDate && !compareAsc(fullDate, pickedDates.early))
-        || (range[1] === stringDate && !compareAsc(fullDate, pickedDates.late))
+        || (range[1] === stringDate && !compareAsc(fullDate, pickedDates.late));
       
-      const isInterDay =
+      // Находится ли эта в диапозоне выбранных дат
+      const inRange =
         (!isDragged && compareAsc(fullDate, pickedDates.early) > 0) 
-        && (!isDragged && compareAsc(fullDate, pickedDates.late) < 0)
+        && (!isDragged && compareAsc(fullDate, pickedDates.late) < 0);
+
+      // Находится ли эта дата в диапозоне между первой выбранной датой и датой, на которую наведена мышь
+      const inRangeWhileDrag = hoverDate &&
+(       ((compareAsc(pickedDates.early, hoverDate) > 0) && (compareAsc(fullDate, hoverDate) > 0) && (compareAsc(fullDate, pickedDates.early) < 0))
+        || ((compareAsc(pickedDates.early, hoverDate) < 0) && (compareAsc(fullDate, hoverDate) < 0) && (compareAsc(fullDate, pickedDates.early) > 0)))
 
       days.push(
         <li
@@ -42,7 +50,7 @@ const MonthView: React.FC = () => {
           key={`day${i}`}
           style={{
             gridColumnStart: i === 1 ? monthStart : 'auto',
-            backgroundColor: isPickedDay ? '#6B69F9' : isInterDay ? '#6b69f946' : 'inherit',
+            backgroundColor: isPickedDay ? '#6B69F9' : inRange || inRangeWhileDrag ? '#6b69f946' : 'inherit',
           }}
           onClick={() => {
             if (!isDragged) {
@@ -52,6 +60,9 @@ const MonthView: React.FC = () => {
               dispatch(setRangeValue(stringDate));
               setIsDragged(false);
             }
+          }}
+          onMouseEnter={() => {
+            isDragged && setHoverDate(fullDate);
           }}
         >{i}</li>
       )
