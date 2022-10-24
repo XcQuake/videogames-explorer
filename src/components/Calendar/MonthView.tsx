@@ -10,15 +10,13 @@ const MonthView: React.FC = () => {
 
   const dispatch = useAppDispatch();
 
-  const monthLength: number = getDaysInMonth(new Date(month));
-  const monthStart: string = format(new Date(year, month), 'i');
+  const monthLength: number = getDaysInMonth(new Date(month - 1));
+  const monthStart: string = format(new Date(year, month - 1), 'i');
 
   const pickedDates = {
     early: new Date(range[0]),
     late: new Date(range[1]),
   };
-
-  console.log(new Date(`${year}-${month}`));
 
   useEffect(() => {
     dispatch(setRange(['2022-10-1', '2022-10-23']))
