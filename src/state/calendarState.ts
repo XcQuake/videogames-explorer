@@ -1,14 +1,10 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-
-enum ActionType {
-  SELECT_MONTH = 'select_month',
-  SELECT_YEAR = 'select_year',
-}
+import { compareAsc } from 'date-fns';
 
 interface CalendarState {
   year: number,
   month: number,
-  range: Date[],
+  range: string[],
   view: string,
 }
 
@@ -21,15 +17,29 @@ const initialState: CalendarState = {
   view: 'month',
 }
 
+let tempDatesArr: string[] = []; // Временное хранилище для строк дат, перед сортировкой по времени.
+
 export const calendarSlice = createSlice({
   name: 'calendar',
   initialState,
   reducers: {
     setYear: (state, action: PayloadAction<number>) => { state.year = action.payload },
     setMonth: (state, action: PayloadAction<number>) => { state.month = action.payload },
-    setRange: (state, action: PayloadAction<Date[]>) => { state.range = action.payload },
     setView: (state, action: PayloadAction<string>) => { state.view = action.payload },
+    setRangeValue: (state, action: PayloadAction<string>) => {
+      tempDatesArr.push(action.payload);
+      if (tempDatesArr.length < 2) { // Если выбрана тольке первая дата в календаре
+        state.range = []; // Очищается прошлый выбор диапозона
+        state.range.push(action.payload) // Первая дата диапозона помещается в стейт
+      } else { // После выбора второй даты
+        state.range = tempDatesArr.sort((a, b) => compareAsc(new Date(a), new Date(b))); // Проводится сортировка дат по возрастанию
+        tempDatesArr = []; // Очищается временное хранилище
+      };
+    },
+    setRange: (state, action: PayloadAction<string[]>) => {
+      state.range = action.payload.sort((a, b) => compareAsc(new Date(a), new Date(b)));
+    },
   }
 })
 
-export const { setYear, setMonth, setRange, setView } = calendarSlice.actions;
+export const { setYear, setMonth, setView, setRangeValue, setRange } = calendarSlice.actions;

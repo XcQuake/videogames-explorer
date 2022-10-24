@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import './GamesList.scss';
 import Preloader from '../Preloader/Preloader';
 import GameCard from '../GameCard/GameCard';
-import { fetchGamesList, clearGamesList } from '../../state/slices/gamesListSlice';
+import { fetchGamesList, clearGamesList } from '../../state/gamesListState';
 import { useAppSelector, useAppDispatch } from '../../hooks/redux-hoos';
 
 interface Props {
