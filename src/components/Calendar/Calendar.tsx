@@ -10,8 +10,8 @@ import { ru } from 'date-fns/locale';
 import './Calendar.scss';
 import { useAppSelector } from '../../hooks/redux-hoos';
 import { monthsList } from './calendarData';
-import MonthView from './MonthView/MonthView';
-import CalendarNavbar from './CalendarNavbar/CalendarNavbar';
+import MonthView from './MonthView';
+import CalendarNavbar from './CalendarNavbar';
 
 const Calendar: React.FC = () => {
   const { year, month, range, view } = useAppSelector((state) => state.calendar);

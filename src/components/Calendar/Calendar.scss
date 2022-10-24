@@ -5,6 +5,9 @@
   padding: 10px;
   box-sizing: border-box;
   border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 
   &__view {
     display: flex;

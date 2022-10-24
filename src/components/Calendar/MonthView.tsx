@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { format, getDaysInMonth, compareAsc } from 'date-fns';
 
-import './MonthView.scss';
-import { useAppDispatch, useAppSelector } from '../../../hooks/redux-hoos';
-import { setRangeValue, setRange } from '../../../state/calendarState';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux-hoos';
+import { setRangeValue, setRange } from '../../state/calendarState';
 
 const MonthView: React.FC = () => {
   const { year, month, range } = useAppSelector((state) => state.calendar);
