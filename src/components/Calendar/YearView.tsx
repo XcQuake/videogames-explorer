@@ -1,13 +1,10 @@
 import React from 'react';
 
-import { useAppSelector } from '../../hooks/redux-hoos';
 import { useAppDispatch } from '../../hooks/redux-hoos';
 import { monthsList } from './calendarData';
-import { setMonth, setView, setYear } from '../../state/calendarState';
+import { setMonth, setView } from '../../state/calendarState';
 
 const YearView: React.FC = () => {
-  const { year, month, range } = useAppSelector((state) => state.calendar);
-
   const dispatch = useAppDispatch();
 
   function handleClickMonth(num: number) {
@@ -17,12 +14,6 @@ const YearView: React.FC = () => {
 
   return (
     <div className="calendar__view">
-      {/* <button
-        className="calendar__button"
-        onClick={() => setCurrentView('decade')}
-      >
-        {year}
-      </button> */}
       <ul className="calendar__list calendar__list_year">
         {monthsList.map((element) => (
           <li

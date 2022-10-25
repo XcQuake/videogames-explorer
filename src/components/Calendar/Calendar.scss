@@ -68,20 +68,6 @@
     }
   }
 
-  &__week {
-    width: 100%;
-    height: 25px;
-    background-color: antiquewhite;
-    padding: 0;
-    margin: 0;
-    list-style-type: none;
-    display: flex;
-    flex-direction: row;
-    // gap: 5px;
-    justify-content: space-around;
-    align-items: center;
-  }
-
   &__weekday {
     text-align: center;
     font-size: 14px;

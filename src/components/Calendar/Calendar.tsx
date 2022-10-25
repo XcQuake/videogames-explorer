@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { getDaysInMonth, format, parseISO, compareAsc } from 'date-fns';
-import { ru } from 'date-fns/locale';
+import React from 'react';
 
 import './Calendar.scss';
 import { useAppSelector } from '../../hooks/redux-hoos';
