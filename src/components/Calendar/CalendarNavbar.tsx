@@ -84,7 +84,7 @@ const CalendarNavbar: React.FC = () => {
   };
 
   return (
-    <div className="calendar__navigation">
+    <div className="calendar-navbar">
       <button
         className="calendar__button calendar__button_previous"
         onClick={() => handleClickPreviousButton()}

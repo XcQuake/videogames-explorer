@@ -1,6 +1,6 @@
 .calendar {
   width: 250px;
-  min-height: 260px;
+  // min-height: 260px;
   background-color: aliceblue;
   padding: 10px;
   box-sizing: border-box;
@@ -14,38 +14,6 @@
     flex-direction: column;
     gap: 10px;
     align-items: flex-start;
-  }
-
-  &__navigation {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-  }
-
-  &__button {
-    border: none;
-    background-color: inherit;
-    cursor: pointer;
-    box-sizing: border-box;
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
-
-    &:hover {
-      opacity: 0.8;
-    }
-
-    &_previous {
-      width: 13px;
-      height: 15px;
-      background-image: url(../../images/icon-left-arrow.svg);
-    }
-
-    &_next {
-      width: 13px;
-      height: 15px;
-      background-image: url(../../images/icon-right-arrow.svg);
-    }
   }
 
   &__list {
@@ -108,4 +76,90 @@
       background-color: #6b69f946;
     }
   }
+}
+
+.calendar-menubar {
+  display: flex;
+  width: 100%;
+
+  &__selection {
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  &__select {
+    width: 100%;
+    min-width: 35px;
+    max-width: 70px;
+    border: 1px solid var(--select-border);
+    border-radius: 10px;
+    padding: 5px;
+    font-size: 14px;
+    line-height: 16px;
+    cursor: pointer;
+    background-color: #fff;
+    background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+
+    &::-ms-expand {
+      display: none;
+    }
+
+    &::after {
+      content: '';
+      width: 0.8em;
+      height: 0.5em;
+      background-color: var(--select-arrow);
+      clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+    }
+  }
+}
+
+.calendar-navbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.calendar__button {
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+  box-sizing: border-box;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &_previous {
+    width: 13px;
+    height: 15px;
+    background-image: url(../../images/icon-left-arrow.svg);
+  }
+
+  &_next {
+    width: 13px;
+    height: 15px;
+    background-image: url(../../images/icon-right-arrow.svg);
+  }
+
+  &_select {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+  }
+}
+
+.calendar__down-arrow {
+  width: 10px;
+  height: 20px;
+  // background-color: black;
+  background-image: url(../../images/icon-down-arrow.svg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
