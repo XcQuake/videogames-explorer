@@ -3,10 +3,17 @@ import { format } from 'date-fns';
 import { ru } from 'date-fns/locale';
 
 import { useAppSelector, useAppDispatch } from '../../hooks/redux-hoos';
-import { setView, setMonth, setYear } from '../../state/calendarState';
+import {
+  setView,
+  setMonth,
+  setYear,
+  setDecade,
+} from '../../state/calendarState';
 
 const CalendarNavbar: React.FC = () => {
-  const { year, month, view } = useAppSelector((state) => state.calendar);
+  const { year, month, view, decadeStart } = useAppSelector(
+    (state) => state.calendar
+  );
 
   const dispatch = useAppDispatch();
   const monthName = format(new Date(year, month - 1), 'LLLL, yyyy', {
@@ -45,11 +52,21 @@ const CalendarNavbar: React.FC = () => {
     }
   }
 
+  function switchToPreviousDecade() {
+    dispatch(setDecade(decadeStart - 10));
+  }
+
+  function switchToNextDecade() {
+    dispatch(setDecade(decadeStart + 10));
+  }
+
   function handleClickViewButton() {
     switch (view) {
       case 'month':
         return dispatch(setView('year'));
       case 'year':
+        return dispatch(setView('decade'));
+      case 'decade':
         return dispatch(setView('month'));
       default:
         return;
@@ -62,6 +79,8 @@ const CalendarNavbar: React.FC = () => {
         return switchToPreviousMonth();
       case 'year':
         return switchToPreviousYear();
+      case 'decade':
+        return switchToPreviousDecade();
     }
   }
 
@@ -71,6 +90,8 @@ const CalendarNavbar: React.FC = () => {
         return switchToNextMonth();
       case 'year':
         return switchToNextYear();
+      case 'decade':
+        return switchToNextDecade();
     }
   }
 
@@ -80,6 +101,8 @@ const CalendarNavbar: React.FC = () => {
         return monthName[0].toUpperCase() + monthName.slice(1);
       case 'year':
         return year;
+      case 'decade':
+        return `${decadeStart} - ${decadeStart + 9}`;
     }
   };
 
