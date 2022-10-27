@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { getDecade, startOfDecade, compareAsc } from 'date-fns';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/redux-hoos';
 import { setRangeValue } from '../../state/calendarState';
@@ -29,17 +28,20 @@ const DecadeView: React.FC = () => {
     const years = [];
     for (let i = decadeStart; i < decadeStart + 10; i++) {
       const stringDate = `${i}-01-01`;
+      const fullDate = new Date(stringDate);
       years.push(
         <DateListElement
           key={`year${i}`}
           stringDate={stringDate}
+          fullDate={fullDate}
+          value={fullDate.getFullYear().toString()}
           inRangeDateStyle={{ backgroundColor: '#6b69f946' }}
           pickedDateStyle={{ backgroundColor: '#6B69F9' }}
           previewStyle={{ backgroundColor: '#6b69f946' }}
           isPreviewShown={isPreviewShown}
           type="year"
           onClick={() => handleClick(stringDate)}
-          onMouseEnter={() => handleMouseEnter(new Date(stringDate))}
+          onMouseEnter={() => handleMouseEnter(fullDate)}
           hoverDateOnPreview={hoverDate}
         />
       );

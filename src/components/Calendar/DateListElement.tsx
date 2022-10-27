@@ -6,6 +6,8 @@ import { setRangeValue, setRange } from '../../state/calendarState';
 
 interface Props {
   stringDate: string;
+  fullDate: Date;
+  value: string;
   inRangeDateStyle: {
     [key: string]: string;
   };
@@ -24,6 +26,8 @@ interface Props {
 
 const DateListElement: React.FC<Props> = ({
   stringDate,
+  fullDate,
+  value,
   isPreviewShown,
   onClick,
   onMouseEnter,
@@ -31,21 +35,6 @@ const DateListElement: React.FC<Props> = ({
   hoverDateOnPreview,
 }) => {
   const { range } = useAppSelector((state) => state.calendar);
-  const [hoverDate, setHoverDate] = useState<Date | null>(null);
-
-  const fullDate = new Date(stringDate);
-  const day = fullDate.getDay();
-  const month = fullDate.getMonth();
-  const year = fullDate.getFullYear();
-
-  const renderValue = () => {
-    switch (type) {
-      case 'month':
-        return month;
-      case 'year':
-        return year;
-    }
-  };
 
   const rangeDates = {
     early: new Date(range[0]),
@@ -92,7 +81,7 @@ const DateListElement: React.FC<Props> = ({
       onClick={() => onClick()}
       onMouseEnter={() => onMouseEnter()}
     >
-      {renderValue()}
+      {value}
     </li>
   );
 };
