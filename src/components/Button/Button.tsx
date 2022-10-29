@@ -2,13 +2,13 @@ import React from 'react';
 
 import './Button.scss';
 import { checkKey } from '../../utils';
-import { SIZES } from '../../types';
+import { COLORS, SIZES } from '../../types';
 
 interface Props {
   size?: SIZES;
   disabled?: boolean;
   square?: boolean;
-  color?: 'blue' | 'black';
+  color?: COLORS;
   children?: React.ReactNode;
   onClick?: () => void;
 }

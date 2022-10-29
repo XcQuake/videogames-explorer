@@ -25,6 +25,7 @@
   text-decoration: inherit;
   text-align: center;
 
+  // Sizes
   &.mini {
     font-size: 0.5em;
   }
@@ -45,6 +46,24 @@
     font-size: 2em;
   }
 
+  // Colors
+  &.cornflower {
+    color: var(--cornflower);
+  }
+
+  &.granite {
+    color: var(--granite);
+  }
+
+  &.black {
+    color: black;
+  }
+
+  &.white {
+    color: white;
+  }
+
+  // Names
   &.metacritic:before {
     content: '\e900';
     color: #ffcb00;

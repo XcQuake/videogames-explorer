@@ -1,6 +1,10 @@
 @import './vendors/normalize.css';
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;800&display=swap');
-@import './vendors/variables.scss';
+
+:root {
+  --granite: #2e303d;
+  --cornflower: #6e6fff;
+}
 
 body {
   margin: 0;
@@ -14,15 +18,4 @@ body {
 #root {
   display: flex;
   flex-direction: row;
-}
-
-.icon {
-  &__down-arrow {
-    width: 10px;
-    height: 20px;
-    background-image: url(./images/icon-down-arrow.svg);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
 }

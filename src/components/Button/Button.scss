@@ -33,8 +33,14 @@
     opacity: 0.8;
   }
 
-  &.blue {
-    background-color: #6e6fff;
+  // Colors
+  &.cornflower {
+    background-color: var(--cornflower);
+    color: white;
+  }
+
+  &.granite {
+    background-color: var(--granite);
     color: white;
   }
 
@@ -43,6 +49,12 @@
     color: white;
   }
 
+  &.white {
+    background-color: white;
+    color: black;
+  }
+
+  // Sizes
   &.mini {
     font-size: 0.5em;
   }
