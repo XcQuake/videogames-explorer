@@ -7,7 +7,8 @@
   vertical-align: baseline;
   background: #e0e1e2 none;
   color: rgba(0, 0, 0, 0.6);
-  margin: 0 0.25em 0 0;
+  font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  margin: 0;
   padding: 0.75em 1.5em 0.75em;
   text-transform: none;
   text-shadow: none;
@@ -22,8 +23,8 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  transition: opacity 0.1s ease, background-color 0.1s ease, color 0.1s ease,
-    box-shadow 0.1s ease, background 0.1s ease;
+  // transition: opacity 0.1s ease, background-color 0.1s ease, color 0.1s ease,
+  //   box-shadow 0.1s ease, background 0.1s ease;
   will-change: '';
   -webkit-tap-highlight-color: transparent;
 
@@ -42,15 +43,27 @@
     color: white;
   }
 
-  &.small {
-    font-size: 0.7rem;
+  &.mini {
+    font-size: 0.5em;
   }
 
-  &.medium {
+  &.tiny {
+    font-size: 0.75em;
+  }
+
+  &.small {
     font-size: 0.9rem;
   }
 
-  &.large {
+  &.medium {
     font-size: 1.1rem;
+  }
+
+  &.large {
+    font-size: 1.3rem;
+  }
+
+  &.square {
+    padding: 0.75em;
   }
 }

@@ -1,32 +1,36 @@
 import React from 'react';
 
 import './Button.scss';
+import { checkKey } from '../../utils';
+import { SIZES } from '../../types';
 
 interface Props {
-  size?: 'small' | 'medium' | 'large';
+  size?: SIZES;
   disabled?: boolean;
-  icon?: boolean;
+  square?: boolean;
   color?: 'blue' | 'black';
   children?: React.ReactNode;
+  onClick?: () => void;
 }
 
 const Button: React.FC<Props> = ({
   size = 'medium',
   disabled = false,
-  icon = false,
+  square = false,
   color = 'blue',
   children,
+  onClick,
 }) => {
-  function getClassName(val: boolean, key: string) {
-    return val ? key : null;
-  }
-
-  const className = ['button', size, getClassName(icon, 'icon'), color].join(
-    ' '
-  );
+  const className = ['button', size, checkKey(square, 'square'), color]
+    .filter((x) => x)
+    .join(' ');
 
   return (
-    <button disabled={disabled} className={className}>
+    <button
+      onClick={() => onClick && onClick()}
+      disabled={disabled}
+      className={className}
+    >
       {children}
     </button>
   );
