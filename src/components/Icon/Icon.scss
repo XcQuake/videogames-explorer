@@ -1,0 +1,106 @@
+@font-face {
+  font-family: 'icomoon';
+  src: url('../../vendors/fonts/icomoon/icomoon.eot?1bujjs');
+  src: url('../../vendors/fonts/icomoon/icomoon.eot?1bujjs#iefix')
+      format('embedded-opentype'),
+    url('../../vendors/fonts/icomoon/icomoon.ttf?1bujjs') format('truetype'),
+    url('../../vendors/fonts/icomoon/icomoon.woff?1bujjs') format('woff'),
+    url('../../vendors/fonts/icomoon/icomoon.svg?1bujjs#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+.icon {
+  display: inline-block;
+  opacity: 1;
+  margin: 0;
+  width: 1.18em;
+  height: 1em;
+  line-height: 1;
+  vertical-align: middle;
+  font-size: 1.5em;
+  font-family: Icomoon;
+  font-style: normal;
+  font-weight: 400;
+  text-decoration: inherit;
+  text-align: center;
+
+  &.mini {
+    font-size: 0.5em;
+  }
+
+  &.tiny {
+    font-size: 0.7em;
+  }
+
+  &.small {
+    font-size: 1em;
+  }
+
+  &.medium {
+    font-size: 1.5em;
+  }
+
+  &.large {
+    font-size: 2em;
+  }
+
+  &.metacritic:before {
+    content: '\e900';
+    color: #ffcb00;
+  }
+  &.nintendo:before {
+    content: '\e906';
+    color: #e60012;
+  }
+  &.playstation:before {
+    content: '\e907';
+    color: #003791;
+  }
+  &.xbox:before {
+    content: '\e908';
+    color: #107c10;
+  }
+  &.plus_circle:before {
+    content: '\1f313';
+  }
+  &.arrow_up:before {
+    content: '\e901';
+  }
+  &.arrow_right:before {
+    content: '\e902';
+  }
+  &.arrow_left:before {
+    content: '\e903';
+  }
+  &.arrow_down:before {
+    content: '\e904';
+  }
+  &.calendar:before {
+    content: '\e905';
+  }
+  &.search:before {
+    content: '\e986';
+  }
+  &.burger:before {
+    content: '\e9bd';
+  }
+  &.plus:before {
+    content: '\ea0a';
+  }
+  &.linux:before {
+    content: '\eabd';
+  }
+  &.ios:before {
+    content: '\eabe';
+  }
+  &.mac:before {
+    content: '\eabf';
+  }
+  &.android:before {
+    content: '\eac0';
+  }
+  &.pc:before {
+    content: '\eac2';
+  }
+}
