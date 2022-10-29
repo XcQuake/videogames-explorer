@@ -9,6 +9,8 @@ import {
   setYear,
   setDecade,
 } from '../../state/calendarState';
+import Button from '../Button/Button';
+import Icon from '../Icon/Icon';
 
 const CalendarNavbar: React.FC = () => {
   const { year, month, view, decadeStart } = useAppSelector(
@@ -21,7 +23,7 @@ const CalendarNavbar: React.FC = () => {
   });
   const currentYear = new Date().getFullYear();
 
-  function switchToPreviousMonth() {
+  function switchToPrevMonth() {
     if (month === 1) {
       dispatch(setYear(year - 1));
       dispatch(setMonth(12));
@@ -42,7 +44,7 @@ const CalendarNavbar: React.FC = () => {
     }
   }
 
-  function switchToPreviousYear() {
+  function switchToPrevYear() {
     dispatch(setYear(year - 1));
   }
 
@@ -52,7 +54,7 @@ const CalendarNavbar: React.FC = () => {
     }
   }
 
-  function switchToPreviousDecade() {
+  function switchToPrevDecade() {
     dispatch(setDecade(decadeStart - 10));
   }
 
@@ -73,14 +75,14 @@ const CalendarNavbar: React.FC = () => {
     }
   }
 
-  function handleClickPreviousButton() {
+  function handleClickPrevButton() {
     switch (view) {
       case 'month':
-        return switchToPreviousMonth();
+        return switchToPrevMonth();
       case 'year':
-        return switchToPreviousYear();
+        return switchToPrevYear();
       case 'decade':
-        return switchToPreviousDecade();
+        return switchToPrevDecade();
     }
   }
 
@@ -108,21 +110,27 @@ const CalendarNavbar: React.FC = () => {
 
   return (
     <div className="calendar-navbar">
-      <button
-        className="calendar__button calendar__button_previous"
-        onClick={() => handleClickPreviousButton()}
-      />
-      <button
-        className="calendar__button"
+      <Button
+        size="small"
+        color="inherit"
+        onClick={() => handleClickPrevButton()}
+      >
+        <Icon color="black" name="arrow_left" />
+      </Button>
+      <Button
+        size="small"
+        color="inherit"
         onClick={() => handleClickViewButton()}
-        title="Change View"
       >
         {viewTitle()}
-      </button>
-      <button
-        className="calendar__button calendar__button_next"
+      </Button>
+      <Button
+        size="small"
+        color="inherit"
         onClick={() => handleClickNextButton()}
-      />
+      >
+        <Icon color="black" name="arrow_right" />
+      </Button>
     </div>
   );
 };
