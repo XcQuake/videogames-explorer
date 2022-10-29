@@ -7,12 +7,11 @@
   vertical-align: baseline;
   background: #e0e1e2 none;
   color: rgba(0, 0, 0, 0.6);
-  font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
   margin: 0;
-  padding: 0.75em 1.5em 0.75em;
+  padding: 0.5em;
   text-transform: none;
   text-shadow: none;
-  font-weight: 700;
+  font-weight: 500;
   line-height: 1em;
   font-style: normal;
   text-align: center;
@@ -73,9 +72,5 @@
 
   &.large {
     font-size: 1.3rem;
-  }
-
-  &.square {
-    padding: 0.75em;
   }
 }

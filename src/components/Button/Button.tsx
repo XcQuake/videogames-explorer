@@ -7,7 +7,6 @@ import { COLORS, SIZES } from '../../types';
 interface Props {
   size?: SIZES;
   disabled?: boolean;
-  square?: boolean;
   color?: COLORS;
   children?: React.ReactNode;
   onClick?: () => void;
@@ -16,14 +15,11 @@ interface Props {
 const Button: React.FC<Props> = ({
   size = 'medium',
   disabled = false,
-  square = false,
   color = 'blue',
   children,
   onClick,
 }) => {
-  const className = ['button', size, checkKey(square, 'square'), color]
-    .filter((x) => x)
-    .join(' ');
+  const className = ['button', size, color].filter((x) => x).join(' ');
 
   return (
     <button
