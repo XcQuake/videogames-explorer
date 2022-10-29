@@ -33,6 +33,10 @@
   }
 
   // Colors
+  &.inherit {
+    background-color: inherit;
+  }
+
   &.cornflower {
     background-color: var(--cornflower);
     color: white;

@@ -15,4 +15,4 @@ export type ICONS =
   | 'arrow_left'
   | 'plus';
 export type SIZES = 'mini' | 'tiny' | 'small' | 'medium' | 'large';
-export type COLORS = 'cornflower' | 'granite' | 'black' | 'white';
+export type COLORS = 'inherit' | 'cornflower' | 'granite' | 'black' | 'white';
