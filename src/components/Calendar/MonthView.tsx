@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { format, getDaysInMonth, compareAsc } from 'date-fns';
+import React from 'react';
+import { format, getDaysInMonth } from 'date-fns';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/redux-hoos';
 import { setDay } from '../../state/calendarState';

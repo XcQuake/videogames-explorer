@@ -21,7 +21,6 @@ const CalendarNavbar: React.FC = () => {
   const monthName = format(new Date(year, month - 1), 'LLLL, yyyy', {
     locale: ru,
   });
-  const currentYear = new Date().getFullYear();
 
   function switchToPrevMonth() {
     if (month === 1) return;

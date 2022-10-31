@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import './Calendar.scss';
-import { useAppSelector } from '../../hooks/redux-hoos';
 import MonthView from './MonthView';
 import CalendarNavbar from './CalendarNavbar';
 import YearView from './YearView';
