@@ -24,24 +24,13 @@ const CalendarNavbar: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
   function switchToPrevMonth() {
-    if (month === 1) {
-      dispatch(setYear(year - 1));
-      dispatch(setMonth(12));
-    } else {
-      dispatch(setMonth(month - 1));
-    }
+    if (month === 1) return;
+    dispatch(setMonth(month - 1));
   }
 
   function switchToNextMonth() {
-    if (month === 12) {
-      if (year < currentYear) {
-        dispatch(setYear(year + 1));
-        dispatch(setMonth(1));
-      }
-      return;
-    } else {
-      dispatch(setMonth(month + 1));
-    }
+    if (month === 12) return;
+    dispatch(setMonth(month + 1));
   }
 
   function switchToPrevYear() {
@@ -49,9 +38,7 @@ const CalendarNavbar: React.FC = () => {
   }
 
   function switchToNextYear() {
-    if (year < currentYear) {
-      dispatch(setYear(year + 1));
-    }
+    dispatch(setYear(year + 1));
   }
 
   function switchToPrevDecade() {

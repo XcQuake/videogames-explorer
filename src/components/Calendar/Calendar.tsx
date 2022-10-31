@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import './Calendar.scss';
 import { useAppSelector } from '../../hooks/redux-hoos';
@@ -7,15 +7,24 @@ import CalendarNavbar from './CalendarNavbar';
 import YearView from './YearView';
 import DecadeView from './DecadeView';
 
-const Calendar: React.FC = () => {
-  const { view } = useAppSelector((state) => state.calendar);
+interface Props {
+  view: 'decade' | 'year' | 'month';
+  onSelect: (date: number) => void;
+}
 
+const Calendar: React.FC<Props> = ({ view, onSelect }) => {
   return (
     <div className="calendar">
       <CalendarNavbar />
-      {view === 'month' && <MonthView />}
-      {view === 'year' && <YearView />}
-      {view === 'decade' && <DecadeView />}
+      {view === 'decade' && (
+        <DecadeView onSelect={(year: number) => onSelect(year)} />
+      )}
+      {view === 'year' && (
+        <YearView onSelect={(month: number) => onSelect(month)} />
+      )}
+      {view === 'month' && (
+        <MonthView onSelect={(day: number) => onSelect(day)} />
+      )}
     </div>
   );
 };
