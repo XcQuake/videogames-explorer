@@ -1,4 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, {
+  forwardRef,
+  useEffect,
+  useRef,
+  useState,
+  useImperativeHandle,
+} from 'react';
 import Popover from './Popover';
 
 interface Props {
@@ -6,7 +12,13 @@ interface Props {
   content: React.ReactNode;
 }
 
-const PopoverTrigger: React.FC<Props> = ({ children, content }) => {
+interface Ref {
+  root: HTMLElement | null;
+  open: () => void;
+  close: () => void;
+}
+
+const PopoverTrigger = forwardRef<Ref, Props>(({ children, content }, ref) => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [triggerPosition, setTriggerPosition] = useState({
     left: -1000,
@@ -25,16 +37,31 @@ const PopoverTrigger: React.FC<Props> = ({ children, content }) => {
   }
 
   useEffect(() => {
-    if (triggerEl) {
-      const triggerRect = triggerEl.getBoundingClientRect();
-      setTriggerPosition({
-        left: triggerRect.left,
-        top: triggerRect.top,
-        right: triggerRect.right,
-        bottom: triggerRect.bottom,
-      });
-    }
+    if (!triggerEl) return;
+    const triggerRect = triggerEl.getBoundingClientRect();
+    setTriggerPosition({
+      left: triggerRect.left,
+      top: triggerRect.top,
+      right: triggerRect.right,
+      bottom: triggerRect.bottom,
+    });
   }, [triggerEl]);
+
+  useImperativeHandle(ref, () => ({
+    get root() {
+      return triggerRef.current;
+    },
+    open: () => handleOpen(),
+    close: () => handleClose(),
+  }));
+
+  function handleOpen() {
+    setIsPopoverOpen(true);
+  }
+
+  function handleClose() {
+    setIsPopoverOpen(false);
+  }
 
   function handleClickOutsidePopover({ target }: MouseEvent) {
     if (
@@ -66,6 +93,6 @@ const PopoverTrigger: React.FC<Props> = ({ children, content }) => {
       />
     </>
   );
-};
+});
 
 export default PopoverTrigger;
