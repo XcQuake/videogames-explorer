@@ -1,40 +1,25 @@
 .controls {
   width: 100%;
-  height: 50px;
   display: flex;
   align-items: center;
+  padding: 15px 55px;
+  box-sizing: border-box;
 
   &__dates {
-    background-color: aliceblue;
-    height: 100%;
     display: flex;
-    align-items: center;
-    padding: 0 15px;
     gap: 10px;
+    color: white;
+    flex-direction: column;
   }
 
   &__year {
     display: flex;
-    gap: 10px;
     align-items: center;
+    gap: 5px;
   }
 
-  &__button {
-    background-color: #2e303d;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 5px;
-    box-sizing: border-box;
-    cursor: pointer;
-    transition: 0.2s ease;
+  &__buttons {
     display: flex;
-    gap: 5px;
-
-    &:hover {
-      // transform: scale(1.02);
-      box-shadow: 0 0 2px 1px black;
-      opacity: 0.8;
-    }
+    align-items: center;
   }
 }

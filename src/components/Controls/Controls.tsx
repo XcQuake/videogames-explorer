@@ -1,7 +1,7 @@
 import React from 'react';
 
 import './Controls.scss';
-import DateControls from './DatesControls';
+import DateControls from './DateControls';
 
 const Controls: React.FC = () => {
   return (
