@@ -13,6 +13,13 @@ export type ICONS =
   | 'arrow_down'
   | 'arrow_right'
   | 'arrow_left'
-  | 'plus';
+  | 'plus'
+  | 'plus_circle';
 export type SIZES = 'mini' | 'tiny' | 'small' | 'medium' | 'large';
-export type COLORS = 'inherit' | 'cornflower' | 'granite' | 'black' | 'white';
+export type COLORS =
+  | 'inherit'
+  | 'primary'
+  | 'secondary'
+  | 'tertiary'
+  | 'black'
+  | 'white';

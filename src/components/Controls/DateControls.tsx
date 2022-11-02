@@ -79,7 +79,7 @@ const DateControls: React.FC = () => {
               />
             }
           >
-            <Button color="cornflower" size="small">
+            <Button color="secondary" size="small">
               {selectedYears[0]}
               <Icon name="arrow_down" size="small" color="white" />
             </Button>
@@ -94,7 +94,7 @@ const DateControls: React.FC = () => {
               />
             }
           >
-            <Button color="cornflower" size="small">
+            <Button color="secondary" size="small">
               {selectedYears[1] ? (
                 <>
                   {selectedYears[1]}{' '}
@@ -120,7 +120,7 @@ const DateControls: React.FC = () => {
                 />
               }
             >
-              <Button color="cornflower" size="small">
+              <Button color="secondary" size="small">
                 {selectedMonthsName.first}
                 <Icon name="arrow_down" size="small" color="white" />
               </Button>
@@ -135,7 +135,7 @@ const DateControls: React.FC = () => {
                 />
               }
             >
-              <Button color="cornflower" size="small">
+              <Button color="secondary" size="small">
                 {selectedMonths[1] ? (
                   <>
                     {selectedMonthsName.second}{' '}

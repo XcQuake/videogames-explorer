@@ -47,12 +47,16 @@
   }
 
   // Colors
-  &.cornflower {
-    color: var(--cornflower);
+  &.primary {
+    color: var(--primary);
   }
 
-  &.granite {
-    color: var(--granite);
+  &.secondary {
+    color: var(--secondary);
+  }
+
+  &.tertiary {
+    color: var(--tertiary);
   }
 
   &.black {

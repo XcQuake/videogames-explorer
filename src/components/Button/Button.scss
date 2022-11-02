@@ -37,13 +37,18 @@
     background-color: inherit;
   }
 
-  &.cornflower {
-    background-color: var(--cornflower);
+  &.primary {
+    background-color: var(--primary);
     color: white;
   }
 
-  &.granite {
-    background-color: var(--granite);
+  &.secondary {
+    background-color: var(--secondary);
+    color: white;
+  }
+
+  &.tertiary {
+    background-color: var(--tertiary);
     color: white;
   }
 
