@@ -1,11 +1,26 @@
 .popover {
-  display: none;
+  display: flex;
   position: absolute;
-  width: 100px;
-  height: 50px;
-  background-color: aquamarine;
+  left: 0;
+  z-index: 1000;
+  box-shadow: 0 1px 8px black;
 
-  &.open {
-    display: block;
+  &::before {
+    content: '';
+    width: 20px;
+    height: 10px;
+    background-color: black;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    border: none;
+    z-index: 1000;
+    position: absolute;
+    top: -10px;
+    left: 4px;
   }
+}
+
+.trigger {
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }

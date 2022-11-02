@@ -20,54 +20,26 @@ interface Ref {
 
 const PopoverTrigger = forwardRef<Ref, Props>(({ children, content }, ref) => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-  const [triggerPosition, setTriggerPosition] = useState({
-    left: -1000,
-    top: -1000,
-    right: -1000,
-    bottom: -1000,
-  });
   const triggerRef = useRef<HTMLDivElement>(null);
   const triggerEl = triggerRef.current;
 
   const popoverRef = useRef<HTMLDivElement>(null);
-  const popoverEl = popoverRef.current;
 
-  function handleClickTrigger() {
-    setIsPopoverOpen(!isPopoverOpen);
+  function handleClickTrigger(event: React.MouseEvent) {
+    if (!popoverRef.current?.contains(event.target as Node))
+      setIsPopoverOpen(!isPopoverOpen);
   }
-
-  useEffect(() => {
-    if (!triggerEl) return;
-    const triggerRect = triggerEl.getBoundingClientRect();
-    setTriggerPosition({
-      left: triggerRect.left,
-      top: triggerRect.top,
-      right: triggerRect.right,
-      bottom: triggerRect.bottom,
-    });
-  }, [triggerEl]);
 
   useImperativeHandle(ref, () => ({
     get root() {
       return triggerRef.current;
     },
-    open: () => handleOpen(),
-    close: () => handleClose(),
+    open: () => setIsPopoverOpen(true),
+    close: () => setIsPopoverOpen(false),
   }));
 
-  function handleOpen() {
-    setIsPopoverOpen(true);
-  }
-
-  function handleClose() {
-    setIsPopoverOpen(false);
-  }
-
   function handleClickOutsidePopover({ target }: MouseEvent) {
-    if (
-      !triggerEl?.contains(target as Node) &&
-      !popoverEl?.contains(target as Node)
-    ) {
+    if (!triggerEl?.contains(target as Node)) {
       setIsPopoverOpen(false);
     }
   }
@@ -82,15 +54,20 @@ const PopoverTrigger = forwardRef<Ref, Props>(({ children, content }, ref) => {
 
   return (
     <>
-      <div ref={triggerRef} onClick={() => handleClickTrigger()}>
+      <div
+        className="trigger"
+        ref={triggerRef}
+        onClick={(e) => handleClickTrigger(e)}
+      >
         {children}
+        <Popover
+          isOpen={isPopoverOpen}
+          ref={popoverRef}
+          triggerHeight={triggerEl?.clientHeight}
+        >
+          {content}
+        </Popover>
       </div>
-      <Popover
-        isOpen={isPopoverOpen}
-        triggerPos={triggerPosition}
-        ref={popoverRef}
-        content={content}
-      />
     </>
   );
 });

@@ -96,10 +96,7 @@ const DateControls: React.FC = () => {
           >
             <Button color="secondary" size="small">
               {selectedYears[1] ? (
-                <>
-                  {selectedYears[1]}{' '}
-                  <Icon name="arrow_down" size="small" color="white" />{' '}
-                </>
+                <>{selectedYears[1]} </>
               ) : (
                 <Icon name="plus" size="small" color="white" />
               )}
@@ -137,10 +134,7 @@ const DateControls: React.FC = () => {
             >
               <Button color="secondary" size="small">
                 {selectedMonths[1] ? (
-                  <>
-                    {selectedMonthsName.second}{' '}
-                    <Icon name="arrow_down" size="small" color="white" />{' '}
-                  </>
+                  <>{selectedMonthsName.second} </>
                 ) : (
                   <Icon name="plus" size="small" color="white" />
                 )}

@@ -12,7 +12,6 @@ const GridElement: React.FC<Props> = ({ children, gapSpan }) => {
   const setSpans = () => {
     if (!ref.current?.children[0].clientHeight) return;
     const elementHeight = ref.current.children[0].clientHeight;
-    console.log(elementHeight);
     setSpansCount(Math.ceil(elementHeight / 10) + gapSpan);
   };
 
