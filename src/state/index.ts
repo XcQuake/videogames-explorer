@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
+
 import { calendarSlice } from './calendarState';
 import { gamesListSlice } from './gamesListState';
 

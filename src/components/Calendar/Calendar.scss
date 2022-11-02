@@ -1,6 +1,5 @@
 .calendar {
   width: 250px;
-  // min-height: 260px;
   background-color: aliceblue;
   padding: 10px;
   box-sizing: border-box;
@@ -9,6 +8,7 @@
   flex-direction: column;
   gap: 15px;
   position: absolute;
+  color: black;
 
   &__view {
     display: flex;

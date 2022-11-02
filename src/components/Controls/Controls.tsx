@@ -5,9 +5,9 @@ import DateControls from './DateControls';
 
 const Controls: React.FC = () => {
   return (
-    <section className="controls">
+    <div className="controls">
       <DateControls />
-    </section>
+    </div>
   );
 };
 
