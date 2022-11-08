@@ -57,12 +57,16 @@ const InputRange: React.FC<Props> = ({
       <div
         ref={trackRef}
         onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
+        onMouseMove={handleDrag}
         className="input-range__track"
       >
         <div
           className="input-range__thumb"
           style={{ left: `${percentages.min}%` }}
-        />
+        >
+          <span className="input-range__label">{values.min}</span>
+        </div>
         <div
           className="input-range__track input-range__track_active"
           style={{
@@ -73,7 +77,9 @@ const InputRange: React.FC<Props> = ({
         <div
           className="input-range__thumb"
           style={{ left: `${percentages.max}%` }}
-        />
+        >
+          <span className="input-range__label">{values.max}</span>
+        </div>
       </div>
     </div>
   );

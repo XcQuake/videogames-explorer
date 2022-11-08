@@ -38,4 +38,16 @@
     transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
     width: 1rem;
   }
+
+  &__label {
+    position: absolute;
+    top: -150%;
+    left: -50%;
+    font-size: 12px;
+    line-height: 14px;
+    background-color: var(--secondary);
+    padding: 3px 4px;
+    box-sizing: border-box;
+    border-radius: 5px;
+  }
 }
