@@ -2,21 +2,15 @@ import React from 'react';
 import { format } from 'date-fns';
 import { ru } from 'date-fns/locale';
 
-import { useAppDispatch, useAppSelector } from '../../hooks/redux-hoos';
 import DateListElement from './DateListElement';
-import { setMonth } from '../../state/calendarState';
 
 interface Props {
   onSelect: (month: number) => void;
 }
 
 const YearView: React.FC<Props> = ({ onSelect }) => {
-  const { year } = useAppSelector((state) => state.calendar);
-  const dispatch = useAppDispatch();
-
   function handleSelectMonth(month: number) {
     onSelect(month);
-    dispatch(setMonth(month));
   }
 
   const renderMonths = () => {
