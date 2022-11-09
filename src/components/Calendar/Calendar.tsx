@@ -6,17 +6,17 @@ import DecadeView from './DecadeView';
 
 interface Props {
   view: 'decade' | 'year' | 'month';
-  onSelect: (date: number) => void;
+  onSelect: (date: string) => void;
 }
 
 const Calendar: React.FC<Props> = ({ view, onSelect }) => {
   return (
     <div className="calendar">
       {view === 'decade' && (
-        <DecadeView onSelect={(year: number) => onSelect(year)} />
+        <DecadeView onSelect={(date: string) => onSelect(date)} />
       )}
       {view === 'year' && (
-        <YearView onSelect={(month: number) => onSelect(month)} />
+        <YearView onSelect={(date: string) => onSelect(date)} />
       )}
     </div>
   );

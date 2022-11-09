@@ -13,14 +13,14 @@ interface Props {
 }
 
 const GamesList: React.FC<Props> = ({ platformId }) => {
-  const { games, nextPage, isGamesListLoading } = useAppSelector(
+  const { games, nextPage, isGamesListLoading, releaseDates } = useAppSelector(
     (state) => state.gamesList
   );
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const dispatch = useAppDispatch();
 
   async function fetchData(page: number) {
-    await dispatch(fetchGamesList({ page, platformId }));
+    await dispatch(fetchGamesList({ page, platformId, releaseDates }));
     setIsScrolled(false);
   }
 
@@ -38,7 +38,7 @@ const GamesList: React.FC<Props> = ({ platformId }) => {
   useEffect(() => {
     dispatch(clearGamesList());
     fetchData(1);
-  }, [platformId]);
+  }, [platformId, releaseDates]);
 
   function handleScroll() {
     if (

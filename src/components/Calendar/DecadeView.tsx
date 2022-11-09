@@ -5,7 +5,7 @@ import Button from '../Button/Button';
 import Icon from '../Icon/Icon';
 
 interface Props {
-  onSelect: (date: number) => void;
+  onSelect: (date: string) => void;
 }
 
 const DecadeView: React.FC<Props> = ({ onSelect }) => {
@@ -22,7 +22,7 @@ const DecadeView: React.FC<Props> = ({ onSelect }) => {
   }
 
   function handleSelectDate(year: number) {
-    onSelect(year);
+    onSelect(`${year}`);
   }
 
   const renderYears = () => {

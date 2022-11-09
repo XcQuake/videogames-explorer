@@ -5,18 +5,18 @@ import { ru } from 'date-fns/locale';
 import DateListElement from './DateListElement';
 
 interface Props {
-  onSelect: (month: number) => void;
+  onSelect: (month: string) => void;
 }
 
 const YearView: React.FC<Props> = ({ onSelect }) => {
   function handleSelectMonth(month: number) {
-    onSelect(month);
+    onSelect(month < 10 ? `0${month}` : `${month}`);
   }
 
   const renderMonths = () => {
     const months = [];
     for (let i = 1; i <= 12; i++) {
-      const stringDate = `${year}-${i}-1`;
+      const stringDate = `${i}-1`;
       const fullDate = new Date(stringDate);
       const value = format(fullDate, 'LLL', { locale: ru });
       months.push(

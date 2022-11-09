@@ -1,11 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { format } from 'date-fns';
+import { compareAsc, format } from 'date-fns';
 import { ru } from 'date-fns/locale';
 
 import Button from '../Button/Button';
 import Icon from '../Icon/Icon';
 import Calendar from '../Calendar/Calendar';
 import PopoverTrigger from '../Popover/PopoverTrigger';
+import { formatMonths } from '../../utils';
+import { useAppDispatch } from '../../hooks/redux-hoos';
+import { setReleaseDates } from '../../state/gamesListState';
 
 interface Ref {
   root: HTMLElement | null;
@@ -15,59 +18,72 @@ interface Ref {
 
 const DateControls: React.FC = () => {
   const [showMonths, setShowMonths] = useState<boolean>(false);
-  const [selectedYears, setSelectedYears] = useState<number[]>([2022]);
-  const [selectedMonths, setSelectedMonths] = useState<number[]>([]);
+  const [selectedYears, setSelectedYears] = useState<string[]>(['2022']);
+  const [selectedMonths, setSelectedMonths] = useState<string[]>(['01', '12']);
 
+  const dispatch = useAppDispatch();
   const triggerRef = useRef<Ref>() as React.MutableRefObject<Ref>;
+  const formattedMonths = formatMonths(selectedMonths[0], selectedMonths[1]);
 
-  const selectedMonthsName = {
-    first:
-      selectedMonths[0] &&
-      format(new Date(`${selectedYears[0]}-${selectedMonths[0]}-01`), 'LLLL', {
-        locale: ru,
-      }),
-    second:
-      selectedMonths[1] &&
-      format(new Date(`${selectedYears[0]}-${selectedMonths[1]}-01`), 'LLLL', {
-        locale: ru,
-      }),
-  };
-
-  const handleSelectFirstYear = (year: number) => {
+  const handleSelectFirstYear = (year: string) => {
     setSelectedYears([year]);
     triggerRef.current.close();
   };
 
-  const handleSelectSecondYear = (year: number) => {
+  const handleSelectSecondYear = (year: string) => {
     if (year === selectedYears[0]) return;
-    setSelectedYears([selectedYears[0], year].sort((x, y) => x - y));
+    setSelectedYears(
+      [selectedYears[0], year].sort((x, y) =>
+        compareAsc(new Date(x), new Date(y))
+      )
+    );
     triggerRef.current.close();
   };
 
-  const handleSelectFirstMonth = (month: number) => {
+  const handleSelectFirstMonth = (month: string) => {
     setSelectedMonths([month]);
     triggerRef.current.close();
   };
 
-  const handleSelectSecondMonth = (month: number) => {
+  const handleSelectSecondMonth = (month: string) => {
     if (month === selectedMonths[0]) return;
-    setSelectedMonths([selectedMonths[0], month].sort((x, y) => x - y));
+    setSelectedMonths(
+      [selectedMonths[0], month].sort((x, y) =>
+        compareAsc(new Date(x), new Date(y))
+      )
+    );
     triggerRef.current.close();
   };
 
   useEffect(() => {
     if (selectedYears.length < 2) {
       setShowMonths(true);
-      setSelectedMonths([1, 12]);
+      setSelectedMonths(['01', '12']);
     } else {
       setSelectedMonths([]);
       setShowMonths(false);
     }
   }, [selectedYears]);
 
+  useEffect(() => {
+    if (selectedYears.length === 2) {
+      dispatch(
+        setReleaseDates(`${selectedYears[0]}-01-01,${selectedYears[1]}-12-31`)
+      );
+    } else {
+      dispatch(
+        setReleaseDates(
+          `${selectedYears[0]}-${selectedMonths[0]}-01,${selectedYears[0]}-${
+            selectedMonths[1] || selectedMonths[0]
+          }-30`
+        )
+      );
+    }
+  }, [selectedYears, selectedMonths]);
+
   return (
     <div className="controls__dates">
-      <div className="controls__year">
+      <div className="controls__date">
         Год:
         <div className="controls__buttons">
           <PopoverTrigger
@@ -75,7 +91,7 @@ const DateControls: React.FC = () => {
             content={
               <Calendar
                 view="decade"
-                onSelect={(year: number) => handleSelectFirstYear(year)}
+                onSelect={(year: string) => handleSelectFirstYear(year)}
               />
             }
           >
@@ -90,14 +106,12 @@ const DateControls: React.FC = () => {
             content={
               <Calendar
                 view="decade"
-                onSelect={(year: number) => handleSelectSecondYear(year)}
+                onSelect={(year: string) => handleSelectSecondYear(year)}
               />
             }
           >
             <Button color="secondary" size="small">
-              {selectedYears[1] ? (
-                <>{selectedYears[1]} </>
-              ) : (
+              {selectedYears[1] || (
                 <Icon name="plus" size="small" color="white" />
               )}
             </Button>
@@ -105,7 +119,7 @@ const DateControls: React.FC = () => {
         </div>
       </div>
       {showMonths && (
-        <div className="controls__year">
+        <div className="controls__date">
           Месяц:
           <div className="controls__buttons">
             <PopoverTrigger
@@ -113,12 +127,12 @@ const DateControls: React.FC = () => {
               content={
                 <Calendar
                   view="year"
-                  onSelect={(month: number) => handleSelectFirstMonth(month)}
+                  onSelect={(month: string) => handleSelectFirstMonth(month)}
                 />
               }
             >
               <Button color="secondary" size="small">
-                {selectedMonthsName.first}
+                {formattedMonths.first}
                 <Icon name="arrow_down" size="small" color="white" />
               </Button>
             </PopoverTrigger>
@@ -128,14 +142,12 @@ const DateControls: React.FC = () => {
               content={
                 <Calendar
                   view="year"
-                  onSelect={(month: number) => handleSelectSecondMonth(month)}
+                  onSelect={(month: string) => handleSelectSecondMonth(month)}
                 />
               }
             >
               <Button color="secondary" size="small">
-                {selectedMonths[1] ? (
-                  <>{selectedMonthsName.second} </>
-                ) : (
+                {formattedMonths.second || (
                   <Icon name="plus" size="small" color="white" />
                 )}
               </Button>
