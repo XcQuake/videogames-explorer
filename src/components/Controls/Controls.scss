@@ -10,16 +10,17 @@
   box-sizing: border-box;
 
   &__dates {
+    width: 100%;
     display: flex;
     gap: 10px;
     color: white;
     flex-direction: column;
   }
 
-  &__year {
+  &__date {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 15px;
   }
 
   &__buttons {

@@ -1,28 +1,22 @@
 import React from 'react';
 
 import './Calendar.scss';
-import MonthView from './MonthView';
-import CalendarNavbar from './CalendarNavbar';
 import YearView from './YearView';
 import DecadeView from './DecadeView';
 
 interface Props {
   view: 'decade' | 'year' | 'month';
-  onSelect: (date: number) => void;
+  onSelect: (date: string) => void;
 }
 
 const Calendar: React.FC<Props> = ({ view, onSelect }) => {
   return (
     <div className="calendar">
-      <CalendarNavbar />
       {view === 'decade' && (
-        <DecadeView onSelect={(year: number) => onSelect(year)} />
+        <DecadeView onSelect={(date: string) => onSelect(date)} />
       )}
       {view === 'year' && (
-        <YearView onSelect={(month: number) => onSelect(month)} />
-      )}
-      {view === 'month' && (
-        <MonthView onSelect={(day: number) => onSelect(day)} />
+        <YearView onSelect={(date: string) => onSelect(date)} />
       )}
     </div>
   );

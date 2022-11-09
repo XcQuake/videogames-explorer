@@ -1,19 +1,15 @@
 import React, { useState } from 'react';
 
-import { useAppDispatch, useAppSelector } from '../../hooks/redux-hoos';
-import { setYear } from '../../state/calendarState';
-
 import DateListElement from './DateListElement';
 import Button from '../Button/Button';
 import Icon from '../Icon/Icon';
 
 interface Props {
-  onSelect: (date: number) => void;
+  onSelect: (date: string) => void;
 }
 
 const DecadeView: React.FC<Props> = ({ onSelect }) => {
   const [decade, setDecade] = useState(2020);
-  const dispatch = useAppDispatch();
 
   const title = `${decade} - ${decade + 9}`;
 
@@ -26,8 +22,7 @@ const DecadeView: React.FC<Props> = ({ onSelect }) => {
   }
 
   function handleSelectDate(year: number) {
-    dispatch(setYear(year));
-    onSelect(year);
+    onSelect(`${year}`);
   }
 
   const renderYears = () => {
@@ -66,9 +61,7 @@ const DecadeView: React.FC<Props> = ({ onSelect }) => {
         </Button>
       </div>
       <div className="calendar__view">
-        <ul className="calendar__list calendar__list_decade">
-          {renderYears()}
-        </ul>
+        <ul className="calendar__list">{renderYears()}</ul>
       </div>
     </>
   );

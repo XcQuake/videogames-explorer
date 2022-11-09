@@ -3,7 +3,6 @@ import axios from 'axios';
 import { GameResponse } from '../types/rawgApiTypes';
 import { RAWG_API } from '../utils/contants';
 
-
 const { baseLink, key } = RAWG_API;
 
 interface RawgApiResponse {
@@ -15,15 +14,20 @@ interface RawgApiResponse {
 }
 
 class RawgApi {
-  getGamesList(page: number, platformId: number | null): Promise<RawgApiResponse> {
-    return axios.get(baseLink, {
-      params: {
-        key: key,
-        parent_platforms: platformId,
-        dates: '2022-10-01,2022-10-15',
-        page,
-      },
-    })
+  getGamesList(
+    page: number,
+    platformId: number | null,
+    releaseDates: string
+  ): Promise<RawgApiResponse> {
+    return axios
+      .get(baseLink, {
+        params: {
+          key: key,
+          parent_platforms: platformId,
+          dates: releaseDates,
+          page,
+        },
+      })
       .then((res) => res.data);
   }
 }

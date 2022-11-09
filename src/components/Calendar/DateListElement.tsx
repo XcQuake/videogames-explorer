@@ -10,7 +10,11 @@ interface Props {
 
 const DateListElement: React.FC<Props> = ({ value, onClick, style }) => {
   return (
-    <li className="calendar__month" style={style} onClick={() => onClick()}>
+    <li
+      className="calendar__list-element"
+      style={style}
+      onClick={() => onClick()}
+    >
       {value}
     </li>
   );

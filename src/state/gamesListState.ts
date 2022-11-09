@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 
 import RawgApi from '../requests/rawgApi';
 import { GameResponse } from '../types/rawgApiTypes';
@@ -9,37 +9,53 @@ enum ActionType {
 }
 
 interface GamesListState {
-  games: GameResponse[],
-  nextPage: number,
-  isGamesListLoading: boolean,
+  games: GameResponse[];
+  nextPage: number;
+  isGamesListLoading: boolean;
+  releaseDates: string;
 }
 
 const initialState: GamesListState = {
   games: [],
   nextPage: 1,
   isGamesListLoading: false,
-}
+  releaseDates: '',
+};
 
 export const gamesListSlice = createSlice({
   name: 'gamesList',
   initialState,
   reducers: {
-    clearGamesList: (state) => { state.games = [] },
+    clearGamesList: (state) => {
+      state.games = [];
+    },
+    setReleaseDates: (state, action: PayloadAction<string>) => {
+      console.log(action.payload);
+      state.releaseDates = action.payload;
+    },
   },
   extraReducers(builder) {
     builder.addCase(fetchGamesList.pending, (state) => {
       state.isGamesListLoading = true;
-    })
+    });
     builder.addCase(fetchGamesList.fulfilled, (state, action) => {
       state.games = state.games.concat(action.payload.results);
       state.nextPage = action.payload.next ? state.nextPage + 1 : 0;
       state.isGamesListLoading = false;
-    })
+    });
   },
-})
+});
 
-export const { clearGamesList } = gamesListSlice.actions;
+export const { clearGamesList, setReleaseDates } = gamesListSlice.actions;
 export const fetchGamesList = createAsyncThunk(
   ActionType.FETCH_GAMESLIST,
-  async ({page, platformId}: { page: number, platformId: number | null}) => await RawgApi.getGamesList(page, platformId)
+  async ({
+    page,
+    platformId,
+    releaseDates,
+  }: {
+    page: number;
+    platformId: number | null;
+    releaseDates: string;
+  }) => await RawgApi.getGamesList(page, platformId, releaseDates)
 );

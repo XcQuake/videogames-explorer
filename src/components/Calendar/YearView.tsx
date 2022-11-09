@@ -2,27 +2,21 @@ import React from 'react';
 import { format } from 'date-fns';
 import { ru } from 'date-fns/locale';
 
-import { useAppDispatch, useAppSelector } from '../../hooks/redux-hoos';
 import DateListElement from './DateListElement';
-import { setMonth } from '../../state/calendarState';
 
 interface Props {
-  onSelect: (month: number) => void;
+  onSelect: (month: string) => void;
 }
 
 const YearView: React.FC<Props> = ({ onSelect }) => {
-  const { year } = useAppSelector((state) => state.calendar);
-  const dispatch = useAppDispatch();
-
   function handleSelectMonth(month: number) {
-    onSelect(month);
-    dispatch(setMonth(month));
+    onSelect(month < 10 ? `0${month}` : `${month}`);
   }
 
   const renderMonths = () => {
     const months = [];
     for (let i = 1; i <= 12; i++) {
-      const stringDate = `${year}-${i}-1`;
+      const stringDate = `${i}-1`;
       const fullDate = new Date(stringDate);
       const value = format(fullDate, 'LLL', { locale: ru });
       months.push(
@@ -38,7 +32,7 @@ const YearView: React.FC<Props> = ({ onSelect }) => {
 
   return (
     <div className="calendar__view">
-      <ul className="calendar__list calendar__list_year">{renderMonths()}</ul>
+      <ul className="calendar__list">{renderMonths()}</ul>
     </div>
   );
 };

@@ -24,101 +24,25 @@
     padding: 0;
     margin: 0;
     list-style-type: none;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    row-gap: 10px;
 
-    &_month {
-      grid-template-columns: repeat(7, 1fr);
-      grid-template-rows: repeat(auto-fill, 1fr);
-    }
+    &-element {
+      padding: 5px;
+      font-size: 18px;
+      line-height: 20px;
+      font-weight: 500;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
 
-    &_year {
-      grid-template-columns: repeat(4, 1fr);
-      grid-template-rows: repeat(3, 1fr);
-      row-gap: 10px;
-    }
-
-    &_decade {
-      grid-template-columns: repeat(4, 1fr);
-      grid-template-rows: repeat(3, 1fr);
-      row-gap: 10px;
-    }
-  }
-
-  &__weekday {
-    text-align: center;
-    font-size: 14px;
-    font-weight: 500;
-  }
-
-  &__day {
-    padding: 0;
-    margin: 0;
-    font-size: 18px;
-    line-height: 20px;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: 0.1s ease;
-
-    &:hover {
-      box-shadow: 0 0 2px 1px black;
-      background-color: #6b69f946;
-    }
-  }
-
-  &__month {
-    padding: 5px;
-    font-size: 18px;
-    line-height: 20px;
-    font-weight: 500;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-
-    &:hover {
-      box-shadow: 0 0 2px 1px black;
-      background-color: #6b69f946;
-    }
-  }
-}
-
-.calendar-menubar {
-  display: flex;
-  width: 100%;
-
-  &__selection {
-    width: 100%;
-    display: flex;
-    gap: 10px;
-    align-items: center;
-  }
-
-  &__select {
-    width: 100%;
-    min-width: 35px;
-    max-width: 70px;
-    border: 1px solid var(--select-border);
-    border-radius: 10px;
-    padding: 5px;
-    font-size: 14px;
-    line-height: 16px;
-    cursor: pointer;
-    background-color: #fff;
-    background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
-
-    &::-ms-expand {
-      display: none;
-    }
-
-    &::after {
-      content: '';
-      width: 0.8em;
-      height: 0.5em;
-      background-color: var(--select-arrow);
-      clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+      &:hover {
+        box-shadow: 0 0 2px 1px black;
+        background-color: #6b69f946;
+      }
     }
   }
 }
@@ -127,36 +51,4 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
-}
-
-.calendar__button {
-  border: none;
-  background-color: inherit;
-  cursor: pointer;
-  box-sizing: border-box;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-
-  &:hover {
-    opacity: 0.8;
-  }
-
-  &_previous {
-    width: 13px;
-    height: 15px;
-    background-image: url(../../images/icon-left-arrow.svg);
-  }
-
-  &_next {
-    width: 13px;
-    height: 15px;
-    background-image: url(../../images/icon-right-arrow.svg);
-  }
-
-  &_select {
-    display: flex;
-    align-items: center;
-    gap: 3px;
-  }
 }
