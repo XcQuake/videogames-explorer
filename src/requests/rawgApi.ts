@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { GameResponse } from '../types/rawgApiTypes';
+import { GameDetails, GameResponse } from '../types/rawgApiTypes';
 import { RAWG_API } from '../utils/contants';
 
 const { baseLink, key } = RAWG_API;
@@ -26,6 +26,16 @@ class RawgApi {
           parent_platforms: platformId,
           dates: releaseDates,
           page,
+        },
+      })
+      .then((res) => res.data);
+  }
+
+  getGameDetails(id: string): Promise<GameDetails> {
+    return axios
+      .get(`${baseLink}/${id}`, {
+        params: {
+          key: key,
         },
       })
       .then((res) => res.data);

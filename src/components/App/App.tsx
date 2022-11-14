@@ -8,6 +8,7 @@ import GamesList from '../GamesList/GamesList';
 import SideBar from '../SideBar/SideBar';
 
 import './App.scss';
+import GamePage from '../GamePage/GamePage';
 
 const { platforms } = RAWG_API;
 
@@ -26,6 +27,9 @@ function App() {
           </Route>
           <Route path={URLS.xbox}>
             <GamesList platformId={platforms.xbox} />
+          </Route>
+          <Route path="/:id">
+            <GamePage test="test" />
           </Route>
         </Switch>
       </div>

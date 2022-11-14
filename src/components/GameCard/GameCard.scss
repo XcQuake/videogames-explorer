@@ -1,8 +1,8 @@
 @keyframes loading {
-  0%{
+  0% {
     top: -100%;
   }
-  100%{
+  100% {
     bottom: 0;
   }
 }
@@ -15,12 +15,11 @@
   border-radius: 10px;
   color: white;
   box-sizing: border-box;
-  transition: 
-    transform 0.15s ease-in,
-    box-shadow 0.15s ease-in,
+  transition: transform 0.15s ease-in, box-shadow 0.15s ease-in,
     height 0.15s ease-in;
   cursor: pointer;
   background-color: #3c3d4d;
+  text-decoration: none;
 
   &:hover {
     transform: scale(1.03);
@@ -112,7 +111,7 @@
 
       &:not(:last-child):after {
         display: inline-block;
-        background-color: #6B69F9;
+        background-color: #6b69f9;
         content: '';
         width: 5px;
         height: 5px;

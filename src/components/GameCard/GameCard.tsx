@@ -4,6 +4,7 @@ import { format, parseISO } from 'date-fns';
 import { GameResponse } from '../../types/rawgApiTypes';
 import './GameCard.scss';
 import SpanableElement from '../GridElement/GridElement';
+import { Link } from 'react-router-dom';
 
 interface Props {
   game: GameResponse;
@@ -70,7 +71,8 @@ const GameCard: React.FC<Props> = ({ game }) => {
 
   return (
     <SpanableElement gapSpan={2}>
-      <div
+      <Link
+        to={`/${game.id}`}
         className="game-card"
         onMouseEnter={() => setIsMouseEnter(true)}
         onMouseLeave={() => setIsMouseEnter(false)}
@@ -97,7 +99,7 @@ const GameCard: React.FC<Props> = ({ game }) => {
           </div>
           {isShown && renderDetails}
         </div>
-      </div>
+      </Link>
     </SpanableElement>
   );
 };
