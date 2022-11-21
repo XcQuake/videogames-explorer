@@ -6,6 +6,8 @@ import './GamePage.scss';
 import rawgApi from '../../requests/rawgApi';
 import { GameDetails } from '../../types/rawgApiTypes';
 import { cutTegs, getMetacriticColor } from '../../utils';
+import Icon from '../Icon/Icon';
+import { ICONS } from '../../types';
 
 interface Props {
   test: string;
@@ -33,42 +35,82 @@ const GamePage: React.FC<Props> = ({ test }) => {
     ));
   };
 
-  const renderReleaseDate: React.ReactNode = gameDetails?.released && (
-    <div className="gamepage__details-block">
-      <span className="gamepage__details-header">Release</span>
-      <p className="gamepage__details-text">
-        {format(new Date(gameDetails?.released), 'dd LLLL, yy')}
-      </p>
-    </div>
-  );
+  const renderGameDetailsBlock = (
+    header: string,
+    children: React.ReactNode
+  ): React.ReactNode => {
+    return (
+      <div className="gamepage__details-block">
+        <span className="gamepage__details-header">{header}</span>
+        {children}
+      </div>
+    );
+  };
 
-  const renderGenres: React.ReactNode = gameDetails?.genres && (
-    <div className="gamepage__details-block">
-      <span className="gamepage__details-header">Genres</span>
+  const renderReleaseDate: React.ReactNode =
+    gameDetails?.released &&
+    renderGameDetailsBlock(
+      'Release',
+      <p className="gamepage__details-text">
+        {format(new Date(gameDetails?.released), 'd LLLL, yyyy')}
+      </p>
+    );
+
+  const renderGenres: React.ReactNode =
+    gameDetails?.genres &&
+    renderGameDetailsBlock(
+      'Genres',
       <p className="gamepage__details-text">
         {gameDetails.genres.map((genre, i) => [
-          i > 0 && ', ',
           <span key={`g-${i}`}>{genre.name}</span>,
         ])}
       </p>
-    </div>
-  );
+    );
 
-  const renderMetascore: React.ReactNode = gameDetails?.metacritic && (
-    <div className="gamepage__details-block">
-      <span className="gamepage__details-header">Metascore</span>
-      <p
-        className="gamepage__details-text text_center"
-        style={{
-          color: getMetacriticColor(gameDetails.metacritic),
-        }}
-      >
-        <span className="gamepage__details-metascore">
+  const renderMetascore: React.ReactNode =
+    gameDetails?.metacritic &&
+    renderGameDetailsBlock(
+      'Metascore',
+      <p className="gamepage__details-text text_center">
+        <a
+          className="gamepage__details-metascore"
+          href={gameDetails.metacritic_url}
+          style={{
+            color: getMetacriticColor(gameDetails.metacritic),
+          }}
+        >
           {gameDetails.metacritic}
-        </span>
+        </a>
       </p>
-    </div>
-  );
+    );
+
+  const renderPlatforms: React.ReactNode =
+    gameDetails?.platforms &&
+    renderGameDetailsBlock(
+      'Platforms',
+      <p className="gamepage__details-text flex-row">
+        {gameDetails.parent_platforms.map((el, i) => [
+          ' ',
+          <Icon
+            key={`pl-${i}`}
+            size="medium"
+            name={el.platform.slug as ICONS}
+            color="secondary"
+          />,
+        ])}
+      </p>
+    );
+
+  const renderDevelopers: React.ReactNode =
+    gameDetails?.developers &&
+    renderGameDetailsBlock(
+      'Developers',
+      <p className="gamepage__details-text">
+        {gameDetails.developers.map((el, i) => [
+          <span key={`dev-${i}`}>{el.name}</span>,
+        ])}
+      </p>
+    );
 
   return (
     <div
@@ -83,6 +125,8 @@ const GamePage: React.FC<Props> = ({ test }) => {
           {renderReleaseDate}
           {renderGenres}
           {renderMetascore}
+          {renderPlatforms}
+          {renderDevelopers}
         </div>
         <div className="gamepage__description">
           {gameDetails?.description &&

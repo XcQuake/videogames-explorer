@@ -24,3 +24,9 @@ body {
 .text_center {
   text-align: center;
 }
+
+.flex-row {
+  display: flex;
+  flex-direction: row !important;
+  gap: 5px;
+}

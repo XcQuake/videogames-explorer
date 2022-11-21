@@ -18,5 +18,5 @@ export function cutTegs(str: string) {
 }
 
 export const getMetacriticColor = (metascore: number): string => {
-  return metascore < 40 ? 'red' : metascore > 74 ? 'green' : 'yellow';
+  return metascore < 40 ? '#FF0100' : metascore > 74 ? '#6dc849' : '#FECC32';
 };
