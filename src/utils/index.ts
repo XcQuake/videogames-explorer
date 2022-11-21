@@ -11,3 +11,12 @@ export const formatMonths = (firstMonth: string, secondMonth: string) => {
     second: secondMonth && format(new Date(secondMonth), 'LLL', { locale: ru }),
   };
 };
+
+export function cutTegs(str: string) {
+  var regex = /<\/?[^>]+(>|$)/gi;
+  return str.replace(regex, '');
+}
+
+export const getMetacriticColor = (metascore: number): string => {
+  return metascore < 40 ? 'red' : metascore > 74 ? 'green' : 'yellow';
+};
