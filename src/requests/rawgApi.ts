@@ -1,6 +1,10 @@
 import axios from 'axios';
 
-import { GameDetails, GameResponse } from '../types/rawgApiTypes';
+import {
+  GameDetails,
+  GameResponse,
+  ScreenshotsResponse,
+} from '../types/rawgApiTypes';
 import { RAWG_API } from '../utils/contants';
 
 const { baseLink, key } = RAWG_API;
@@ -34,6 +38,16 @@ class RawgApi {
   getGameDetails(id: string): Promise<GameDetails> {
     return axios
       .get(`${baseLink}/${id}`, {
+        params: {
+          key: key,
+        },
+      })
+      .then((res) => res.data);
+  }
+
+  getGameScreenshots(id: string): Promise<ScreenshotsResponse> {
+    return axios
+      .get(`${baseLink}/${id}/screenshots`, {
         params: {
           key: key,
         },

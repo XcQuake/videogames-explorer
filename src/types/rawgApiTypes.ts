@@ -210,6 +210,22 @@ export interface GameDetails {
   youtube_count: number;
 }
 
+export interface Screenshots {
+  id: number;
+  image: string;
+  width: number;
+  height: number;
+  is_deleted: boolean;
+}
+
+export interface ScreenshotsResponse {
+  count: number;
+  next: string;
+  previous: string | null;
+  results: Screenshots[];
+  user_platforms: boolean;
+}
+
 export interface RawgApiResponse {
   count: number;
   next: string;
