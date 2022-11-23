@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import './GamePage.scss';
 import rawgApi from '../../requests/rawgApi';
-import { GameDetails, Screenshots } from '../../types/rawgApiTypes';
+import { GameDetails, Screenshot } from '../../types/rawgApiTypes';
 import GameDescription from './GameDescription';
 import GameMedia from './GameMedia';
 
@@ -18,7 +18,7 @@ type Params = {
 const GamePage: React.FC<Props> = ({ test }) => {
   const { id } = useParams<Params>();
   const [gameDetails, setGameDetails] = useState<GameDetails | null>(null);
-  const [screenshots, setScreenshots] = useState<Screenshots[]>([]);
+  const [screenshots, setScreenshots] = useState<Screenshot[]>([]);
 
   useEffect(() => {
     if (!id) return;
@@ -49,7 +49,7 @@ const GamePage: React.FC<Props> = ({ test }) => {
     >
       <div className="gamepage__wrapper">
         {gameDetails && <GameDescription gameDetails={gameDetails} />}
-        {screenshots && <GameMedia screenshots={screenshots} />}
+        {screenshots.length > 0 && <GameMedia screenshots={screenshots} />}
       </div>
     </div>
   );

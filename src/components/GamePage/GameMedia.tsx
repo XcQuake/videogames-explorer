@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-import { Screenshots } from '../../types/rawgApiTypes';
+import React, { useRef, useState } from 'react';
+import { Screenshot } from '../../types/rawgApiTypes';
+import ScreenPreview from './ScreenPreview';
 
 interface Props {
-  screenshots: Screenshots[];
+  screenshots: Screenshot[];
 }
 
 const GameMedia: React.FC<Props> = ({ screenshots }) => {
@@ -10,15 +11,20 @@ const GameMedia: React.FC<Props> = ({ screenshots }) => {
 
   return (
     <div className="gamepage__media">
-      <img className="gamepage__screenshot" src={selectedScreen} alt="screen" />
+      <img
+        className="gamepage__screenshot"
+        src={selectedScreen}
+        alt="screen"
+        width={1270}
+        height={720}
+      />
       <div className="gamepage__screenshot-list">
-        {screenshots.map((screen, i) => {
+        {screenshots.map((screen) => {
           return (
-            <img
-              className="gamepage__screenshot-preview"
-              src={screen.image}
-              alt="screenshot"
-              onClick={() => setSelectedScreen(screen.image)}
+            <ScreenPreview
+              key={screen.id}
+              screen={screen}
+              onSelectScreen={(link) => setSelectedScreen(link)}
             />
           );
         })}

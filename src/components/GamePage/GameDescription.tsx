@@ -77,7 +77,7 @@ const GameDescription: React.FC<Props> = ({ gameDetails }) => {
           ' ',
           <Icon
             key={`pl-${i}`}
-            size="medium"
+            size="large"
             name={el.platform.slug as ICONS}
             color="secondary"
           />,

@@ -210,7 +210,7 @@ export interface GameDetails {
   youtube_count: number;
 }
 
-export interface Screenshots {
+export interface Screenshot {
   id: number;
   image: string;
   width: number;
@@ -222,7 +222,7 @@ export interface ScreenshotsResponse {
   count: number;
   next: string;
   previous: string | null;
-  results: Screenshots[];
+  results: Screenshot[];
   user_platforms: boolean;
 }
 
