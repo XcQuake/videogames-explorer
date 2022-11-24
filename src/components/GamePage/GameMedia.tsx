@@ -25,6 +25,7 @@ const GameMedia: React.FC<Props> = ({ screenshots }) => {
               key={screen.id}
               screen={screen}
               onSelectScreen={(link) => setSelectedScreen(link)}
+              isSelected={screen.image === selectedScreen}
             />
           );
         })}

@@ -4,9 +4,14 @@ import { Screenshot } from '../../types/rawgApiTypes';
 interface Props {
   screen: Screenshot;
   onSelectScreen: (arg0: string) => void;
+  isSelected: boolean;
 }
 
-const ScreenPreview: React.FC<Props> = ({ screen, onSelectScreen }) => {
+const ScreenPreview: React.FC<Props> = ({
+  screen,
+  onSelectScreen,
+  isSelected,
+}) => {
   const previewRef = useRef<HTMLImageElement>(null);
   const previewRect = previewRef.current;
 
@@ -31,7 +36,9 @@ const ScreenPreview: React.FC<Props> = ({ screen, onSelectScreen }) => {
     >
       <img
         key={screen.id}
-        className="gamepage__screenshot-preview"
+        className={`gamepage__screenshot-preview ${
+          isSelected ? 'gamepage__screenshot-preview_selected' : ''
+        }`}
         src={screen.image}
         alt="screenshot"
         width={275}
