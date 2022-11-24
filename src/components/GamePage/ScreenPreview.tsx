@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { Screenshot } from '../../types/rawgApiTypes';
+import { setOffParallax, setOnParallax } from '../../utils';
 
 interface Props {
   screen: Screenshot;
@@ -31,8 +32,8 @@ const ScreenPreview: React.FC<Props> = ({
 
   return (
     <div
-      onMouseMove={(evt) => handleOnParallax(evt)}
-      onMouseLeave={() => handleOffParallax()}
+      onMouseMove={(evt) => previewRect && setOnParallax(evt, previewRect)}
+      onMouseLeave={() => previewRect && setOffParallax(previewRect)}
     >
       <img
         key={screen.id}

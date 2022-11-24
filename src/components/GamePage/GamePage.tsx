@@ -28,18 +28,6 @@ const GamePage: React.FC<Props> = ({ test }) => {
       .then((screenData) => setScreenshots(screenData.results));
   }, [id]);
 
-  const renderScreenshots = () => {
-    screenshots.map((screen, i) => {
-      return (
-        <img
-          className="gamepage__screenshot"
-          src={screen.image}
-          alt={gameDetails?.name}
-        />
-      );
-    });
-  };
-
   return (
     <div
       className="gamepage"

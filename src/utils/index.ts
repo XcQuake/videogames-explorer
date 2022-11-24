@@ -20,3 +20,15 @@ export function cutTegs(str: string) {
 export const getMetacriticColor = (metascore: number): string => {
   return metascore < 40 ? '#FF0100' : metascore > 74 ? '#6dc849' : '#FECC32';
 };
+
+export function setOnParallax(evt: React.MouseEvent, rect: HTMLElement) {
+  rect.style.transform = `perspective(2000px) rotatey(${
+    (evt.nativeEvent.offsetX - rect.offsetWidth / 2) / 8
+  }deg) rotatex(${
+    ((evt.nativeEvent.offsetY - rect.offsetHeight / 2) / 8) * -1
+  }deg) scale(1.05)`;
+}
+
+export function setOffParallax(rect: HTMLElement) {
+  rect.style.transform = ``;
+}
