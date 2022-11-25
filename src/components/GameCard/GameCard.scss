@@ -27,6 +27,10 @@
     border: 1px solid black;
   }
 
+  &:hover &__details {
+    display: flex;
+  }
+
   &__poster {
     height: 230px;
     border-radius: 10px 10px 0 0;
@@ -71,7 +75,7 @@
 
   &__details {
     flex-basis: 0;
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: space-between;
     gap: 5px;

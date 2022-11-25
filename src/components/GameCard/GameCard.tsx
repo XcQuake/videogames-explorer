@@ -1,9 +1,9 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef } from 'react';
 import { format, parseISO } from 'date-fns';
 
 import { GameResponse } from '../../types/rawgApiTypes';
 import './GameCard.scss';
-import SpanableElement from '../GridElement/GridElement';
+import GridElement from '../GridElement/GridElement';
 import { Link } from 'react-router-dom';
 
 interface Props {
@@ -11,9 +11,7 @@ interface Props {
 }
 
 const GameCard: React.FC<Props> = ({ game }) => {
-  const gameDescRef = useRef<HTMLDivElement>(null);
-  const [isMouseEnter, setIsMouseEnter] = useState(false);
-  const [isShown, setIsShown] = useState(false);
+  const gameCardRef = useRef(null);
 
   const posterLink =
     game.background_image &&
@@ -33,15 +31,6 @@ const GameCard: React.FC<Props> = ({ game }) => {
       })}
     </div>
   );
-
-  useEffect(() => {
-    if (isMouseEnter) {
-      const timer = setTimeout(() => setIsShown(true), 150);
-      return () => clearTimeout(timer);
-    } else {
-      setIsShown(false);
-    }
-  }, [isMouseEnter]);
 
   const renderDetails: JSX.Element = (
     <div className="game-card__details">
@@ -70,13 +59,8 @@ const GameCard: React.FC<Props> = ({ game }) => {
   );
 
   return (
-    <SpanableElement gapSpan={2}>
-      <Link
-        to={`/${game.id}`}
-        className="game-card"
-        onMouseEnter={() => setIsMouseEnter(true)}
-        onMouseLeave={() => setIsMouseEnter(false)}
-      >
+    <GridElement gapSpan={2}>
+      <Link to={`/${game.id}`} className="game-card" ref={gameCardRef}>
         <div className="game-card__poster">
           <img
             className="game-card__poster-image"
@@ -85,7 +69,7 @@ const GameCard: React.FC<Props> = ({ game }) => {
             loading="lazy"
           />
         </div>
-        <div className="game-card__description" ref={gameDescRef}>
+        <div className="game-card__description">
           <div className="game-card__preview">
             <p className="game-card__name">{game.name}</p>
             <div className="game-card__about">
@@ -97,10 +81,10 @@ const GameCard: React.FC<Props> = ({ game }) => {
               )}
             </div>
           </div>
-          {isShown && renderDetails}
+          {renderDetails}
         </div>
       </Link>
-    </SpanableElement>
+    </GridElement>
   );
 };
 
