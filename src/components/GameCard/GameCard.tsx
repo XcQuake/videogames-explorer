@@ -5,6 +5,8 @@ import { GameResponse } from '../../types/rawgApiTypes';
 import './GameCard.scss';
 import GridElement from '../GridElement/GridElement';
 import { Link } from 'react-router-dom';
+import Icon from '../Icon/Icon';
+import { ICONS } from '../../types';
 
 interface Props {
   game: GameResponse;
@@ -23,9 +25,10 @@ const GameCard: React.FC<Props> = ({ game }) => {
     <div className="game-card__platforms">
       {game.parent_platforms.map((platform) => {
         return (
-          <span
-            className={`platform platform_${platform.platform.slug}`}
+          <Icon
             key={platform.platform.id}
+            name={platform.platform.slug as ICONS}
+            color="secondary"
           />
         );
       })}

@@ -14,7 +14,7 @@ const GameDescription: React.FC<Props> = ({ gameDetails }) => {
   const getFormatedText = (text: string) => {
     return text.split('\n').map((str, i) => (
       <p key={`p_${i}`} className="gamepage__about-line">
-        {cutTegs(str)}
+        {cutTegs(str.slice(0, 1000))}
       </p>
     ));
   };
@@ -55,7 +55,8 @@ const GameDescription: React.FC<Props> = ({ gameDetails }) => {
     gameDetails?.metacritic &&
     renderGameDetailsBlock(
       'Metascore',
-      <p className="gamepage__details-text text_center">
+      <p className="gamepage__details-text flex-row">
+        <Icon name="metacritic" color="white" size="small" />
         <a
           className="gamepage__details-metascore"
           href={gameDetails.metacritic_url}
@@ -77,9 +78,9 @@ const GameDescription: React.FC<Props> = ({ gameDetails }) => {
           ' ',
           <Icon
             key={`pl-${i}`}
-            size="large"
+            size="medium"
             name={el.platform.slug as ICONS}
-            color="secondary"
+            color="white"
           />,
         ])}
       </p>

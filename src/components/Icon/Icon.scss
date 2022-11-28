@@ -29,19 +29,15 @@
   &.mini {
     font-size: 0.5em;
   }
-
   &.tiny {
     font-size: 0.7em;
   }
-
   &.small {
     font-size: 0.9em;
   }
-
   &.medium {
     font-size: 1.2em;
   }
-
   &.large {
     font-size: 1.5em;
   }
@@ -50,40 +46,20 @@
   &.primary {
     color: var(--primary);
   }
-
   &.secondary {
     color: var(--secondary);
   }
-
   &.tertiary {
     color: var(--tertiary);
   }
-
   &.black {
     color: black;
   }
-
   &.white {
     color: white;
   }
 
   // Names
-  &.metacritic:before {
-    content: '\e900';
-    color: #ffcb00;
-  }
-  &.nintendo:before {
-    content: '\e906';
-    color: #e60012;
-  }
-  &.playstation:before {
-    content: '\e907';
-    color: #003791;
-  }
-  &.xbox:before {
-    content: '\e908';
-    color: #107c10;
-  }
   &.plus_circle:before {
     content: '\1f313';
   }
@@ -110,6 +86,19 @@
   }
   &.plus:before {
     content: '\ea0a';
+  }
+  &.metacritic:before {
+    content: '\e900';
+    color: #ffcb00;
+  }
+  &.nintendo:before {
+    content: '\e906';
+  }
+  &.playstation:before {
+    content: '\e907';
+  }
+  &.xbox:before {
+    content: '\e908';
   }
   &.linux:before {
     content: '\eabd';
