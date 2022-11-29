@@ -7,15 +7,11 @@ import { GameDetails, Screenshot } from '../../types/rawgApiTypes';
 import GameDescription from './GameDescription';
 import GameMedia from './GameMedia';
 
-interface Props {
-  test: string;
-}
-
 type Params = {
   id: string | undefined;
 };
 
-const GamePage: React.FC<Props> = ({ test }) => {
+const GamePage: React.FC = () => {
   const { id } = useParams<Params>();
   const [gameDetails, setGameDetails] = useState<GameDetails | null>(null);
   const [screenshots, setScreenshots] = useState<Screenshot[]>([]);
