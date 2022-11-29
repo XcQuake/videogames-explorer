@@ -19,9 +19,9 @@ interface RawgApiResponse {
 
 class RawgApi {
   getGamesList(
-    page: number,
-    platformId: number | null,
-    releaseDates: string
+    page?: number,
+    platformId?: number | null,
+    releaseDates?: string,
   ): Promise<RawgApiResponse> {
     return axios
       .get(baseLink, {
@@ -53,6 +53,17 @@ class RawgApi {
         },
       })
       .then((res) => res.data);
+  }
+
+  searchGames(searchText: string): Promise<RawgApiResponse> {
+    return axios
+    .get(baseLink, {
+      params: {
+        key: key,
+        search: searchText,
+      },
+    })
+    .then((res) => res.data);
   }
 }
 

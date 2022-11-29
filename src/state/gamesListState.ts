@@ -6,6 +6,7 @@ import { GameResponse } from '../types/rawgApiTypes';
 enum ActionType {
   FETCH_GAMESLIST = 'fetch_gameslist',
   CLEAR_GAMESLIST = 'clear_gameslist',
+  SEARCH_GAMES = 'search_games',
 }
 
 interface GamesListState {
@@ -30,7 +31,6 @@ export const gamesListSlice = createSlice({
       state.games = [];
     },
     setReleaseDates: (state, action: PayloadAction<string>) => {
-      console.log(action.payload);
       state.releaseDates = action.payload;
     },
   },
@@ -39,6 +39,15 @@ export const gamesListSlice = createSlice({
       state.isGamesListLoading = true;
     });
     builder.addCase(fetchGamesList.fulfilled, (state, action) => {
+      state.games = state.games.concat(action.payload.results);
+      state.nextPage = action.payload.next ? state.nextPage + 1 : 0;
+      state.isGamesListLoading = false;
+    });
+    builder.addCase(searchGames.pending, (state) => {
+      state.games = [];
+      state.isGamesListLoading = true;
+    });
+    builder.addCase(searchGames.fulfilled, (state, action) => {
       state.games = state.games.concat(action.payload.results);
       state.nextPage = action.payload.next ? state.nextPage + 1 : 0;
       state.isGamesListLoading = false;
@@ -54,8 +63,13 @@ export const fetchGamesList = createAsyncThunk(
     platformId,
     releaseDates,
   }: {
-    page: number;
-    platformId: number | null;
-    releaseDates: string;
+    page?: number;
+    platformId?: number | null;
+    releaseDates?: string;
   }) => await RawgApi.getGamesList(page, platformId, releaseDates)
+);
+
+export const searchGames = createAsyncThunk(
+  ActionType.SEARCH_GAMES,
+  async (searchText: string) => await RawgApi.searchGames(searchText)
 );
