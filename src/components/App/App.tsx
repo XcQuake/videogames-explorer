@@ -28,7 +28,7 @@ function App() {
           <Route path={URLS.xbox}>
             <GamesList platformId={platforms.xbox} />
           </Route>
-          <Route path="/:id">
+          <Route path="/game/:id">
             <GamePage />
           </Route>
         </Switch>

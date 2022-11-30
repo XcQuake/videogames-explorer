@@ -63,7 +63,7 @@ const GameCard: React.FC<Props> = ({ game }) => {
 
   return (
     <GridElement gapSpan={2}>
-      <Link to={`/${game.id}`} className="game-card" ref={gameCardRef}>
+      <Link to={`/game/${game.id}`} className="game-card" ref={gameCardRef}>
         <div className="game-card__poster">
           <img
             className="game-card__poster-image"
