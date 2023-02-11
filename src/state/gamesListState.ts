@@ -20,7 +20,7 @@ const initialState: GamesListState = {
   games: [],
   nextPage: 1,
   isGamesListLoading: false,
-  releaseDates: '',
+  releaseDates: '2023-01-01,2023-12-30',
 };
 
 export const gamesListSlice = createSlice({

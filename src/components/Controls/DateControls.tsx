@@ -18,7 +18,7 @@ interface Ref {
 
 const DateControls: React.FC = () => {
   const [showMonths, setShowMonths] = useState<boolean>(false);
-  const [selectedYears, setSelectedYears] = useState<string[]>(['2022']);
+  const [selectedYears, setSelectedYears] = useState<string[]>(['2023']);
   const [selectedMonths, setSelectedMonths] = useState<string[]>(['01', '12']);
 
   const dispatch = useAppDispatch();

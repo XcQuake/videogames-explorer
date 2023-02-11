@@ -1,9 +1,9 @@
 export const URLS = {
-  playstation: '/playstation-games',
-  pc: '/pc-games',
-  xbox: '/xbox-games',
+  playstation: '/game-list/playstation',
+  pc: '/game-list/pc',
+  xbox: '/game-list/xbox',
   releases: '/releases',
-}
+};
 
 export const RAWG_API = {
   baseLink: 'https://api.rawg.io/api/games',
@@ -12,5 +12,5 @@ export const RAWG_API = {
     pc: 1,
     playstation: 2,
     xbox: 3,
-  }
-}
+  },
+};

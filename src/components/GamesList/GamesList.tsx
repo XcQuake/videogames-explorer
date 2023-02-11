@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 import './GamesList.scss';
 import Preloader from '../Preloader/Preloader';
@@ -7,17 +8,22 @@ import { fetchGamesList, clearGamesList } from '../../state/gamesListState';
 import { useAppSelector, useAppDispatch } from '../../hooks/redux-hoos';
 import Controls from '../Controls/Controls';
 import GridElement from '../GridElement/GridElement';
+import { RAWG_API } from '../../utils/contants';
 
-interface Props {
-  platformId: number | null;
-}
+interface Props {}
 
-const GamesList: React.FC<Props> = ({ platformId }) => {
+type Params = {
+  id: string | undefined;
+};
+
+const GamesList: React.FC<Props> = () => {
   const { games, nextPage, isGamesListLoading, releaseDates } = useAppSelector(
     (state) => state.gamesList
   );
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const dispatch = useAppDispatch();
+  const { id = 'pc' } = useParams<Params>();
+  const platformId = RAWG_API.platforms[id as keyof typeof RAWG_API.platforms];
 
   async function fetchData(page: number) {
     await dispatch(fetchGamesList({ page, platformId, releaseDates }));

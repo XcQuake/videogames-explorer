@@ -19,14 +19,8 @@ function App() {
       <div className="main">
         <Header />
         <Switch>
-          <Route path={URLS.pc}>
-            <GamesList platformId={platforms.pc} />
-          </Route>
-          <Route path={URLS.playstation}>
-            <GamesList platformId={platforms.playstation} />
-          </Route>
-          <Route path={URLS.xbox}>
-            <GamesList platformId={platforms.xbox} />
+          <Route path="/game-list/:id">
+            <GamesList />
           </Route>
           <Route path="/game/:id">
             <GamePage />
