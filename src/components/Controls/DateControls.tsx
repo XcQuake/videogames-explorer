@@ -17,22 +17,32 @@ interface Ref {
 
 const DateControls: React.FC = () => {
   const [showMonths, setShowMonths] = useState<boolean>(false);
-  const [selectedYears, setSelectedYears] = useState<string[]>(['2023']);
-  const [selectedMonths, setSelectedMonths] = useState<string[]>(['01', '12']);
+  const [years, setYears] = useState<string[]>(['2023']);
+  const [months, setMonths] = useState<string[]>(['01', '12']);
 
   const dispatch = useAppDispatch();
   const triggerRef = useRef<Ref>() as React.MutableRefObject<Ref>;
-  const formattedMonths = formatMonths(selectedMonths[0], selectedMonths[1]);
+  const formattedMonths = formatMonths(months[0], months[1]);
+
+  const selectedYears = {
+    first: years[0],
+    second: years[1],
+  };
+
+  const selectedMonths = {
+    first: months[0],
+    second: months[1],
+  };
 
   const handleSelectFirstYear = (year: string) => {
-    setSelectedYears([year]);
+    setYears([year]);
     triggerRef.current.close();
   };
 
   const handleSelectSecondYear = (year: string) => {
-    if (year === selectedYears[0]) return;
-    setSelectedYears(
-      [selectedYears[0], year].sort((x, y) =>
+    if (year === selectedYears.first) return;
+    setYears(
+      [selectedYears.first, year].sort((x, y) =>
         compareAsc(new Date(x), new Date(y))
       )
     );
@@ -40,14 +50,14 @@ const DateControls: React.FC = () => {
   };
 
   const handleSelectFirstMonth = (month: string) => {
-    setSelectedMonths([month]);
+    setMonths([month]);
     triggerRef.current.close();
   };
 
   const handleSelectSecondMonth = (month: string) => {
-    if (month === selectedMonths[0]) return;
-    setSelectedMonths(
-      [selectedMonths[0], month].sort((x, y) =>
+    if (month === selectedMonths.first) return;
+    setMonths(
+      [selectedMonths.first, month].sort((x, y) =>
         compareAsc(new Date(x), new Date(y))
       )
     );
@@ -55,37 +65,38 @@ const DateControls: React.FC = () => {
   };
 
   useEffect(() => {
-    if (selectedYears.length < 2) {
+    if (years.length < 2) {
       setShowMonths(true);
-      setSelectedMonths(['01', '12']);
+      setMonths(['01', '12']);
     } else {
-      setSelectedMonths([]);
+      setMonths([]);
       setShowMonths(false);
     }
-  }, [selectedYears]);
+  }, [years]);
 
   useEffect(() => {
-    if (selectedYears.length === 2) {
+    if (years.length === 2) {
       dispatch(
-        setReleaseDates(`${selectedYears[0]}-01-01,${selectedYears[1]}-12-31`)
+        setReleaseDates(
+          `${selectedYears.first}-01-01,${selectedYears.second}-12-31`
+        )
       );
     } else {
       const daysInMonth = getDaysInMonth(
         new Date(
-          +selectedYears[0],
-          (+selectedMonths[1] - 1) | (+selectedMonths[0] - 1)
+          +selectedYears.first,
+          (+selectedMonths.second - 1) | (+selectedMonths.first - 1)
         )
       );
-      console.log(daysInMonth);
       dispatch(
         setReleaseDates(
-          `${selectedYears[0]}-${selectedMonths[0]}-01,${selectedYears[0]}-${
-            selectedMonths[1] || selectedMonths[0]
-          }-${daysInMonth}`
+          `${selectedYears.first}-${selectedMonths.first}-01,${
+            selectedYears.first
+          }-${selectedMonths.second || selectedMonths.first}-${daysInMonth}`
         )
       );
     }
-  }, [selectedYears, selectedMonths]);
+  }, [years, months]);
 
   return (
     <div className="controls__dates">
@@ -102,7 +113,7 @@ const DateControls: React.FC = () => {
             }
           >
             <Button color="secondary" size="small">
-              {selectedYears[0]}
+              {selectedYears.first}
               <Icon name="arrow_down" size="small" color="white" />
             </Button>
           </PopoverTrigger>
@@ -117,7 +128,7 @@ const DateControls: React.FC = () => {
             }
           >
             <Button color="secondary" size="small">
-              {selectedYears[1] || (
+              {selectedYears.second || (
                 <Icon name="plus" size="small" color="white" />
               )}
             </Button>
