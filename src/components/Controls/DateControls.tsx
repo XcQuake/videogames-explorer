@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { compareAsc, format } from 'date-fns';
-import { ru } from 'date-fns/locale';
+import { compareAsc, getDaysInMonth } from 'date-fns';
 
 import Button from '../Button/Button';
 import Icon from '../Icon/Icon';
@@ -71,11 +70,18 @@ const DateControls: React.FC = () => {
         setReleaseDates(`${selectedYears[0]}-01-01,${selectedYears[1]}-12-31`)
       );
     } else {
+      const daysInMonth = getDaysInMonth(
+        new Date(
+          +selectedYears[0],
+          (+selectedMonths[1] - 1) | (+selectedMonths[0] - 1)
+        )
+      );
+      console.log(daysInMonth);
       dispatch(
         setReleaseDates(
           `${selectedYears[0]}-${selectedMonths[0]}-01,${selectedYears[0]}-${
             selectedMonths[1] || selectedMonths[0]
-          }-30`
+          }-${daysInMonth}`
         )
       );
     }
