@@ -21,6 +21,7 @@ export const getMetacriticColor = (metascore: number): string => {
   return metascore < 40 ? '#FF0100' : metascore > 74 ? '#6dc849' : '#FECC32';
 };
 
+// Parallax effect functions
 export function setOnParallax(evt: React.MouseEvent, rect: HTMLElement) {
   rect.style.transform = `perspective(2000px) rotatey(${
     (evt.nativeEvent.offsetX - rect.offsetWidth / 2) / 8
@@ -31,4 +32,15 @@ export function setOnParallax(evt: React.MouseEvent, rect: HTMLElement) {
 
 export function setOffParallax(rect: HTMLElement) {
   rect.style.transform = ``;
+}
+
+// async image loading
+export function loadImageAsync(url: string): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.src = url;
+    img.onload = function () {
+      resolve(url);
+    };
+  });
 }

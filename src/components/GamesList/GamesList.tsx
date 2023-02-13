@@ -66,12 +66,10 @@ const GamesList: React.FC<Props> = () => {
         <GridElement gapSpan={2}>
           <Controls />
         </GridElement>
-        <GridElement gapSpan={2}>
-          <Placeholder.Card />
-        </GridElement>
         {games.map((game) => (
           <GameCard key={game.id} game={game} />
         ))}
+        {/* Loading Skeleton */}
         {(isScrolled || isGamesListLoading) &&
           Array(10)
             .fill('')

@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { format, parseISO } from 'date-fns';
 
 import { GameResponse } from '../../types/rawgApiTypes';
@@ -7,6 +7,8 @@ import GridElement from '../GridElement/GridElement';
 import { Link } from 'react-router-dom';
 import Icon from '../Icon/Icon';
 import { ICONS } from '../../types';
+import { loadImageAsync } from '../../utils';
+import Placeholder from '../Placeholder/Placeholder';
 
 interface Props {
   game: GameResponse;
@@ -14,12 +16,14 @@ interface Props {
 
 const GameCard: React.FC<Props> = ({ game }) => {
   const gameCardRef = useRef(null);
+  const rawPosterLink = `https://media.rawg.io/media/crop/600/400/${game.background_image.slice(
+    27
+  )}`;
+  const [posterLink, setPosterLink] = useState('');
 
-  const posterLink =
-    game.background_image &&
-    `https://media.rawg.io/media/crop/600/400/${game.background_image.slice(
-      27
-    )}`;
+  loadImageAsync(game.background_image && rawPosterLink).then((url) =>
+    setPosterLink(url)
+  );
 
   const renderPlatforms: JSX.Element = (
     <div className="game-card__platforms">
@@ -65,12 +69,16 @@ const GameCard: React.FC<Props> = ({ game }) => {
     <GridElement gapSpan={2}>
       <Link to={`/game/${game.id}`} className="game-card" ref={gameCardRef}>
         <div className="game-card__poster">
-          <img
-            className="game-card__poster-image"
-            src={posterLink}
-            alt="Game poster"
-            loading="lazy"
-          />
+          {posterLink ? (
+            <img
+              className="game-card__poster-image"
+              src={posterLink}
+              alt="Game poster"
+              loading="lazy"
+            />
+          ) : (
+            <Placeholder.Rect height="100%" />
+          )}
         </div>
         <div className="game-card__description">
           <div className="game-card__preview">

@@ -34,9 +34,7 @@
   &__poster {
     height: 230px;
     border-radius: 10px 10px 0 0;
-    background-color: black;
-    background-image: url(../../images/placeholder-image.gif);
-    background-repeat: no-repeat;
+    background-color: var(--quart);
     background-size: cover;
     background-position: center;
     overflow: hidden;

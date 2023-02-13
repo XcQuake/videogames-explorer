@@ -39,9 +39,9 @@ export const gamesListSlice = createSlice({
       state.isGamesListLoading = true;
     });
     builder.addCase(fetchGamesList.fulfilled, (state, action) => {
+      state.isGamesListLoading = false;
       state.games = state.games.concat(action.payload.results);
       state.nextPage = action.payload.next ? state.nextPage + 1 : 0;
-      state.isGamesListLoading = false;
     });
     builder.addCase(searchGames.pending, (state) => {
       state.games = [];
