@@ -5,6 +5,7 @@
   --primary: #2e303d;
   --secondary: #6e6fff;
   --tertiary: #3c3d4d;
+  --quart: #27272b;
 }
 
 body {
@@ -13,7 +14,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #2e303d;
+  background-color: var(--primary);
 }
 
 #root {

@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import './GamesList.scss';
-import Preloader from '../Preloader/Preloader';
 import GameCard from '../GameCard/GameCard';
 import { fetchGamesList, clearGamesList } from '../../state/gamesListState';
 import { useAppSelector, useAppDispatch } from '../../hooks/redux-hoos';
 import Controls from '../Controls/Controls';
 import GridElement from '../GridElement/GridElement';
 import { RAWG_API } from '../../utils/contants';
+import Placeholder from '../Placeholder/Placeholder';
 
 interface Props {}
 
@@ -69,8 +69,15 @@ const GamesList: React.FC<Props> = () => {
         {games.map((game) => (
           <GameCard key={game.id} game={game} />
         ))}
+        {(isScrolled || isGamesListLoading) &&
+          Array(10)
+            .fill('')
+            .map((item, i) => (
+              <GridElement gapSpan={2} key={`placeholder-${i}`}>
+                <Placeholder.Card />
+              </GridElement>
+            ))}
       </div>
-      {(isScrolled || isGamesListLoading) && <Preloader />}
     </div>
   );
 };

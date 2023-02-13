@@ -74,7 +74,7 @@ const GameCard: React.FC<Props> = ({ game }) => {
         </div>
         <div className="game-card__description">
           <div className="game-card__preview">
-            <p className="game-card__name">{game.name}</p>
+            <h4 className="game-card__name">{game.name}</h4>
             <div className="game-card__about">
               {renderPlatforms}
               {game.released && (

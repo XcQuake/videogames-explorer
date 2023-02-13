@@ -1,0 +1,96 @@
+.placeholder {
+  animation: reсt-pulse 1.5s infinite;
+  background: #aaa;
+
+  &-card {
+    &__poster {
+      height: 230px;
+      animation: 1.5s loading ease-in-out infinite;
+      background-color: var(--quart);
+      background: linear-gradient(
+          100deg,
+          rgba(255, 255, 255, 0) 40%,
+          rgba(255, 255, 255, 0.5) 50%,
+          rgba(255, 255, 255, 0) 60%
+        )
+        var(--quart);
+      background-size: 200% 100%;
+      background-position-x: 180%;
+      border-radius: 10px 10px 0 0;
+    }
+
+    &__description {
+      height: 100px;
+      background-color: var(--tertiary);
+      border-radius: 0 0 10px 10px;
+      padding: 15px 15px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    &__title {
+      height: 22px;
+      animation: 1.5s loading ease-in-out infinite;
+      background-color: var(--quart);
+      background: linear-gradient(
+          100deg,
+          rgba(255, 255, 255, 0) 40%,
+          rgba(255, 255, 255, 0.5) 50%,
+          rgba(255, 255, 255, 0) 60%
+        )
+        var(--quart);
+      background-size: 200% 100%;
+      background-position-x: 180%;
+    }
+
+    &__about {
+      display: grid;
+      grid-template-columns: 70% 30%;
+    }
+
+    &__platforms {
+      display: grid;
+      grid-template-columns: 25px 25px 25px;
+      gap: 5px;
+    }
+
+    &__platform {
+      height: 25px;
+      border-radius: 50%;
+      animation: 1.5s loading ease-in-out infinite;
+      background-color: var(--quart);
+      background: linear-gradient(
+          100deg,
+          rgba(255, 255, 255, 0) 40%,
+          rgba(255, 255, 255, 0.5) 50%,
+          rgba(255, 255, 255, 0) 60%
+        )
+        var(--quart);
+      background-size: 200% 100%;
+      background-position-x: 180%;
+    }
+
+    &__release {
+      height: 22px;
+      animation: 1.5s loading ease-in-out infinite;
+      background-color: var(--quart);
+      background: linear-gradient(
+          100deg,
+          rgba(255, 255, 255, 0) 40%,
+          rgba(255, 255, 255, 0.5) 50%,
+          rgba(255, 255, 255, 0) 60%
+        )
+        var(--quart);
+      background-size: 200% 100%;
+      background-position-x: 180%;
+    }
+  }
+}
+
+@keyframes loading {
+  to {
+    background-position-x: -20%;
+  }
+}
