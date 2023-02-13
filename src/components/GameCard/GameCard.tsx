@@ -16,14 +16,14 @@ interface Props {
 
 const GameCard: React.FC<Props> = ({ game }) => {
   const gameCardRef = useRef(null);
-  const rawPosterLink = `https://media.rawg.io/media/crop/600/400/${game.background_image.slice(
-    27
-  )}`;
+  const rawPosterLink =
+    game.background_image &&
+    `https://media.rawg.io/media/crop/600/400/${game.background_image.slice(
+      27
+    )}`;
   const [posterLink, setPosterLink] = useState('');
 
-  loadImageAsync(game.background_image && rawPosterLink).then((url) =>
-    setPosterLink(url)
-  );
+  loadImageAsync(rawPosterLink).then((url) => setPosterLink(url));
 
   const renderPlatforms: JSX.Element = (
     <div className="game-card__platforms">
