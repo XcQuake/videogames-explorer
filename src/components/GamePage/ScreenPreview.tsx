@@ -1,6 +1,7 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Screenshot } from '../../types/rawgApiTypes';
-import { setOffParallax, setOnParallax } from '../../utils';
+import { loadImageAsync, setOffParallax, setOnParallax } from '../../utils';
+import Placeholder from '../Placeholder/Placeholder';
 
 interface Props {
   screen: Screenshot;
@@ -15,38 +16,31 @@ const ScreenPreview: React.FC<Props> = ({
 }) => {
   const previewRef = useRef<HTMLImageElement>(null);
   const previewRect = previewRef.current;
+  const [screenLink, setScreenLink] = useState('');
 
-  function handleOnParallax(evt: React.MouseEvent) {
-    if (!previewRect) return;
-    previewRect.style.transform = `perspective(2000px) rotatey(${
-      (evt.nativeEvent.offsetX - previewRect.offsetWidth / 2) / 8
-    }deg) rotatex(${
-      ((evt.nativeEvent.offsetY - previewRect.offsetHeight / 2) / 8) * -1
-    }deg) scale(1.05)`;
-  }
-
-  function handleOffParallax() {
-    if (!previewRect) return;
-    previewRect.style.transform = ``;
-  }
+  loadImageAsync(screen.image).then((url) => setScreenLink(url));
 
   return (
     <div
       onMouseMove={(evt) => previewRect && setOnParallax(evt, previewRect)}
       onMouseLeave={() => previewRect && setOffParallax(previewRect)}
     >
-      <img
-        key={screen.id}
-        className={`gamepage__screenshot-preview ${
-          isSelected ? 'gamepage__screenshot-preview_selected' : ''
-        }`}
-        src={screen.image}
-        alt="screenshot"
-        width={275}
-        height={160}
-        ref={previewRef}
-        onClick={() => onSelectScreen(screen.image)}
-      />
+      {screenLink ? (
+        <img
+          key={screen.id}
+          className={`gamepage__screenshot-preview ${
+            isSelected ? 'gamepage__screenshot-preview_selected' : ''
+          }`}
+          src={screenLink}
+          alt="screenshot"
+          width={275}
+          height={160}
+          ref={previewRef}
+          onClick={() => onSelectScreen(screen.image)}
+        />
+      ) : (
+        <Placeholder.Rect height="160px" styles={{ borderRadius: '10px' }} />
+      )}
     </div>
   );
 };
