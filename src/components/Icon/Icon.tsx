@@ -7,12 +7,29 @@ interface Props {
   name?: ICONS;
   size?: SIZES;
   color: COLORS;
+  className?: string;
+  style?: {
+    [key: string]: string;
+  };
   onClick?: () => void;
 }
 
-const Icon: React.FC<Props> = ({ name, size, color, onClick }) => {
-  const className = ['icon', name, size, color].join(' ');
-  return <i className={className} onClick={() => onClick && onClick()} />;
+const Icon: React.FC<Props> = ({
+  name,
+  size,
+  color,
+  className,
+  style,
+  onClick,
+}) => {
+  const classNameFull = ['icon', name, size, color, className].join(' ');
+  return (
+    <i
+      className={classNameFull}
+      onClick={() => onClick && onClick()}
+      style={style}
+    />
+  );
 };
 
 export default Icon;
