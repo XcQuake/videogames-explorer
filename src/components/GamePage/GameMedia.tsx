@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { Screenshot } from '../../types/rawgApiTypes';
 import ScreenPreview from './ScreenPreview';
 
