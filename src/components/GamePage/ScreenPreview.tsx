@@ -21,10 +21,7 @@ const ScreenPreview: React.FC<Props> = ({
   loadImageAsync(screen.image).then((url) => setScreenLink(url));
 
   return (
-    <div
-      onMouseMove={(evt) => previewRect && setOnParallax(evt, previewRect)}
-      onMouseLeave={() => previewRect && setOffParallax(previewRect)}
-    >
+    <>
       {screenLink ? (
         <img
           key={screen.id}
@@ -37,11 +34,13 @@ const ScreenPreview: React.FC<Props> = ({
           height={160}
           ref={previewRef}
           onClick={() => onSelectScreen(screen.image)}
+          onMouseMove={(evt) => previewRect && setOnParallax(evt, previewRect)}
+          onMouseLeave={() => previewRect && setOffParallax(previewRect)}
         />
       ) : (
         <Placeholder.Rect height="160px" styles={{ borderRadius: '10px' }} />
       )}
-    </div>
+    </>
   );
 };
 
