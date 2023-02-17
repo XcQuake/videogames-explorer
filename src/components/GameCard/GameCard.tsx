@@ -58,8 +58,7 @@ const GameCard: React.FC<Props> = ({ game }) => {
       )}
       {game.metacritic && (
         <div className="game-card__metacritic">
-          Metacritic: {game.metacritic}{' '}
-          <span className="game-card__metacritic-icon" />
+          Metacritic: {game.metacritic} <Icon name="metacritic" color="black" />
         </div>
       )}
     </div>

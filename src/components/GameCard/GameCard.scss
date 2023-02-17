@@ -143,62 +143,10 @@
     opacity: 0.7;
     font-size: 14px;
     line-height: 16px;
-
-    &-icon {
-      width: 17px;
-      height: 17px;
-      display: block;
-      background-image: url(../../images/icon-metacritic.svg);
-      background-size: contain;
-      background-repeat: no-repeat;
-    }
+    gap: 5px;
   }
 }
 
 .hide {
   display: none;
-}
-
-.platform {
-  width: 25px;
-  height: 25px;
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  &_more {
-    background-image: url(../../images/icon-more.svg);
-  }
-
-  &_pc {
-    background-image: url(../../images/icon-windows.svg);
-  }
-
-  &_playstation {
-    background-image: url(../../images/icon-playstation.svg);
-  }
-
-  &_xbox {
-    background-image: url(../../images/icon-xbox.svg);
-  }
-
-  &_ios {
-    background-image: url(../../images/icon-ios.svg);
-  }
-
-  &_android {
-    background-image: url(../../images/icon-android.svg);
-  }
-
-  &_linux {
-    background-image: url(../../images/icon-linux.svg);
-  }
-
-  &_mac {
-    background-image: url(../../images/icon-mac.svg);
-  }
-
-  &_nintendo {
-    background-image: url(../../images/icon-nintendo.svg);
-  }
 }

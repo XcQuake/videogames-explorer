@@ -14,24 +14,10 @@
     border-radius: 10px;
     padding: 0 40px 0 15px;
     box-sizing: border-box;
-    background-color: #1F1F1F;
+    background-color: #1f1f1f;
     font-size: 18px;
     line-height: 20px;
     border: none;
     color: white;
-  }
-  &__options {
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    border: 1px solid #2e303d;
-    background-image: url(../../images/options-icon.svg);
-    background-color: #6B69F9;
-    background-size: 25px;
-    background-repeat: no-repeat;
-    background-position: center;
-    padding: 10px;
-    box-sizing: border-box;
-    cursor: pointer;
   }
 }

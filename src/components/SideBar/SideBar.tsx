@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { URLS } from '../../utils/contants';
+import Icon from '../Icon/Icon';
 import Logo from '../Logo/Logo';
 
 import './SideBar.scss';
@@ -44,20 +45,16 @@ class SideBar extends React.Component<Props, States> {
           </div>
           <nav className="navbar">
             <NavLink className="navbar__link" to={URLS.pc}>
-              <div className="navbar__icon navbar__icon_pc" />
+              <Icon name="pc" color="secondary" />
               <span className="navbar__link-text">PC</span>
             </NavLink>
             <NavLink className="navbar__link" to={URLS.playstation}>
-              <div className="navbar__icon navbar__icon_playstation" />
+              <Icon name="playstation" color="secondary" />
               <span className="navbar__link-text">PlayStation</span>
             </NavLink>
             <NavLink className="navbar__link" to={URLS.xbox}>
-              <div className="navbar__icon navbar__icon_xbox" />
+              <Icon name="xbox" color="secondary" />
               <span className="navbar__link-text">Xbox</span>
-            </NavLink>
-            <NavLink className="navbar__link" to={URLS.releases}>
-              <div className="navbar__icon navbar__icon_releases" />
-              <span className="navbar__link-text">Последние релизы</span>
             </NavLink>
           </nav>
         </div>

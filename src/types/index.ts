@@ -6,7 +6,7 @@ export type ICONS =
   | 'metacritic'
   | 'nintendo'
   | 'playstation'
-  | 'windows'
+  | 'pc'
   | 'xbox'
   | 'search'
   | 'arrow_up'
