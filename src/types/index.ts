@@ -14,7 +14,8 @@ export type ICONS =
   | 'arrow_right'
   | 'arrow_left'
   | 'plus'
-  | 'plus_circle';
+  | 'plus_circle'
+  | 'options';
 export type SIZES = 'mini' | 'tiny' | 'small' | 'medium' | 'large';
 export type COLORS =
   | 'inherit'

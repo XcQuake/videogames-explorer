@@ -87,6 +87,9 @@
   &.plus:before {
     content: '\ea0a';
   }
+  &.options:before {
+    content: '\e992';
+  }
   &.metacritic:before {
     content: '\e900';
     color: #ffcb00;
