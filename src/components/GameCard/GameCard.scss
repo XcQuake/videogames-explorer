@@ -150,3 +150,19 @@
 .hide {
   display: none;
 }
+
+@media (max-width: 1440px) {
+  .game-card {
+    &__poster {
+      height: 200px;
+    }
+  }
+}
+
+@media (max-width: 1270px) {
+  .game-card {
+    &__poster {
+      height: 170px;
+    }
+  }
+}

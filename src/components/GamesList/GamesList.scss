@@ -1,3 +1,5 @@
+@import '../../vendors/variables.scss';
+
 .games {
   height: 100%;
   width: 100%;
@@ -31,5 +33,28 @@
       grid-row-end: span 27;
       border-radius: 10px;
     }
+  }
+}
+
+@media (max-width: 1440px) {
+  .games {
+    padding: 40px 40px;
+  }
+}
+
+@media (max-width: $breakpoint-tablet) {
+  .games {
+    padding: 20px 20px;
+
+    &__list {
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      grid-gap: 0 15px;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-mobile) {
+  .games {
+    padding: 10px 10px;
   }
 }
