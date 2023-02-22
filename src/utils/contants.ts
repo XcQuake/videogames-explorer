@@ -14,3 +14,10 @@ export const RAWG_API = {
     xbox: 3,
   },
 };
+
+export const BREAKPOINTS = {
+  mobile: 425,
+  tablet: 768,
+  laptop: 1024,
+  desktop: 1440,
+};
