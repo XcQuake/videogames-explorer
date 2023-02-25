@@ -5,10 +5,10 @@ import { GameResponse } from '../../types/rawgApiTypes';
 import './GameCard.scss';
 import GridElement from '../GridElement/GridElement';
 import { Link } from 'react-router-dom';
-import Icon from '../Icon/Icon';
+import Icon from '../UI/Icon/Icon';
 import { ICONS } from '../../types';
 import { loadImageAsync } from '../../utils';
-import Placeholder from '../Placeholder/Placeholder';
+import Placeholder from '../UI/Placeholder/Placeholder';
 
 interface Props {
   game: GameResponse;

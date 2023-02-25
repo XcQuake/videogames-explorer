@@ -1,8 +1,8 @@
 import React from 'react';
 
 import './Button.scss';
-import { checkKey } from '../../utils';
-import { COLORS, SIZES } from '../../types';
+import { checkKey } from '../../../utils';
+import { COLORS, SIZES } from '../../../types';
 
 interface Props {
   size?: SIZES;

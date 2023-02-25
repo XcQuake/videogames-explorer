@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 
 import DateListElement from './DateListElement';
-import Button from '../Button/Button';
-import Icon from '../Icon/Icon';
+import { Button, Icon } from '../UI';
 
 interface Props {
   onSelect: (date: string) => void;

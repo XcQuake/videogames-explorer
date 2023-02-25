@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { URLS } from '../../utils/contants';
-import Icon from '../Icon/Icon';
+import Icon from '../UI/Icon/Icon';
 import Logo from '../Logo/Logo';
 
 import './SideBar.scss';

@@ -8,7 +8,7 @@ import { useAppSelector, useAppDispatch } from '../../hooks/redux-hoos';
 import Controls from '../Controls/Controls';
 import GridElement from '../GridElement/GridElement';
 import { RAWG_API } from '../../utils/contants';
-import Placeholder from '../Placeholder/Placeholder';
+import Placeholder from '../UI/Placeholder/Placeholder';
 
 interface Props {}
 

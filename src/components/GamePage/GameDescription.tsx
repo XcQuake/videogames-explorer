@@ -3,7 +3,7 @@ import { format } from 'date-fns';
 
 import { GameDetails } from '../../types/rawgApiTypes';
 import { cutTegs, getMetacriticColor } from '../../utils';
-import Icon from '../Icon/Icon';
+import Icon from '../UI/Icon/Icon';
 import { ICONS } from '../../types';
 
 interface Props {

@@ -1,10 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { compareAsc, getDaysInMonth } from 'date-fns';
 
-import Button from '../Button/Button';
-import Icon from '../Icon/Icon';
+import { Button, Icon, PopoverTrigger } from '../UI';
 import Calendar from '../Calendar/Calendar';
-import PopoverTrigger from '../Popover/PopoverTrigger';
 import { formatMonths } from '../../utils';
 import { useAppDispatch } from '../../hooks/redux-hoos';
 import { setReleaseDates } from '../../state/gamesListState';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { COLORS, ICONS, SIZES } from '../../types';
+import { COLORS, ICONS, SIZES } from '../../../types';
 
 import './Icon.scss';
 

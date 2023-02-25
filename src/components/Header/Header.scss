@@ -7,3 +7,9 @@
   justify-content: center;
   background-color: #2e303d;
 }
+
+@media (max-width: $breakpoint-mobile) {
+  .header {
+    padding: 0 10px;
+  }
+}

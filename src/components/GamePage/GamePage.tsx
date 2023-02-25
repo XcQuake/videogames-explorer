@@ -6,8 +6,7 @@ import rawgApi from '../../requests/rawgApi';
 import { GameDetails, Screenshot } from '../../types/rawgApiTypes';
 import GameDescription from './GameDescription';
 import GameMedia from './GameMedia';
-import Button from '../Button/Button';
-import Icon from '../Icon/Icon';
+import { Button, Icon } from '../UI';
 
 type Params = {
   id: string | undefined;

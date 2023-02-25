@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { Screenshot } from '../../types/rawgApiTypes';
 import { loadImageAsync, setOffParallax, setOnParallax } from '../../utils';
-import Placeholder from '../Placeholder/Placeholder';
+import { Placeholder } from '../UI';
 
 interface Props {
   screen: Screenshot;
