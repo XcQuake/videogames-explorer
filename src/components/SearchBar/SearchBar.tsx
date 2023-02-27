@@ -4,6 +4,7 @@ import { searchGames } from '../../state/gamesListState';
 import { useAppDispatch } from '../../hooks/redux-hoos';
 
 import './SearchBar.scss';
+import { Button, Icon } from '../UI';
 
 const SearchBar: React.FC = () => {
   const [inputText, setInputText] = useState<string>('');
@@ -29,6 +30,9 @@ const SearchBar: React.FC = () => {
         minLength={2}
         onChange={(evt) => setInputText(evt.target.value)}
       />
+      <Button color="secondary" size="small">
+        <Icon name="search" color="white" />
+      </Button>
     </div>
   );
 };

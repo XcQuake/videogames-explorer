@@ -1,15 +1,27 @@
 @import '../../vendors/variables.scss';
 
 .header {
-  height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #2e303d;
+  background-color: inherit;
+  padding: 10px 20px;
+}
+
+@media (max-width: $breakpoint-laptop) {
+  .header {
+    padding: 20px 20px 15px;
+  }
+}
+
+@media (max-width: $breakpoint-tablet) {
+  .header {
+    padding: 15px 20px 10px;
+  }
 }
 
 @media (max-width: $breakpoint-mobile) {
   .header {
-    padding: 0 10px;
+    padding: 10px;
   }
 }

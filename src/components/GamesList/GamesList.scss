@@ -3,7 +3,7 @@
 .games {
   height: 100%;
   width: 100%;
-  padding: 40px 55px;
+  padding: 20px 55px;
   display: flex;
   flex-direction: column;
   gap: 25px;
@@ -36,16 +36,15 @@
   }
 }
 
-@media (max-width: 1440px) {
+@media (max-width: $breakpoint-laptop) {
   .games {
-    padding: 40px 40px;
+    padding: 15px 20px;
   }
 }
 
 @media (max-width: $breakpoint-tablet) {
   .games {
-    padding: 20px 20px;
-
+    padding: 10px 20px;
     &__list {
       grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
       grid-gap: 0 15px;
@@ -55,6 +54,6 @@
 
 @media (max-width: $breakpoint-mobile) {
   .games {
-    padding: 10px 10px;
+    padding: 10px;
   }
 }
