@@ -10,10 +10,14 @@ const SearchBar: React.FC = () => {
   const [inputText, setInputText] = useState<string>('');
   const dispatch = useAppDispatch();
 
+  function handleSearch() {
+    dispatch(searchGames(inputText));
+  }
+
   useEffect(() => {
     if (!inputText) return;
     const timer = setTimeout(() => {
-      dispatch(searchGames(inputText)).then((data) => console.log(data));
+      handleSearch();
     }, 1500);
 
     return () => clearTimeout(timer);
@@ -30,7 +34,7 @@ const SearchBar: React.FC = () => {
         minLength={2}
         onChange={(evt) => setInputText(evt.target.value)}
       />
-      <Button color="secondary" size="small">
+      <Button color="secondary" size="small" onClick={handleSearch}>
         <Icon name="search" color="white" />
       </Button>
     </div>
