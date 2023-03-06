@@ -12,11 +12,15 @@ interface Props {
 
 const GameDescription: React.FC<Props> = ({ gameDetails }) => {
   const getFormatedText = (text: string) => {
-    return text.split('\n').map((str, i) => (
-      <p key={`p_${i}`} className="gamepage__about-line">
-        {cutTegs(str.slice(0, 1000))}
-      </p>
-    ));
+    const textArr: JSX.Element[] = [];
+    text.split('\n').map((str, i) =>
+      textArr.push(
+        <p key={`p_${i}`} className="gamepage__about-line">
+          {cutTegs(str.slice(0, 1000))}
+        </p>
+      )
+    );
+    return textArr;
   };
 
   const renderGameDetailsBlock = (
@@ -107,7 +111,8 @@ const GameDescription: React.FC<Props> = ({ gameDetails }) => {
         {renderDevelopers}
       </div>
       <div className="gamepage__about">
-        {gameDetails?.description && getFormatedText(gameDetails?.description)}
+        {gameDetails?.description &&
+          getFormatedText(gameDetails?.description)[0]}
       </div>
     </div>
   );

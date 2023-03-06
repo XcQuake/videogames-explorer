@@ -1,3 +1,5 @@
+@import '../../vendors/variables.scss';
+
 @keyframes loading {
   0% {
     top: -100%;
@@ -151,7 +153,7 @@
   display: none;
 }
 
-@media (max-width: 1440px) {
+@media (max-width: $breakpoint-tablet) {
   .game-card {
     &__poster {
       height: 200px;
@@ -159,7 +161,7 @@
   }
 }
 
-@media (max-width: 1270px) {
+@media (max-width: $breakpoint-tablet) {
   .game-card {
     &__poster {
       height: 170px;
