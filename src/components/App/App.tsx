@@ -1,4 +1,4 @@
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
 import Header from '../Header/Header';
 import GamesList from '../GamesList/GamesList';
@@ -14,7 +14,8 @@ function App() {
       <div className="main">
         <Header />
         <Switch>
-          <Route path="/game-list/:id">
+          <Redirect exact from="/" to="/games/pc" />
+          <Route path="/games/:id">
             <GamesList />
           </Route>
           <Route path="/game/:id">

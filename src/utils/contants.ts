@@ -1,8 +1,7 @@
 export const URLS = {
-  playstation: '/game-list/playstation',
-  pc: '/game-list/pc',
-  xbox: '/game-list/xbox',
-  releases: '/releases',
+  playstation: '/games/playstation',
+  pc: '/games/pc',
+  xbox: '/games/xbox',
 };
 
 export const RAWG_API = {
