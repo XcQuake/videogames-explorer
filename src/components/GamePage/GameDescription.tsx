@@ -3,9 +3,8 @@ import { format } from 'date-fns';
 
 import { GameDetails } from '../../types/rawgApiTypes';
 import { cutTegs, getMetacriticColor } from '../../utils';
-import Icon from '../UI/Icon/Icon';
 import { ICONS } from '../../types';
-import { Placeholder } from '../UI';
+import { Icon } from '../UI';
 
 interface Props {
   gameDetails: GameDetails;

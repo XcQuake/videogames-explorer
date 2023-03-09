@@ -1,6 +1,8 @@
 import React, { useRef, useState } from 'react';
+import { useWindowWidth } from '../../hooks/useWindowWidth';
 import { Screenshot } from '../../types/rawgApiTypes';
 import { loadImageAsync, setOffParallax, setOnParallax } from '../../utils';
+import { BREAKPOINTS } from '../../utils/contants';
 import { Placeholder } from '../UI';
 
 interface Props {
@@ -17,6 +19,7 @@ const ScreenPreview: React.FC<Props> = ({
   const previewRef = useRef<HTMLImageElement>(null);
   const previewRect = previewRef.current;
   const [screenLink, setScreenLink] = useState('');
+  const { windowWidth } = useWindowWidth();
 
   loadImageAsync(screen.image).then((url) => setScreenLink(url));
 
@@ -33,9 +36,19 @@ const ScreenPreview: React.FC<Props> = ({
           width={275}
           height={160}
           ref={previewRef}
-          onClick={() => onSelectScreen(screen.image)}
-          onMouseMove={(evt) => previewRect && setOnParallax(evt, previewRect)}
-          onMouseLeave={() => previewRect && setOffParallax(previewRect)}
+          onClick={() =>
+            windowWidth > BREAKPOINTS.tablet && onSelectScreen(screen.image)
+          }
+          onMouseMove={(evt) =>
+            windowWidth > BREAKPOINTS.tablet &&
+            previewRect &&
+            setOnParallax(evt, previewRect)
+          }
+          onMouseLeave={() =>
+            windowWidth > BREAKPOINTS.tablet &&
+            previewRect &&
+            setOffParallax(previewRect)
+          }
         />
       ) : (
         <Placeholder.Rect height="160px" styles={{ borderRadius: '10px' }} />
