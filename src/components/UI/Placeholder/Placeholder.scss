@@ -1,16 +1,21 @@
-@keyframes loading {
+@import '../../../vendors/variables.scss';
+
+@keyframes shine {
+  from {
+    background-position-x: 100%;
+  }
   to {
-    background-position-x: -20%;
+    background-position-x: -100%;
   }
 }
 
 %background {
-  animation: 1.5s loading ease-in-out infinite;
+  animation: 1.5s shine linear infinite;
   background-color: var(--quart);
   background: linear-gradient(
       100deg,
       rgba(255, 255, 255, 0) 40%,
-      rgba(255, 255, 255, 0.5) 50%,
+      rgba(93, 93, 93, 0.522) 50%,
       rgba(255, 255, 255, 0) 60%
     )
     var(--quart);
@@ -30,7 +35,7 @@
 
   &-card {
     &__description {
-      height: 100px;
+      height: 83px;
       background-color: var(--tertiary);
       border-radius: 0 0 10px 10px;
       padding: 15px 15px;
@@ -38,6 +43,7 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      gap: 10px;
     }
 
     &__about {
