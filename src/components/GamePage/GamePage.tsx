@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import './GamePage.scss';
 import rawgApi from '../../requests/rawgApi';
 import { GameDetails, Screenshot } from '../../types/rawgApiTypes';
 import GameDescription from './GameDescription';
 import GameMedia from './GameMedia';
-import { Button, Icon, Placeholder } from '../UI';
+import { Placeholder } from '../UI';
 
 type Params = {
   id: string | undefined;
@@ -16,7 +16,6 @@ const GamePage: React.FC = () => {
   const { id } = useParams<Params>();
   const [gameDetails, setGameDetails] = useState<GameDetails | null>(null);
   const [screenshots, setScreenshots] = useState<Screenshot[]>([]);
-  const history = useHistory();
 
   useEffect(() => {
     if (!id) return;
@@ -40,14 +39,6 @@ const GamePage: React.FC = () => {
           <Placeholder.GamePage />
         )}
         {screenshots.length > 0 && <GameMedia screenshots={screenshots} />}
-        <Button
-          onClick={() => history.goBack()}
-          color="inherit"
-          size="large"
-          className="gamepage__back-button"
-        >
-          <Icon color="white" name="arrow_left" size="large" />
-        </Button>
       </div>
     </div>
   );
