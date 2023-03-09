@@ -5,6 +5,7 @@ import { GameDetails } from '../../types/rawgApiTypes';
 import { cutTegs, getMetacriticColor } from '../../utils';
 import Icon from '../UI/Icon/Icon';
 import { ICONS } from '../../types';
+import { Placeholder } from '../UI';
 
 interface Props {
   gameDetails: GameDetails;
@@ -38,7 +39,7 @@ const GameDescription: React.FC<Props> = ({ gameDetails }) => {
   const renderReleaseDate: React.ReactNode =
     gameDetails?.released &&
     renderGameDetailsBlock(
-      'Release',
+      'Release date',
       <p className="gamepage__details-text">
         {format(new Date(gameDetails?.released), 'd LLLL, yyyy')}
       </p>
@@ -79,7 +80,6 @@ const GameDescription: React.FC<Props> = ({ gameDetails }) => {
       'Platforms',
       <p className="gamepage__details-text flex-row">
         {gameDetails.parent_platforms.map((el, i) => [
-          ' ',
           <Icon
             key={`pl-${i}`}
             size="medium"
@@ -100,6 +100,7 @@ const GameDescription: React.FC<Props> = ({ gameDetails }) => {
         ])}
       </p>
     );
+
   return (
     <div className="gamepage__description">
       <h1 className="gamepage__title">{gameDetails?.name}</h1>

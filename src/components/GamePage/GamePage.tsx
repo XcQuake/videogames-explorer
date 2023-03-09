@@ -6,7 +6,7 @@ import rawgApi from '../../requests/rawgApi';
 import { GameDetails, Screenshot } from '../../types/rawgApiTypes';
 import GameDescription from './GameDescription';
 import GameMedia from './GameMedia';
-import { Button, Icon } from '../UI';
+import { Button, Icon, Placeholder } from '../UI';
 
 type Params = {
   id: string | undefined;
@@ -34,7 +34,11 @@ const GamePage: React.FC = () => {
       }}
     >
       <div className="gamepage__wrapper">
-        {gameDetails && <GameDescription gameDetails={gameDetails} />}
+        {gameDetails ? (
+          <GameDescription gameDetails={gameDetails} />
+        ) : (
+          <Placeholder.GamePage />
+        )}
         {screenshots.length > 0 && <GameMedia screenshots={screenshots} />}
         <Button
           onClick={() => history.goBack()}

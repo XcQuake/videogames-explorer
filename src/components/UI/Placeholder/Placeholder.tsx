@@ -9,6 +9,7 @@ interface Props {
 
 type CompoundedComponent = React.ForwardRefExoticComponent<Props> & {
   Card: () => JSX.Element;
+  GamePage: () => JSX.Element;
   Rect: ({ height, styles }: Props) => JSX.Element;
   Circle: ({ height, styles }: Props) => JSX.Element;
 };
@@ -51,6 +52,16 @@ Placeholder.Card = () => {
           <Placeholder.Rect height="20px" />
         </div>
       </div>
+    </div>
+  );
+};
+
+Placeholder.GamePage = () => {
+  return (
+    <div className="placeholder-gamepage">
+      <Placeholder.Rect height="30px" />
+      <Placeholder.Rect height="80px" />
+      <Placeholder.Rect height="250px" />
     </div>
   );
 };

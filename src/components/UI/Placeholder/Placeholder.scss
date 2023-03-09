@@ -25,6 +25,7 @@
 
 .placeholder {
   &-rect {
+    height: 100%;
     @extend %background;
   }
 
@@ -57,5 +58,11 @@
       grid-template-columns: 25px 25px 25px;
       gap: 5px;
     }
+  }
+
+  &-gamepage {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
   }
 }
