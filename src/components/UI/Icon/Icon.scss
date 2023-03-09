@@ -79,6 +79,12 @@
   &.arrow_down:before {
     content: '\e904';
   }
+  &.longarrow_right:before {
+    content: '\ea39';
+  }
+  &.longarrow_left:before {
+    content: '\ea40';
+  }
   &.calendar:before {
     content: '\e905';
   }
