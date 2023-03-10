@@ -1,16 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { format } from 'date-fns';
 
 import { GameDetails } from '../../types/rawgApiTypes';
 import { cutTegs, getMetacriticColor } from '../../utils';
 import { ICONS } from '../../types';
-import { Icon } from '../UI';
+import { Button, Icon } from '../UI';
 
 interface Props {
   gameDetails: GameDetails;
 }
 
 const GameDescription: React.FC<Props> = ({ gameDetails }) => {
+  const [isFullTextShown, setIsFullTextShown] = useState(false);
   const getFormatedText = (text: string) => {
     const textArr: JSX.Element[] = [];
     text.split('\n').map((str, i) =>
@@ -111,8 +112,20 @@ const GameDescription: React.FC<Props> = ({ gameDetails }) => {
         {renderDevelopers}
       </div>
       <div className="gamepage__about">
-        {gameDetails?.description &&
-          getFormatedText(gameDetails?.description)[0]}
+        {isFullTextShown ? (
+          <div className="gamepage__about_full">
+            {getFormatedText(gameDetails.description)}
+          </div>
+        ) : (
+          <span>{cutTegs(gameDetails?.description.slice(0, 285))}</span>
+        )}{' '}
+        <Button
+          color="secondary"
+          size="tiny"
+          onClick={() => setIsFullTextShown(!isFullTextShown)}
+        >
+          {isFullTextShown ? 'Show less' : 'Show more'}
+        </Button>
       </div>
     </div>
   );

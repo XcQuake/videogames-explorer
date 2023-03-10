@@ -40,7 +40,7 @@
   &__details {
     display: flex;
     padding: 25px 0 50px;
-    gap: 15px;
+    gap: 25px;
     background-color: rgba(0, 0, 0, 0.295);
     padding: 10px;
     box-sizing: border-box;
@@ -81,11 +81,14 @@
 
   &__about {
     color: white;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
     font-size: 18px;
     line-height: 22px;
+
+    &_full {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
 
     &-line {
       padding: 0;
