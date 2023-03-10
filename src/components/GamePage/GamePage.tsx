@@ -7,6 +7,7 @@ import { GameDetails, Screenshot } from '../../types/rawgApiTypes';
 import GameDescription from './GameDescription';
 import GameMedia from './GameMedia';
 import { Placeholder } from '../UI';
+import { loadImageAsync } from '../../utils';
 
 type Params = {
   id: string | undefined;
@@ -16,6 +17,12 @@ const GamePage: React.FC = () => {
   const { id } = useParams<Params>();
   const [gameDetails, setGameDetails] = useState<GameDetails | null>(null);
   const [screenshots, setScreenshots] = useState<Screenshot[]>([]);
+  const [backgroundImage, setBackgroundImage] = useState('');
+
+  gameDetails?.background_image &&
+    loadImageAsync(gameDetails?.background_image).then((url) =>
+      setBackgroundImage(url)
+    );
 
   useEffect(() => {
     if (!id) return;
@@ -29,7 +36,7 @@ const GamePage: React.FC = () => {
     <div
       className="gamepage"
       style={{
-        backgroundImage: `url(${gameDetails?.background_image})` || '',
+        backgroundImage: `url(${backgroundImage})`,
       }}
     >
       <div className="gamepage__wrapper">
