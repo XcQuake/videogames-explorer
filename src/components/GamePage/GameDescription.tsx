@@ -117,7 +117,7 @@ const GameDescription: React.FC<Props> = ({ gameDetails }) => {
             {getFormatedText(gameDetails.description)}
           </div>
         ) : (
-          <span>{cutTegs(gameDetails?.description.slice(0, 285))}</span>
+          <span>{cutTegs(gameDetails?.description.slice(0, 285)) + '...'}</span>
         )}{' '}
         <Button
           color="secondary"
