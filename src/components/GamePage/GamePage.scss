@@ -8,12 +8,10 @@
 
   &__wrapper {
     width: 100%;
-    // height: 100%;
-    // height: 100vh;
     position: absolute;
     top: 0;
     left: 0;
-    background: linear-gradient(#4b4b4b7a 15%, var(--primary) 80%);
+    background: linear-gradient(#4b4b4b7a 15%, var(--primary) 60%);
     z-index: 1;
     padding: 4% 5%;
     box-sizing: border-box;
@@ -136,6 +134,7 @@
   .gamepage {
     &__wrapper {
       grid-template-columns: 1fr;
+      background: linear-gradient(#4b4b4b7a 5%, var(--primary) 40%);
     }
   }
 }
@@ -150,6 +149,7 @@
       padding: 4% 5% 10%;
       grid-template-columns: 1fr;
       gap: 25px;
+      background: linear-gradient(#4b4b4b7a 5%, var(--primary) 30%);
     }
 
     &__description {
