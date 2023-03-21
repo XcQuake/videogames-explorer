@@ -1,46 +1,34 @@
-# Getting Started with Create React App
+# VideoGames Explorer 🎮
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+VideoGames Explorer - это веб-приложение, которое позволяет вам просматривать и исследовать видеоигры с разных платформ и жанров.
 
-## Available Scripts
+Вы можете искать игры по названию, фильтровать их по платформе и дате выхода, и просматривать подробную информацию о каждой игре.
 
-In the project directory, you can run:
+Вы можете опробовать приложение здесь: https://videogames-explorer.vercel.app/
 
-### `npm start`
+## Скриншоты 🖼️
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+| ![Desktop](./src/images/preview/desktop-preivew.png) | ![Mobile](./src/images/preview/mobile-preview.jpg) |
+| :--------------------------------------------------: | -------------------------------------------------- |
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Технологии
 
-### `npm test`
+Этот проект был создан с использованием:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- TypeScript
+- React.js
+- Redux
+- SASS
+- Axios
+- [RAWG API](https://rawg.io/apidocs)
 
-### `npm run build`
+## Установка
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Чтобы запустить этот проект локально:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. Клонируйте этот репозиторий: `git clone https://github.com/XcQuake/videogames-explorer.git`
+2. Установите зависимости: `npm install`
+3. Создать `.env.local` файл в папке с приложнием и добавить ключ [RAWG API](https://rawg.io/apidocs)
+   `REACT_APP_RAWG_API_KEY=ваш_ключ_rawg_api`
+4. Запустите сервер разработки: `npm run dev`
+5. Откройте http://localhost:3000 в вашем браузере
