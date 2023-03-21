@@ -6,7 +6,7 @@ export const URLS = {
 
 export const RAWG_API = {
   baseLink: 'https://api.rawg.io/api/games',
-  key: '66079383234d4dcb920bcfc26e2fb8ae',
+  key: process.env.REACT_APP_RAWG_API_KEY,
   platforms: {
     pc: 1,
     playstation: 2,
