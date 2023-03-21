@@ -1,0 +1,19 @@
+@import '../../vendors/variables.scss';
+
+.mobile-bar {
+  display: none;
+  background-color: $color-primary;
+  position: sticky;
+  bottom: 0;
+
+  &__nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media (max-width: $breakpoint-tablet) {
+  .mobile-bar {
+    display: block;
+  }
+}

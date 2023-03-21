@@ -6,6 +6,7 @@ import SideBar from '../SideBar/SideBar';
 
 import './App.scss';
 import GamePage from '../GamePage/GamePage';
+import MobileBar from '../MobileBar/MobileBar';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <GamePage />
           </Route>
         </Switch>
+        <MobileBar />
       </div>
     </>
   );
