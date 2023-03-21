@@ -16,9 +16,10 @@ const YearView: React.FC<Props> = ({ onSelect }) => {
   const renderMonths = () => {
     const months = [];
     for (let i = 1; i <= 12; i++) {
-      const stringDate = `${i}-1`;
+      const stringDate = `${i}, 01, 2000`;
       const fullDate = new Date(stringDate);
       const value = format(fullDate, 'LLL', { locale: ru });
+
       months.push(
         <DateListElement
           key={`month${i}`}

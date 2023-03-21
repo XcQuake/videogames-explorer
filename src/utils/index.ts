@@ -7,8 +7,12 @@ export function checkKey(val: boolean, key: string) {
 
 export const formatMonths = (firstMonth: string, secondMonth: string) => {
   return {
-    first: firstMonth && format(new Date(firstMonth), 'LLL', { locale: ru }),
-    second: secondMonth && format(new Date(secondMonth), 'LLL', { locale: ru }),
+    first:
+      firstMonth &&
+      format(new Date(`${firstMonth}, 01, 2000`), 'LLL', { locale: ru }),
+    second:
+      secondMonth &&
+      format(new Date(`${secondMonth}, 01, 2000`), 'LLL', { locale: ru }),
   };
 };
 
