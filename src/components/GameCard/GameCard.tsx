@@ -1,8 +1,10 @@
 import React, { useRef, useState } from 'react';
 import { format, parseISO } from 'date-fns';
 
-import { GameResponse } from '../../types/rawgApiTypes';
+import imagePlaceholder from '../../images/placeholder-image.jpg';
+
 import './GameCard.scss';
+import { GameResponse } from '../../types/rawgApiTypes';
 import GridElement from '../GridElement/GridElement';
 import { Link } from 'react-router-dom';
 import Icon from '../UI/Icon/Icon';
@@ -68,15 +70,23 @@ const GameCard: React.FC<Props> = ({ game }) => {
     <GridElement gapSpan={2}>
       <Link to={`/game/${game.id}`} className="game-card" ref={gameCardRef}>
         <div className="game-card__poster">
-          {posterLink ? (
+          {game.background_image ? (
+            posterLink ? (
+              <img
+                className="game-card__poster-image"
+                src={posterLink || imagePlaceholder}
+                alt="Game poster"
+                loading="lazy"
+              />
+            ) : (
+              <Placeholder.Rect height="100%" />
+            )
+          ) : (
             <img
               className="game-card__poster-image"
-              src={posterLink}
+              src={imagePlaceholder}
               alt="Game poster"
-              loading="lazy"
             />
-          ) : (
-            <Placeholder.Rect height="100%" />
           )}
         </div>
         <div className="game-card__description">
